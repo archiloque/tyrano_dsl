@@ -1,0 +1,1 @@
+declare_scene 'Scene 1'

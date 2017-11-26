@@ -8,8 +8,6 @@ A DSL to generate TyranoBuilder games from human-readable ruby
 Example :
 
 ```ruby
-declare_project_path '/Users/u/Library/Application\ Support/Steam/steamapps/common/TyranoBuilder/myproject/Test'
-
 declare_character 'Sabine', 'characters/sabine', {
     'default' => 'characters/sabine/default_stance.jpg',
     'angry' => 'characters/sabine/angry.jpg'
@@ -21,7 +19,7 @@ set_background 'School'
 show_character 'Sabine'
 
 display_text 'Sabine', 'Hello!'
-change_character 'Sabine', 'angry'
+change_character_expression 'Sabine', 'angry'
 jump_to_scene 'Second scene'
 
 declare_scene 'Second scene'
@@ -30,7 +28,9 @@ declare_scene 'Second scene'
 
 # Run
 
-Execute `tyrano-dsl` in our project directory.
+Execute `tyrano-dsl PATH_TO_YOUR_TYRANO_PROJECT` in our project directory.
+
+`PATH_TO_YOUR_TYRANO_PROJECT` should look like `/Users/u/Library/Application\ Support/Steam/steamapps/common/TyranoBuilder/myproject/Test`
 
 If everything is OK it should update the files in your TyranoBuilder project.
 
