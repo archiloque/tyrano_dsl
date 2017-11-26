@@ -1,8 +1,8 @@
 module TyranoDsl
 
   class Writer
-    def write_game(game, path)
-      p "Writing game to [#{path}]"
+    def write_game(game)
+      contents = {}
     end
   end
 

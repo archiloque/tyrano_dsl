@@ -7,9 +7,9 @@ module TyranoDsl
 
   class Main
 
-    DEFAULT_FILENAME = 'content.rb'
+    DEFAULT_FILENAME = 'content.rb'.freeze
 
-    def run(tyrano_project_path)
+    def run
       content_file_path = File.expand_path(DEFAULT_FILENAME)
       p "Reading content file at [#{content_file_path}]"
       unless File.exist? content_file_path
@@ -20,13 +20,10 @@ module TyranoDsl
       reader = Reader.new(parsing_context)
       reader.instance_eval(IO.read(content_file_path))
 
-      demiurge = Demiurge.new
-      game = demiurge.create_game(parsing_context)
+      game = Demiurge.new.create_game(parsing_context)
       game.validate
 
-      writer = Writer.new
-      writer.write_game(game, tyrano_project_path)
-
+       Writer.new.write_game(game)
     end
 
   end
