@@ -13,9 +13,12 @@ module TyranoDsl
       }
     end
 
-    def create_game(parsing_context)
-      p 'Creating game'
-      game = Elements::Game.new
+
+    # @param [!ParsingContext] parsing_context
+    # @return [!World]
+    def create_world(parsing_context)
+      p 'Creating world'
+      world = Elements::Game.new
       parsing_context.words.each do |word|
         p "Processing word #{word}"
         word_name = word[:word]
@@ -23,10 +26,10 @@ module TyranoDsl
         unless word_action
           raise "Unknown word [#{word_name}]"
         end
-        word_action.run(game, word[:parameters])
+        word_action.run(world, word[:parameters])
       end
-      p 'Game created'
-      game
+      p 'World created'
+      world
     end
 
   end

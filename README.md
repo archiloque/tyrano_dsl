@@ -26,7 +26,7 @@ declare_scene 'Second scene'
 
 ```
 
-# Run
+## Run
 
 Execute `tyrano-dsl PATH_TO_YOUR_TYRANO_PROJECT` in our project directory.
 
@@ -36,7 +36,11 @@ If everything is OK it should update the files in your TyranoBuilder project.
 
 If there is an error it should be displayed.
 
-# Project organisation
+# Vocabulary
+
+- `declare_scene name` declare a scene 
+
+## Default project organisation
 
 - `content.rb` : the main content
 - `backgrounds` : the backgrounds images

@@ -6,9 +6,7 @@ if ARGV.length != 1
   raise 'You need one argument : the path to the tyrano project'
 end
 project_path = ARGV[0]
-resulting_files = TyranoDsl::Main.new.run
-resulting_files.each_pair do |filename, file_content|
-  full_filename = File.expand_path(File.join(project_path, filename))
-  p "Writing to [#{full_filename}]"
-  File.write(full_filename, file_content)
+writing_actions = TyranoDsl::Main.new.run(TyranoDsl::Main::DEFAULT_FILENAME)
+writing_actions.each do |writing_action|
+  writing_action.run
 end

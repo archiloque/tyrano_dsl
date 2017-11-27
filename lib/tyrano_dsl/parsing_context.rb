@@ -1,5 +1,6 @@
 module TyranoDsl
 
+  # Context for parsing, used by words to store content
   class ParsingContext
 
     attr_reader :words
@@ -8,6 +9,8 @@ module TyranoDsl
       @words = []
     end
 
+    # @param word [!String]
+    # @param parameters [!Hash]
     def add_word(word, parameters)
       @words << {word: word, parameters: parameters}
     end

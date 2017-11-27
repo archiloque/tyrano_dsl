@@ -7,7 +7,7 @@ module TyranoDsl
 
     def initialize(context)
       p 'Reading begin'
-      words = {
+      @words = {
         DECLARE_SCENE => ::TyranoDsl::Words::DeclareScene.new
       }
 
@@ -18,6 +18,10 @@ module TyranoDsl
         end
       end
       p 'Reading end'
+    end
+
+    def method_missing(symbol, *args)
+      raise "Unknown word [#{symbol}], available words are: #{@words.keys.sort.join(', ')}"
     end
   end
 end

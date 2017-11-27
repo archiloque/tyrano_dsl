@@ -2,16 +2,16 @@ module TyranoDsl
 
   module Elements
 
-    class Game
+    class World
 
       attr_reader :scenes
       attr_reader :characters
-      attr_reader :background
+      attr_reader :backgrounds
 
       def initialize
         @scenes = {}
         @characters = {}
-        @background = {}
+        @backgrounds = {}
       end
 
       def validate
