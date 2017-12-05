@@ -12,16 +12,16 @@ module TyranoDsl
 
       BACKGROUND_DIRECTORY = 'bgimage'
 
-      # @return [!Array]
+      # @return [Array]
       def init_actions
         [
             ::TyranoDsl::Writers::FileActions::ClearDirectory.new(BACKGROUND_DIRECTORY)
         ]
       end
 
-      # @param [!TyranoDsl::Elements::World] world
-      # @param [!TyranoDsl::Elements::Background] background
-      # @return [!Array]
+      # @param [TyranoDsl::Elements::World] world
+      # @param [TyranoDsl::Elements::Background] background
+      # @return [Array]
       def write(world, background)
         log{"Writing background [#{background.name}]"}
         [

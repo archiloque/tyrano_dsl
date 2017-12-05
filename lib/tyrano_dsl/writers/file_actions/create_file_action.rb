@@ -9,15 +9,15 @@ module TyranoDsl
 
         attr_reader :path, :content
 
-        # @param [!String] path
-        # @param [!String] content
+        # @param [String] path
+        # @param [String] content
         def initialize(path, content)
           @path = path
           @content = content
           log{self.to_s}
         end
 
-        # @param [!String] tyrano_project_path
+        # @param [String] tyrano_project_path
         def run(tyrano_project_path)
 
         end

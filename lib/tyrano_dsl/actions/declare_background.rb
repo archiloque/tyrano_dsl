@@ -6,7 +6,6 @@ module TyranoDsl
     # @!macro word_declare_background
     class DeclareBackground < NopAction
 
-
     end
   end
 end

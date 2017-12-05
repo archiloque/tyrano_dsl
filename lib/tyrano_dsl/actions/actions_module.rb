@@ -5,10 +5,11 @@ module TyranoDsl
 
     # Helpers to write actions
     # @!macro [new] action_run
-    #   @param [!TyranoDsl::WritingContext] writing_context
-    #   @param [!TyranoDsl::Elements::World] world
+    #   Execute the action
+    #   @param [TyranoDsl::WritingContext] writing_context
+    #   @param [TyranoDsl::Elements::World] world
     #   @param [Thread::Backtrace::Location] word_location
-    #   @param [!Hash] parameters
+    #   @param [Hash{String => Object}] parameters
     #   @return [void]
     #   @raise [TyranoDsl::TyranoException]
     module ActionsModule

@@ -9,10 +9,10 @@ module TyranoDsl
 
       include ::TyranoDsl::Writers::WritersModule
 
-      # @param [!TyranoDsl::Elements::World] world
-      # @param [!TyranoDsl::Elements::Scene] scene
-      # @param [!Array<String>] content
-      # @return [!Array]
+      # @param [TyranoDsl::Elements::World] world
+      # @param [TyranoDsl::Elements::Scene] scene
+      # @param [Array<String>] content
+      # @return [Array]
       def write(world, scene, content)
         log{"Writing scene [#{scene.name}]"}
         text_content = "[_tb_system_call storage=system/_#{scene.target_name}.ks]\n#{content.join("\n")}\n"

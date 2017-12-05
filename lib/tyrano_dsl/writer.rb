@@ -32,8 +32,8 @@ module TyranoDsl
       @logger.info(self.class){yield}
     end
 
-    # @param [!ParsingContext] parsing_context
-    # @return [!TyranoDsl::WritingContext]
+    # @param [ParsingContext] parsing_context
+    # @return [TyranoDsl::WritingContext]
     # @raise [TyranoDsl::TyranoException]
     def write(parsing_context)
       log{'Writing content'}

@@ -6,6 +6,7 @@ module TyranoDsl
 
     # Helpers to write words
     # @!macro [new] word_parse
+    #   Parse a word
     #   @param context [TyranoDsl::ParsingContext] context
     #   @param [Thread::Backtrace::Location] word_location
     #   @param parameters [Array]
@@ -14,8 +15,8 @@ module TyranoDsl
     module WordsModule
 
       # @param [Thread::Backtrace::Location] word_location
-      # @param [!Array<String>] expected_parameters_names
-      # @param [!Array] parameters
+      # @param [Array<String>] expected_parameters_names
+      # @param [Array] parameters
       # @return [void]
       # @raise [TyranoDsl::TyranoException]
       def validate_parameters_length(word_location, expected_parameters_names, parameters)
@@ -34,10 +35,11 @@ module TyranoDsl
         end
       end
 
-      # @param [!TyranoDsl::ParsingContext] parsing_context
+      # @param [TyranoDsl::ParsingContext] parsing_context
       # @param [Thread::Backtrace::Location] word_location
-      # @param [!String] character_name
-      # @param [?String] character_stance
+      # @param [String] character_name
+      # @param [String, nil] character_stance
+      # @return [void]
       # @raise [TyranoDsl::TyranoException]
       def check_character_exist(parsing_context, word_location, character_name, character_stance = nil)
         character = parsing_context.world.characters[character_name]

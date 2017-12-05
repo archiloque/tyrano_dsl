@@ -9,9 +9,9 @@ module TyranoDsl
 
       include ::TyranoDsl::Writers::WritersModule
 
-      # @param [!TyranoDsl::Elements::World] world
-      # @param [!TyranoDsl::Elements::Character] character
-      # @return [!Array]
+      # @param [TyranoDsl::Elements::World] world
+      # @param [TyranoDsl::Elements::Character] character
+      # @return [Array]
       def write(world, character)
         log{"Writing character [#{character.name}]"}
         # @todo

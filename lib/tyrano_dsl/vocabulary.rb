@@ -24,7 +24,7 @@ module TyranoDsl
     DISPLAY_TEXT = 'display_text'.freeze
     JUMP_TO = 'jump_to'.freeze
     SET_BACKGROUND = 'set_background'.freeze
-    SET_CHARACTER_STANCE= 'set_character_stance'.freeze
+    SET_CHARACTER_STANCE = 'set_character_stance'.freeze
     SHOW_CHARACTER = 'show_character'.freeze
     START_SCENE = 'start_scene'.freeze
 

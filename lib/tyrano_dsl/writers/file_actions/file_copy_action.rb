@@ -8,8 +8,8 @@ module TyranoDsl
 
         include TyranoDsl::Writers::FileActions::FileActionsModule
 
-        # @param [!String] from_path
-        # @param [!String] to_path
+        # @param [String] from_path
+        # @param [String] to_path
         def initialize(from_path, to_path)
           @from_path = from_path
           @to_path = to_path
@@ -17,7 +17,7 @@ module TyranoDsl
         end
 
 
-        # @param [!String] tyrano_project_path
+        # @param [String] tyrano_project_path
         def run(tyrano_project_path)
 
         end
