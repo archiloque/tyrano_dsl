@@ -57,13 +57,13 @@ module TyranoDsl
       end
       @current_scene_content = nil
       @current_scene_name = nil
-      log{"Writing is over, #{@actions.length} actions created"}
+      log {"Writing is over, #{@actions.length} actions created"}
     end
 
     private
 
     def log
-      @logger.info(self.class){yield}
+      @logger.info(self.class) {yield}
     end
 
   end

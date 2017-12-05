@@ -24,7 +24,7 @@ module TyranoDsl
       # @param [TyranoDsl::Elements::Background] background
       # @return [Array]
       def write(world, background)
-        log{"Writing background [#{background.name}]"}
+        log {"Writing background [#{background.name}]"}
         [
             ::TyranoDsl::Writers::FileActions::FileCopyAction.new(
                 background.image_path,

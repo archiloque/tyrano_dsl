@@ -13,7 +13,7 @@ module TyranoDsl
       end
 
       def log
-        logger.info(self.class){yield}
+        logger.info(self.class) {yield}
       end
 
     end

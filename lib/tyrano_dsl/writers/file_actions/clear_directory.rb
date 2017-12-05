@@ -14,7 +14,7 @@ module TyranoDsl
         # @param [String] path
         def initialize(path)
           @path = path
-          log{to_s}
+          log {to_s}
         end
 
 

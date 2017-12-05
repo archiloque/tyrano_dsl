@@ -16,7 +16,7 @@ module TyranoDsl
 
     include Vocabulary
 
-    def initialize()
+    def initialize
       @logger = Logger.new(STDOUT)
       @words = {
           DECLARE_BACKGROUND => ::TyranoDsl::Actions::DeclareBackground.new,
@@ -34,14 +34,14 @@ module TyranoDsl
     # @return [TyranoDsl::WritingContext]
     # @raise [TyranoDsl::TyranoException]
     def write(parsing_context)
-      log{'Writing content'}
+      log {'Writing content'}
       world = parsing_context.world
       writing_context = ::TyranoDsl::WritingContext.new(world)
       write_characters(writing_context, world)
       write_backgrounds(writing_context, world)
       write_scenes(writing_context, parsing_context)
       writing_context.end_writing
-      log{'Content written'}
+      log {'Content written'}
       writing_context
     end
 
@@ -90,7 +90,7 @@ module TyranoDsl
     end
 
     def log
-      @logger.info(self.class){yield}
+      @logger.info(self.class) {yield}
     end
 
   end

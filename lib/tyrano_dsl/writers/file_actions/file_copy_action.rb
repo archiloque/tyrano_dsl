@@ -15,7 +15,7 @@ module TyranoDsl
         def initialize(from_path, to_path)
           @from_path = from_path
           @to_path = to_path
-          log{self.to_s}
+          log {self.to_s}
         end
 
 

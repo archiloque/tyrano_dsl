@@ -14,7 +14,7 @@ module TyranoDsl
       # @param [TyranoDsl::Elements::Character] character
       # @return [Array]
       def write(world, character)
-        log{"Writing character [#{character.name}]"}
+        log {"Writing character [#{character.name}]"}
         # @todo
         []
       end

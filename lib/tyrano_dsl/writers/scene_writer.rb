@@ -15,13 +15,13 @@ module TyranoDsl
       # @param [Array<String>] content
       # @return [Array]
       def write(world, scene, content)
-        log{"Writing scene [#{scene.name}]"}
+        log {"Writing scene [#{scene.name}]"}
         text_content = "[_tb_system_call storage=system/_#{scene.target_name}.ks]\n#{content.join("\n")}\n"
         [
-          ::TyranoDsl::Writers::FileActions::CreateFileAction.new(
-                                                                    "#{scene.target_name}.ks",
-                                                     text_content
-          )
+            ::TyranoDsl::Writers::FileActions::CreateFileAction.new(
+                "#{scene.target_name}.ks",
+                text_content
+            )
         ]
       end
 

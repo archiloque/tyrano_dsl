@@ -16,7 +16,7 @@ module TyranoDsl
         def initialize(path, content)
           @path = path
           @content = content
-          log{self.to_s}
+          log {self.to_s}
         end
 
         # @param [String] tyrano_project_path

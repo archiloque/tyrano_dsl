@@ -33,7 +33,7 @@ module TyranoDsl
         unless self.class.method_defined? word
           self.class.send(:define_method, word) do |*parameters|
             current_location = caller_locations(1, 1).first
-            log{"l#{current_location.lineno} [#{word}] parameters are #{parameters}"}
+            log {"l#{current_location.lineno} [#{word}] parameters are #{parameters}"}
             word_implementation.parse(parsing_context, current_location, parameters)
           end
         end
@@ -48,7 +48,7 @@ module TyranoDsl
     private
 
     def log
-      @logger.info(self.class){yield}
+      @logger.info(self.class) {yield}
     end
 
   end
