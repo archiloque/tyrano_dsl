@@ -2,16 +2,17 @@ module TyranoDsl
 
   module Elements
 
+    # A declared scene
+    # @attr [String] name
+    # @attr [String] target_name
     class Scene
 
-      attr_reader :name
+      attr_reader :name, :target_name
 
-      def initialize(name)
+      # @param [String] name
+      def initialize(name, index)
         @name = name
-      end
-
-      def content
-
+        @target_name = "scene#{index}"
       end
 
     end

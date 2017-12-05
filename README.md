@@ -4,47 +4,68 @@
 
 A DSL to generate TyranoBuilder games from human-readable ruby
 
+I add things as I need them for my needs, if you need something please ask me.  
 
 Example :
 
 ```ruby
-declare_character 'Sabine', 'characters/sabine', {
-    'default' => 'characters/sabine/default_stance.jpg',
-    'angry' => 'characters/sabine/angry.jpg'
-}
-delare_background 'School', 'background/school.jpg'
+declare_character 'Shinji', 'characters/shinji', 
+    'default' => 'default_stance.jpg',
+    'angry' => 'angry.jpg'
 
-declare_scene 'First scene'
+declare_background 'School', 'background/school.jpg'
+
+start_scene 'First scene'
 set_background 'School'
-show_character 'Sabine'
+show_character 'Shinji', 'default'
 
-display_text 'Sabine', 'Hello!'
-change_character_expression 'Sabine', 'angry'
-jump_to_scene 'Second scene'
+display_text 'Shinji', 'Hello!'
+set_character_stance 'Shinji', 'angry'
+jump_to 'Second scene'
 
-declare_scene 'Second scene'
-
+start_scene 'Second scene'
 ```
 
 ## Run
 
-Execute `tyrano-dsl PATH_TO_YOUR_TYRANO_PROJECT` in our project directory.
+Execute `tyrano-dsl PATH_TO_YOUR_TYRANO_PROJECT` in your project directory.
 
 `PATH_TO_YOUR_TYRANO_PROJECT` should look like `/Users/u/Library/Application\ Support/Steam/steamapps/common/TyranoBuilder/myproject/Test`
 
 If everything is OK it should update the files in your TyranoBuilder project.
 
-If there is an error it should be displayed.
+If there is an error it should be displayed and the message should help you to fix the provblem.
 
-# Vocabulary
+# Current vocabulary
 
-- `declare_scene name` declare a scene 
+- `declare_background(name, images_path)` declare a scene 
+  - `name` is a `String`
+  - `images_path` is a `String` indicating the path to the background images
+- `declare_character(name, images_dir_path, stances)` declare a character
+  - `name` is a `String`
+  - `images_dir` is a `String` indicating the path to the character images
+  - `stances` is a `Hash{String => String}` providing a list of stances with the path to their corresponding images in the images_path directory
+- `jump_to(scene_name, label_name)` jump to a label
+  - `scene_name` is a `String` indicating the name of the scene
+  - `label_name` is a `String` indicating the name of the label in the scene (optional)
+- `set_character_stance(name, stance)` change the stance of a character
+  - `name` is a `String`
+  - `stance` is a `String` defining the stance name
+- `start_scene(name)` start a scene 
+  - `name` is a `String`
+- `show_character(namen, stance)` show a character
+  - `name` is a `String`
+  - `stance` is a `String` defining the stance name
 
 ## Default project organisation
 
 - `content.rb` : the main content
 - `backgrounds` : the backgrounds images
 - `characters` : the characters images
+
+## Links
+
+- http://tyranobuilder.com/tyranoscript-tags-reference/ : the TyranoScript tags references
 
 ## Contributing
 

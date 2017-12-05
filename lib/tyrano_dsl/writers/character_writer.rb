@@ -1,4 +1,5 @@
-require_relative 'writing_actions/file_copy_action'
+require_relative 'file_actions/file_copy_action'
+require_relative 'writers_module'
 
 module TyranoDsl
 
@@ -6,10 +7,14 @@ module TyranoDsl
 
     class CharacterWriter
 
+      include ::TyranoDsl::Writers::WritersModule
+
       # @param [!TyranoDsl::Elements::World] world
       # @param [!TyranoDsl::Elements::Character] character
-      # @return [!Array<TyranoDsl::Writers::WritingActions::FileCopyAction>]
+      # @return [!Array]
       def write(world, character)
+        log{"Writing character [#{character.name}]"}
+        # @todo
         []
       end
 

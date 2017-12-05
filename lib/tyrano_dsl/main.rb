@@ -1,6 +1,6 @@
-require_relative 'demiurge'
+require_relative 'parser'
 require_relative 'parsing_context'
-require_relative 'reader'
+require_relative 'tyrano_exception'
 require_relative 'writer'
 
 module TyranoDsl
@@ -9,21 +9,29 @@ module TyranoDsl
 
     DEFAULT_FILENAME = 'content.rb'.freeze
 
+    def initialize
+      @logger = Logger.new(STDOUT)
+    end
+
+    def log()
+      @logger.info(self.class){yield}
+    end
+
+    # @return [!TyranoDsl::WritingContext]
     def run(file_path)
-      content_file_path = File.expand_path(file_path)
-      p "Reading content file at [#{content_file_path}]"
-      unless File.exist? content_file_path
-        raise "File not found [#{content_file_path}]"
+      log{"Reading content file at [#{file_path}]"}
+      unless File.exist? file_path
+        raise "File not found [#{file_path}]"
       end
 
-      parsing_context = ParsingContext.new
-      reader = Reader.new(parsing_context)
-      reader.instance_eval(IO.read(content_file_path))
+      parsing_context = ParsingContext.new(File.dirname(file_path), file_path)
+      parser = Parser.new(parsing_context)
+      log{'Parsing begin'}
+      parser.instance_eval(IO.read(file_path), file_path, 1)
+      log{"Parsing end #{parsing_context.inspect}"}
 
-      world = Demiurge.new.create_game(parsing_context)
-      world.validate
 
-       Writer.new.write_world(world)
+      Writer.new.write(parsing_context)
     end
 
   end
