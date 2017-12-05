@@ -5,6 +5,7 @@ module TyranoDsl
 
   module Writers
 
+    # Write a character
     class CharacterWriter
 
       include ::TyranoDsl::Writers::WritersModule

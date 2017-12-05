@@ -5,6 +5,7 @@ module TyranoDsl
 
   module Writers
 
+    # Write a scene
     class SceneWriter
 
       include ::TyranoDsl::Writers::WritersModule

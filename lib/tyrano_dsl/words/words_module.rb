@@ -14,6 +14,8 @@ module TyranoDsl
     #   @raise [TyranoDsl::TyranoException]
     module WordsModule
 
+      protected
+
       # @param [Thread::Backtrace::Location] word_location
       # @param [Array<String>] expected_parameters_names
       # @param [Array] parameters

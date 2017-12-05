@@ -6,6 +6,7 @@ module TyranoDsl
 
   module Writers
 
+    # Write a background
     class BackgroundWriter
 
       include ::TyranoDsl::Writers::WritersModule

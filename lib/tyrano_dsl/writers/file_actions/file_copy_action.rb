@@ -3,6 +3,8 @@ require_relative 'files_actions_module'
 module TyranoDsl
   module Writers
     module FileActions
+
+      # Direct copy of a file from a source to a destination
       class FileCopyAction
         attr_reader :from_path, :to_path
 

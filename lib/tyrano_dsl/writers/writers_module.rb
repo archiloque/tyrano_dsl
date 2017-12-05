@@ -6,11 +6,13 @@ module TyranoDsl
     # Helpers to write writers
     module WritersModule
 
+      protected
+
       def logger
         @logger ||= Logger.new(STDOUT)
       end
 
-      def log()
+      def log
         logger.info(self.class){yield}
       end
 

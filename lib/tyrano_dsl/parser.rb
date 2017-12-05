@@ -9,6 +9,8 @@ end
 
 
 module TyranoDsl
+
+  # Parse the DSL
   class Parser
     include TyranoDsl::Vocabulary
 
@@ -38,13 +40,16 @@ module TyranoDsl
       end
     end
 
-    def log()
-      @logger.info(self.class){yield}
-    end
-
     def method_missing(symbol, *args)
       current_location = caller_locations(1, 1).first
       raise ::TyranoDsl::TyranoException, "Line #{current_location.lineno} unknown word [#{symbol}], available words are: #{ ALL_WORDS.join(', ')}"
     end
+
+    private
+
+    def log
+      @logger.info(self.class){yield}
+    end
+
   end
 end

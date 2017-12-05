@@ -10,6 +10,8 @@ TyranoDsl::Vocabulary::ALL_WORDS.each do |word|
 end
 
 module TyranoDsl
+
+  # Write the content that have been parsed
   class Writer
 
     include Vocabulary
@@ -26,10 +28,6 @@ module TyranoDsl
           SHOW_CHARACTER => ::TyranoDsl::Actions::ShowCharacter.new,
           START_SCENE => ::TyranoDsl::Actions::StartScene.new,
       }
-    end
-
-    def log()
-      @logger.info(self.class){yield}
     end
 
     # @param [ParsingContext] parsing_context
@@ -89,6 +87,10 @@ module TyranoDsl
             parsed_word.parameters
         )
       end
+    end
+
+    def log
+      @logger.info(self.class){yield}
     end
 
   end

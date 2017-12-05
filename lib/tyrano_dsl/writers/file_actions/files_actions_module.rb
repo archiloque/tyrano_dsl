@@ -8,6 +8,8 @@ module TyranoDsl
       # Helpers to write file actions
       module FileActionsModule
 
+        protected
+
         def logger
           @logger ||= Logger.new(STDOUT)
         end

@@ -3,6 +3,8 @@ require_relative 'files_actions_module'
 module TyranoDsl
   module Writers
     module FileActions
+
+      # Create a file with a custom content
       class CreateFileAction
 
         include TyranoDsl::Writers::FileActions::FileActionsModule
