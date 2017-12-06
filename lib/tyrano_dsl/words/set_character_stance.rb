@@ -9,6 +9,9 @@ module TyranoDsl
 
       include TyranoDsl::Words::WordsModule
 
+      # @param [String] character_name
+      # @param [String] character_stance
+      # @return [void]
       def set_character_stance(character_name, character_stance)
         check_character_exist(context, character_name, character_stance)
 

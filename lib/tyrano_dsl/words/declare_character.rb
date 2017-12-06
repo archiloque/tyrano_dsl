@@ -10,6 +10,10 @@ module TyranoDsl
 
       include TyranoDsl::Words::WordsModule
 
+      # @param [String] character_name
+      # @param [String] images_dir
+      # @param [Hash{String => String}] stances
+      # @return [void]
       def declare_character(character_name, images_dir, stances)
         stances.values.each do |path|
           validate_image_exist(

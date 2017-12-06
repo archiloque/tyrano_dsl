@@ -10,6 +10,9 @@ module TyranoDsl
 
       include TyranoDsl::Words::WordsModule
 
+      # @param [String] background_name
+      # @param [String] image_path
+      # @return [void]
       def declare_background(background_name, image_path)
         validate_image_exist(
             File.join(context.base_path, image_path)

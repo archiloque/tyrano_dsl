@@ -9,6 +9,9 @@ module TyranoDsl
 
       include TyranoDsl::Words::WordsModule
 
+      # @param [String] character_name
+      # @param [String] text
+      # @return [void]
       def display_text(character_name, text)
         check_character_exist(context, character_name)
         add_parsed_word(
