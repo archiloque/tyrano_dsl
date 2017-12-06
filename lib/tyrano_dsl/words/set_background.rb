@@ -13,9 +13,8 @@ module TyranoDsl
         unless context.world.backgrounds.key? background_name
           raise ::TyranoDsl::TyranoException, "Line #{word_location.lineno} unknown background [#{background_name}], currently defined: #{context.world.backgrounds.keys.sort.join(', ')}"
         end
-        context.add_word(
+        add_parsed_word(
             TyranoDsl::Vocabulary::SET_BACKGROUND,
-            word_location,
             name: background_name
         )
       end

@@ -21,9 +21,8 @@ module TyranoDsl
         end
         context.world.characters[character_name] = TyranoDsl::Elements::Character.new(character_name, images_dir, stances)
 
-        context.add_word(
+        add_parsed_word(
             TyranoDsl::Vocabulary::DECLARE_CHARACTER,
-            word_location,
             name: character_name, images_dir: images_dir, stances: stances
         )
       end

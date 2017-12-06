@@ -18,7 +18,7 @@ module TyranoDsl
 
     # Add a parsed word
     # @param [String] word the word constant as text
-    # @param [Thread::Backtrace::Location] word_location
+    # @param [Array<Thread::Backtrace::Location>] word_location
     # @param [Hash{Symbol => Object}] parameters
     # @return [nil]
     def add_word(word, word_location, parameters)

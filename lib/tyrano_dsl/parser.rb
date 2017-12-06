@@ -31,7 +31,7 @@ module TyranoDsl
     }.each do |word, word_module|
       include word_module
 
-      # Patch the method to store the location
+      # Patch the method to store the location when a word is called
       symbol_word = word.to_sym
       old_method = instance_method(symbol_word)
       define_method(symbol_word) do |*args|
@@ -44,9 +44,22 @@ module TyranoDsl
     def initialize(parsing_context)
       @logger = Logger.new(STDOUT)
       @context = parsing_context
-
     end
-    
+
+    protected
+
+    # Add a parsed word
+    # @param [String] word
+    # @param [Hash] parameters
+    # @return [void]
+    def add_parsed_word(word, parameters)
+      context.add_word(
+          word,
+          word_location,
+          parameters
+      )
+    end
+
     private
 
     def log

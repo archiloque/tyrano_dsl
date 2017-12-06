@@ -3,13 +3,13 @@ module TyranoDsl
 
     # A parsed word
     # @attr [String] word
-    # @attr [Thread::Backtrace::Location] word_location
+    # @attr [Array<Thread::Backtrace::Location>] word_location
     # @attr [Hash] parameters
     class ParsedWord
       attr_reader :word, :word_location, :parameters
 
       # @param [String] word
-      # @param [Thread::Backtrace::Location] word_location
+      # @param [Array<Thread::Backtrace::Location>] word_location
       # @param [Hash] parameters
       def initialize(word, word_location, parameters)
         @word = word
@@ -18,7 +18,7 @@ module TyranoDsl
       end
 
       def to_s
-        "l#{word_location.lineno} #{word} #{parameters}"
+        "l#{word_location[0].lineno} #{word} #{parameters}"
       end
     end
   end

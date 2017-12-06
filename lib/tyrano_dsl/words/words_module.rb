@@ -5,13 +5,6 @@ module TyranoDsl
   module Words
 
     # Helpers to write words
-    # @!macro [new] word_parse
-    #   Parse a word
-    #   @param context [TyranoDsl::ParsingContext] context
-    #   @param [Thread::Backtrace::Location] word_location
-    #   @param parameters [Array]
-    #   @return [void]
-    #   @raise [TyranoDsl::TyranoException]
     module WordsModule
 
       protected

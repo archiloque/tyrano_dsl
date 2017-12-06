@@ -11,9 +11,8 @@ module TyranoDsl
 
       def display_text(character_name, text)
         check_character_exist(context, character_name)
-        context.add_word(
+        add_parsed_word(
             TyranoDsl::Vocabulary::DISPLAY_TEXT,
-            word_location,
             name: character_name, text: text
         )
       end

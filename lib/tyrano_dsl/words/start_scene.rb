@@ -20,9 +20,8 @@ module TyranoDsl
                 scene_name,
                 context.world.scenes.length + 1
             )
-        context.add_word(
+        add_parsed_word(
             TyranoDsl::Vocabulary::START_SCENE,
-            word_location,
             name: scene_name
         )
       end

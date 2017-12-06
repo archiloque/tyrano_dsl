@@ -24,7 +24,7 @@ module TyranoDsl
 
     # Append some content to the current scene
     #
-    # @param [Thread::Backtrace::Location] word_location
+    # @param [Array<Thread::Backtrace::Location>] word_location
     # @param [Array<String>] content
     def append_to_current_scene(word_location, content)
       unless @current_scene_content

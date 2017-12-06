@@ -23,9 +23,8 @@ module TyranoDsl
                 image_path,
                 context.world.backgrounds.length + 1
             )
-        context.add_word(
+        add_parsed_word(
             TyranoDsl::Vocabulary::DECLARE_BACKGROUND,
-            word_location,
             name: background_name, image_path: image_path
         )
       end

@@ -12,9 +12,8 @@ module TyranoDsl
       def set_character_stance(character_name, character_stance)
         check_character_exist(context, character_name, character_stance)
 
-        context.add_word(
+        add_parsed_word(
             TyranoDsl::Vocabulary::SET_CHARACTER_STANCE,
-            word_location,
             name: character_name,
             stance: character_stance
         )

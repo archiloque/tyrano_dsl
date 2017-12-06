@@ -12,9 +12,8 @@ module TyranoDsl
       # @!macro word_parse
       def show_character(character_name, character_stance)
         check_character_exist(context, character_name, character_stance)
-        context.add_word(
+        add_parsed_word(
             TyranoDsl::Vocabulary::SHOW_CHARACTER,
-            word_location,
             name: character_name,
             stance: character_stance
         )

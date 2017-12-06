@@ -10,9 +10,8 @@ module TyranoDsl
       include TyranoDsl::Words::WordsModule
 
       def jump_to(scene_name , label_name)
-        context.add_word(
+        add_parsed_word(
             TyranoDsl::Vocabulary::JUMP_TO,
-            word_location,
             name: scene_name,
             label: label_name
         )
