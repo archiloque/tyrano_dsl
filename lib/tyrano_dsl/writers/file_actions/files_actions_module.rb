@@ -14,7 +14,7 @@ module TyranoDsl
           @logger ||= Logger.new(STDOUT)
         end
 
-        def log()
+        def log
           logger.info(self.class) {yield}
         end
 
