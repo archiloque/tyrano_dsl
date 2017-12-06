@@ -1,14 +1,14 @@
-require_relative 'words_module'
+require_relative 'dsl_module'
 require_relative '../vocabulary'
 require_relative '../elements/character'
 
 module TyranoDsl
-  module Words
+  module Dsl
 
     # @!macro word_declare_character
     module DeclareCharacter
 
-      include TyranoDsl::Words::WordsModule
+      include TyranoDsl::Dsl::DslModule
 
       # @param [String] character_name
       # @param [String] images_dir

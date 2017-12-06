@@ -1,15 +1,14 @@
-require_relative 'words_module'
+require_relative 'dsl_module'
 require_relative '../vocabulary'
 require_relative '../elements/scene'
 
 module TyranoDsl
-  module Words
+  module Dsl
 
     # @!macro word_start_scene
     module StartScene
 
-      include TyranoDsl::Words::WordsModule
-
+      include TyranoDsl::Dsl::DslModule
 
       # @param [String] scene_name
       # @return [void]

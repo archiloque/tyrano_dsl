@@ -1,13 +1,13 @@
-require_relative 'words_module'
+require_relative 'dsl_module'
 require_relative '../vocabulary'
 
 module TyranoDsl
-  module Words
+  module Dsl
 
     # @!macro word_jump_to
     module JumpTo
 
-      include TyranoDsl::Words::WordsModule
+      include TyranoDsl::Dsl::DslModule
 
       # @param [String] scene_name
       # @param [String, nil] label_name

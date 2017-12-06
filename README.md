@@ -26,15 +26,16 @@ jump_to 'Second scene'
 start_scene 'Second scene'
 ```
 
-## Run
+## How to use it
 
-Execute `tyrano-dsl PATH_TO_YOUR_TYRANO_PROJECT` in your project directory.
+- Install the gem
+- Execute `tyrano-dsl PATH_TO_YOUR_TYRANO_PROJECT` in your project directory.
 
 `PATH_TO_YOUR_TYRANO_PROJECT` should look like `/Users/u/Library/Application\ Support/Steam/steamapps/common/TyranoBuilder/myproject/Test`
 
 If everything is OK it should update the files in your TyranoBuilder project.
 
-If there is an error it should be displayed and the message should help you to fix the provblem.
+If there is an error it should be displayed and the message should help you to fix the problem.
 
 # Current vocabulary
 
@@ -62,6 +63,13 @@ If there is an error it should be displayed and the message should help you to f
 - `content.rb` : the main content
 - `backgrounds` : the backgrounds images
 - `characters` : the characters images
+
+## How the thing works
+
+The tool works like a two passes compiler :
+- the first pass validates the syntax, the entry point is in `parser.rb`
+- the second generate the content, the entry point is in `writer.rb`
+- the content is applied to disk
 
 ## Links
 

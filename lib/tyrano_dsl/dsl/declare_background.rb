@@ -1,14 +1,14 @@
 require_relative '../elements/background'
 require_relative '../vocabulary'
-require_relative 'words_module'
+require_relative 'dsl_module'
 
 module TyranoDsl
-  module Words
+  module Dsl
 
     # @!macro word_declare_background
     module DeclareBackground
 
-      include TyranoDsl::Words::WordsModule
+      include TyranoDsl::Dsl::DslModule
 
       # @param [String] background_name
       # @param [String] image_path

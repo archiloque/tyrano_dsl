@@ -2,10 +2,10 @@ require_relative '../tyrano_exception'
 require_relative '../vocabulary'
 
 module TyranoDsl
-  module Words
+  module Dsl
 
     # Helpers to write words
-    module WordsModule
+    module DslModule
 
       protected
 

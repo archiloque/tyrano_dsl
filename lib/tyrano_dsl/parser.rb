@@ -5,7 +5,7 @@ require_relative 'tyrano_exception'
 require_relative 'vocabulary'
 
 TyranoDsl::Vocabulary::ALL_WORDS.each do |word|
-  require_relative "words/#{word}"
+  require_relative "dsl/#{word}"
 end
 
 
@@ -21,14 +21,14 @@ module TyranoDsl
 
     # Add all the words
     {
-        TyranoDsl::Vocabulary::DECLARE_BACKGROUND => ::TyranoDsl::Words::DeclareBackground,
-        TyranoDsl::Vocabulary::DECLARE_CHARACTER => ::TyranoDsl::Words::DeclareCharacter,
-        TyranoDsl::Vocabulary::DISPLAY_TEXT => ::TyranoDsl::Words::DisplayText,
-        TyranoDsl::Vocabulary::JUMP_TO => ::TyranoDsl::Words::JumpTo,
-        TyranoDsl::Vocabulary::SET_BACKGROUND => ::TyranoDsl::Words::SetBackground,
-        TyranoDsl::Vocabulary::SET_CHARACTER_STANCE => ::TyranoDsl::Words::SetCharacterStance,
-        TyranoDsl::Vocabulary::SHOW_CHARACTER => ::TyranoDsl::Words::ShowCharacter,
-        TyranoDsl::Vocabulary::START_SCENE => ::TyranoDsl::Words::StartScene,
+        TyranoDsl::Vocabulary::DECLARE_BACKGROUND => ::TyranoDsl::Dsl::DeclareBackground,
+        TyranoDsl::Vocabulary::DECLARE_CHARACTER => ::TyranoDsl::Dsl::DeclareCharacter,
+        TyranoDsl::Vocabulary::DISPLAY_TEXT => ::TyranoDsl::Dsl::DisplayText,
+        TyranoDsl::Vocabulary::JUMP_TO => ::TyranoDsl::Dsl::JumpTo,
+        TyranoDsl::Vocabulary::SET_BACKGROUND => ::TyranoDsl::Dsl::SetBackground,
+        TyranoDsl::Vocabulary::SET_CHARACTER_STANCE => ::TyranoDsl::Dsl::SetCharacterStance,
+        TyranoDsl::Vocabulary::SHOW_CHARACTER => ::TyranoDsl::Dsl::ShowCharacter,
+        TyranoDsl::Vocabulary::START_SCENE => ::TyranoDsl::Dsl::StartScene,
     }.each do |word, word_module|
       include word_module
 
