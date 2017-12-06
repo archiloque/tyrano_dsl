@@ -21,7 +21,7 @@ class EndToEndTest < Minitest::Test
   def test_missing_file
     validate_exception(
         'missing_file.rb',
-        "Line 1 missing file [#{File.join(__dir__, 'missing_file.png')}]"
+        "Line 1 missing file [missing_file.png]"
     )
   end
 
