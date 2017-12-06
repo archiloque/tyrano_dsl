@@ -25,28 +25,6 @@ class EndToEndTest < Minitest::Test
     )
   end
 
-  def test_unknown_word
-    validate_exception(
-        'unknown_word.rb',
-        "Line 1 unknown word [unknown_word], available words are: #{TyranoDsl::Vocabulary::ALL_WORDS.join(', ')}"
-    )
-  end
-
-  def test_missing_parameter
-    validate_exception(
-        'missing_parameter.rb',
-        "Line 1 you should have 1 parameter(s) specifying the scene name but you have 0 parameters : []"
-    )
-  end
-
-
-  def test_too_many_parameters
-    validate_exception(
-        'too_many_parameters.rb',
-        "Line 1 you should have 1 parameter(s) specifying the scene name but you have 2 parameters : [\"a\", \"b\"]"
-    )
-  end
-
   def test_simple_scene
     writing_context = run_on_file('simple_scene.rb')
     p writing_context.world.inspect

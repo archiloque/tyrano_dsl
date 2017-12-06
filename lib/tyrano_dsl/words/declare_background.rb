@@ -6,23 +6,12 @@ module TyranoDsl
   module Words
 
     # @!macro word_declare_background
-    class DeclareBackground
+    module DeclareBackground
 
       include TyranoDsl::Words::WordsModule
 
-      # @!macro word_parse
-      def parse(context, word_location, parameters)
-        validate_parameters_length(
-            word_location,
-            [
-                'the background name',
-                'the path to the background image',
-            ],
-            parameters)
-        background_name = parameters[0]
-        image_path = parameters[1]
+      def declare_background(background_name, image_path)
         validate_image_exist(
-            word_location,
             File.join(context.base_path, image_path)
         )
         if context.world.backgrounds.key? background_name

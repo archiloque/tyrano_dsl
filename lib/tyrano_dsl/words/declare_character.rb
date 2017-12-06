@@ -6,27 +6,13 @@ module TyranoDsl
   module Words
 
     # @!macro word_declare_character
-    class DeclareCharacter
+    module DeclareCharacter
 
       include TyranoDsl::Words::WordsModule
 
-      # @!macro word_parse
-      def parse(context, word_location, parameters)
-        validate_parameters_length(
-            word_location,
-            [
-                'the character name',
-                'the path to the character images',
-                'the list of stances',
-            ],
-            parameters)
-        character_name = parameters[0]
-        images_dir = parameters[1]
-        stances = parameters[2]
-
+      def declare_character(character_name, images_dir, stances)
         stances.values.each do |path|
           validate_image_exist(
-              word_location,
               File.join(context.base_path, images_dir, path)
           )
         end

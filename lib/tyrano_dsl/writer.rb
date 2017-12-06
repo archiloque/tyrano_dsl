@@ -14,7 +14,7 @@ module TyranoDsl
   # Write the content that have been parsed
   class Writer
 
-    include Vocabulary
+    include TyranoDsl::Vocabulary
 
     def initialize
       @logger = Logger.new(STDOUT)
