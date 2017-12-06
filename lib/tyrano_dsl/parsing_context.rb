@@ -16,15 +16,6 @@ module TyranoDsl
       @world = Elements::World.new(file_path)
     end
 
-    # Add a parsed word
-    # @param [String] word the word constant as text
-    # @param [Array<Thread::Backtrace::Location>] word_location
-    # @param [Hash{Symbol => Object}] parameters
-    # @return [nil]
-    def add_word(word, word_location, parameters)
-      @words << ParsedWord.new(word, word_location, parameters)
-    end
-
     def inspect
       "#{@words.length} words, #{@world.inspect}"
     end

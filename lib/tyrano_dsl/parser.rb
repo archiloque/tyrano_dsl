@@ -1,5 +1,6 @@
 require 'logger'
 
+require_relative 'parsed_word'
 require_relative 'tyrano_exception'
 require_relative 'vocabulary'
 
@@ -50,10 +51,10 @@ module TyranoDsl
 
     # Add a parsed word
     # @param [String] word
-    # @param [Hash] parameters
+    # @param [Hash{String => Object}] parameters
     # @return [void]
     def add_parsed_word(word, parameters)
-      context.add_word(
+      context.words << TyranoDsl::ParsedWord.new(
           word,
           word_location,
           parameters
