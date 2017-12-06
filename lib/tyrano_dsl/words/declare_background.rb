@@ -14,9 +14,7 @@ module TyranoDsl
       # @param [String] image_path
       # @return [void]
       def declare_background(background_name, image_path)
-        validate_image_exist(
-            File.join(context.base_path, image_path)
-        )
+        validate_image_exist(image_path)
         if context.world.backgrounds.key? background_name
           raise ::TyranoDsl::TyranoException, "Line #{word_location.lineno} duplicated background [#{background_name}]"
         end

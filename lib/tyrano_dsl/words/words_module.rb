@@ -13,7 +13,7 @@ module TyranoDsl
       # @return [void]
       # @raise [TyranoDsl::TyranoException]
       def validate_image_exist(image_path)
-        unless File.exist?(image_path)
+        unless File.exist?(File.join(context.base_path, image_path))
           raise ::TyranoDsl::TyranoException, "Line #{word_location[0].lineno} missing file [#{image_path}]"
         end
       end

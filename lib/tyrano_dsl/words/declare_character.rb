@@ -17,7 +17,7 @@ module TyranoDsl
       def declare_character(character_name, images_dir, stances)
         stances.values.each do |path|
           validate_image_exist(
-              File.join(context.base_path, images_dir, path)
+              File.join(images_dir, path)
           )
         end
         if context.world.characters.key? character_name
