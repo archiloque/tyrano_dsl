@@ -28,10 +28,8 @@ module TyranoDsl
         unless character
           raise ::TyranoDsl::TyranoException, "Line #{word_location[0].lineno} unknown character [#{character_name}], currently defined: #{world.characters.keys.sort.join(', ')}"
         end
-        if character_stance
-          unless character.stances.key? character_stance
-            raise ::TyranoDsl::TyranoException, "Line #{word_location[0].lineno} unknown stance [#{character_stance}], currently defined: #{character.stances.keys.sort.join(', ')}"
-          end
+        if character_stance && !character.stances.key?(character_stance)
+          raise ::TyranoDsl::TyranoException, "Line #{word_location[0].lineno} unknown stance [#{character_stance}], currently defined: #{character.stances.keys.sort.join(', ')}"
         end
       end
 

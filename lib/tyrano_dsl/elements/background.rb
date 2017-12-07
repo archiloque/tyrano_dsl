@@ -11,6 +11,8 @@ module TyranoDsl
 
       attr_reader :name, :image_path, :target_file_name
 
+      BACKGROUND_DIRECTORY = 'bgimage'
+
       def initialize(name, image_path, index)
         @name = name
         @image_path = image_path

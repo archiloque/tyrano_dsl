@@ -1,6 +1,7 @@
 require_relative 'file_actions/clear_directory'
 require_relative 'file_actions/file_copy_action'
 require_relative 'writers_module'
+require_relative '../elements/background'
 
 module TyranoDsl
 
@@ -11,12 +12,10 @@ module TyranoDsl
 
       include ::TyranoDsl::Writers::WritersModule
 
-      BACKGROUND_DIRECTORY = 'bgimage'
-
       # @return [Array]
       def init_actions
         [
-            ::TyranoDsl::Writers::FileActions::ClearDirectory.new(BACKGROUND_DIRECTORY)
+            ::TyranoDsl::Writers::FileActions::ClearDirectory.new(::TyranoDsl::Elements::Background::BACKGROUND_DIRECTORY)
         ]
       end
 
@@ -28,7 +27,7 @@ module TyranoDsl
         [
             ::TyranoDsl::Writers::FileActions::FileCopyAction.new(
                 background.image_path,
-                File.join(BACKGROUND_DIRECTORY, background.target_file_name)
+                File.join(::TyranoDsl::Elements::Background::BACKGROUND_DIRECTORY, background.target_file_name)
             )
         ]
       end

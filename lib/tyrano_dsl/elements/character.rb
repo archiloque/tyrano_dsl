@@ -8,6 +8,8 @@ module TyranoDsl
     # @attr [String] images_dir
     class Character
 
+      CHARACTER_DIRECTORY = 'fgimage/chara'
+
       attr_reader :name
       attr_reader :images_dir
       attr_reader :stances

@@ -54,7 +54,7 @@ module TyranoDsl
     def write_characters(writing_context, world)
       character_writer = ::TyranoDsl::Writers::CharacterWriter.new
       world.characters.each_value do |character|
-        writing_context.actions.concat(character_writer.write(world, character))
+        writing_context.file_actions.concat(character_writer.write(world, character))
       end
     end
 
@@ -64,9 +64,9 @@ module TyranoDsl
     # @raise [TyranoDsl::TyranoException]
     def write_backgrounds(writing_context, world)
       background_writer = ::TyranoDsl::Writers::BackgroundWriter.new
-      writing_context.actions.concat(background_writer.init_actions)
+      writing_context.file_actions.concat(background_writer.init_actions)
       world.backgrounds.each_value do |background|
-        writing_context.actions.concat(background_writer.write(world, background))
+        writing_context.file_actions.concat(background_writer.write(world, background))
       end
     end
 
