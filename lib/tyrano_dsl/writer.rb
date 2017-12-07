@@ -5,9 +5,6 @@ require_relative 'elements_writers/background_writer'
 require_relative 'elements_writers/character_writer'
 
 require_relative 'vocabulary'
-TyranoDsl::Vocabulary::ALL_WORDS.each do |word|
-  require_relative "writing_words/#{word}"
-end
 
 module TyranoDsl
 
@@ -18,16 +15,10 @@ module TyranoDsl
 
     def initialize
       @logger = Logger.new(STDOUT)
-      @words = {
-          DECLARE_BACKGROUND => ::TyranoDsl::WritingWords::DeclareBackground.new,
-          DECLARE_CHARACTER => ::TyranoDsl::WritingWords::DeclareCharacter.new,
-          DISPLAY_TEXT => ::TyranoDsl::WritingWords::DisplayText.new,
-          JUMP_TO => ::TyranoDsl::WritingWords::JumpTo.new,
-          SET_BACKGROUND => ::TyranoDsl::WritingWords::SetBackground.new,
-          SET_CHARACTER_STANCE => ::TyranoDsl::WritingWords::SetCharacterStance.new,
-          SHOW_CHARACTER => ::TyranoDsl::WritingWords::ShowCharacter.new,
-          START_SCENE => ::TyranoDsl::WritingWords::StartScene.new,
-      }
+      @words = {}
+      TyranoDsl::Vocabulary.get_words_class('writing_words') do |word, word_class|
+        @words[word] = word_class.new
+      end
     end
 
     # @param [ParsingContext] parsing_context

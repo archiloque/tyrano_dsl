@@ -31,5 +31,25 @@ module TyranoDsl
         SHOW_CHARACTER,
         START_SCENE
     ].sort.freeze
+
+    # Get the word class corresponding to the words
+    # @param [String] module_file_path module name of the class
+    def self.get_words_class(module_file_path)
+      TyranoDsl::Vocabulary::ALL_WORDS.each do |word|
+        full_path = "#{module_file_path}/#{word}"
+        require_relative full_path
+        camel_case_class = "TyranoDsl::" + full_path.
+            split('_').
+            collect(&:capitalize).
+            join.
+            split('/').
+            collect do |c|
+          c[0] = c[0].upcase
+          c
+        end.join('::')
+        word_class = Kernel.const_get(camel_case_class)
+        yield(word, word_class)
+      end
+    end
   end
 end

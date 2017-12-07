@@ -4,11 +4,6 @@ require_relative 'parsed_word'
 require_relative 'tyrano_exception'
 require_relative 'vocabulary'
 
-TyranoDsl::Vocabulary::ALL_WORDS.each do |word|
-  require_relative "parsing_words/#{word}"
-end
-
-
 module TyranoDsl
 
   # Parse the DSL
@@ -19,17 +14,7 @@ module TyranoDsl
     attr_reader :context
     attr_accessor :word_location
 
-    # Add all the words
-    {
-        TyranoDsl::Vocabulary::DECLARE_BACKGROUND => ::TyranoDsl::ParsingWords::DeclareBackground,
-        TyranoDsl::Vocabulary::DECLARE_CHARACTER => ::TyranoDsl::ParsingWords::DeclareCharacter,
-        TyranoDsl::Vocabulary::DISPLAY_TEXT => ::TyranoDsl::ParsingWords::DisplayText,
-        TyranoDsl::Vocabulary::JUMP_TO => ::TyranoDsl::ParsingWords::JumpTo,
-        TyranoDsl::Vocabulary::SET_BACKGROUND => ::TyranoDsl::ParsingWords::SetBackground,
-        TyranoDsl::Vocabulary::SET_CHARACTER_STANCE => ::TyranoDsl::ParsingWords::SetCharacterStance,
-        TyranoDsl::Vocabulary::SHOW_CHARACTER => ::TyranoDsl::ParsingWords::ShowCharacter,
-        TyranoDsl::Vocabulary::START_SCENE => ::TyranoDsl::ParsingWords::StartScene,
-    }.each do |word, word_module|
+    TyranoDsl::Vocabulary.get_words_class('parsing_words') do |word, word_module|
       include word_module
 
       # Patch the method to store the location when a word is called
