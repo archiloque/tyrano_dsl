@@ -9,7 +9,7 @@ module TyranoDsl
         background = world.backgrounds[parameters[:name]]
         writing_context.append_content(
             word_location,
-            "[bg  storage=\"#{background.target_short_file_name}\"  time=\"1000\"  ]"
+            "[bg storage=\"#{background.target_short_file_name}\" time=\"1000\"]"
         )
         writing_context.add_asset_loading(
             word_location,

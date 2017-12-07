@@ -6,7 +6,7 @@ declare_background 'School', 'backgrounds/school.jpg'
 
 start_scene 'First scene'
 set_background 'School'
-show_character 'Shinji', 'default'
+show_character 'Shinji', 'default', 434, 128
 
 display_text 'Shinji', 'Hello!'
 set_character_stance 'Shinji', 'angry'

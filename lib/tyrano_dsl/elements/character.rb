@@ -10,7 +10,7 @@ module TyranoDsl
 
       CHARACTER_DIRECTORY = File.join('fgimage')
 
-      attr_reader :name, :stances, :stances_target_long_files_names
+      attr_reader :name, :stances, :default_stance_target_long_file_name, :stances_target_long_files_names
 
       # @param [String] name
       # @param [String] stances
@@ -27,6 +27,8 @@ module TyranoDsl
               "#{@stances_target_long_files_names.length}#{File.extname(stance_file)}"
           )
         end
+        @default_stance_target_long_file_name = @stances_target_long_files_names[:default] || @stances_target_long_files_names['default']
+
       end
 
     end

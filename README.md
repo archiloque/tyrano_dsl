@@ -17,7 +17,7 @@ declare_background 'School', 'background/school.jpg'
 
 start_scene 'First scene'
 set_background 'School'
-show_character 'Shinji', 'default'
+show_character 'Shinji', 'default', 434, 128
 
 display_text 'Shinji', 'Hello!'
 set_character_stance 'Shinji', 'angry'
@@ -56,9 +56,11 @@ If there is an error it should be displayed and the message should help you to f
   - `stance` is a `String` defining the stance name
 - `start_scene(name)` start a scene 
   - `name` is a `String`
-- `show_character(namen, stance)` show a character
+- `show_character(namen, stance, left, top)` show a character
   - `name` is a `String`
   - `stance` is a `String` defining the stance name
+  - `left` is an `Integer` defining the left position
+  - `top` is an `Integer` defining the top position
 
 ## Default project organisation
 

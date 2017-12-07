@@ -18,6 +18,10 @@ module TyranoDsl
               path
           )
         end
+        default_stance = stances[:default] || stances['default']
+        unless default_stance
+          raise ::TyranoDsl::TyranoException, "Line #{word_location.lineno} you need a default stance"
+        end
         if context.world.characters.key? character_name
           raise ::TyranoDsl::TyranoException, "Line #{word_location.lineno} duplicated character [#{character_name}]"
         end
@@ -29,7 +33,7 @@ module TyranoDsl
 
         add_parsed_word(
             TyranoDsl::Vocabulary::DECLARE_CHARACTER,
-            name: character_name, stances: stances
+            name: character_name, stances: stances, default_stance: default_stance
         )
       end
     end

@@ -1,6 +1,7 @@
 require 'logger'
 require_relative 'elements_writers/background_writer'
 require_relative 'elements_writers/character_writer'
+require_relative 'elements_writers/characters_writer'
 require_relative 'vocabulary'
 require_relative 'writing_context'
 
@@ -46,6 +47,8 @@ module TyranoDsl
       world.characters.each_value do |character|
         writing_context.file_actions.concat(character_writer.write(world, character))
       end
+      characters_writer = ::TyranoDsl::ElementsWriters::CharactersWriter.new
+      writing_context.file_actions.concat(characters_writer.write(world))
     end
 
     # @param [TyranoDsl::WritingContext] writing_context

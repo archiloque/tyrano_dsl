@@ -15,7 +15,7 @@ module TyranoDsl
         check_character_exist(context, character_name)
         add_parsed_word(
             TyranoDsl::Vocabulary::DISPLAY_TEXT,
-            name: character_name, text: text
+            character_name: character_name, text: text
         )
       end
     end
