@@ -4,7 +4,6 @@ require_relative 'parsing_words_module'
 module TyranoDsl
   module ParsingWords
 
-    # @!macro word_display_text
     module DisplayText
 
       include TyranoDsl::ParsingWords::ParsingWordsModule

@@ -4,7 +4,6 @@ require_relative 'parsing_words_module'
 module TyranoDsl
   module ParsingWords
 
-    # @!macro word_jump_to
     module JumpTo
 
       include TyranoDsl::ParsingWords::ParsingWordsModule

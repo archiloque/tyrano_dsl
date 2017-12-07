@@ -4,7 +4,6 @@ require_relative '../vocabulary'
 module TyranoDsl
   module ParsingWords
 
-    # Helpers to write parsing words
     module ParsingWordsModule
 
       protected

@@ -4,7 +4,6 @@ require_relative 'parsing_words_module'
 module TyranoDsl
   module ParsingWords
 
-    # @!macro word_set_background
     module SetBackground
 
       include TyranoDsl::ParsingWords::ParsingWordsModule

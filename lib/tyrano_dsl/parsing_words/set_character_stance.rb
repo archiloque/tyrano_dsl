@@ -4,7 +4,6 @@ require_relative 'parsing_words_module'
 module TyranoDsl
   module ParsingWords
 
-    # @!macro word_set_character_stance
     module SetCharacterStance
 
       include TyranoDsl::ParsingWords::ParsingWordsModule

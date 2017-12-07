@@ -5,7 +5,6 @@ require_relative '../elements/scene'
 module TyranoDsl
   module ParsingWords
 
-    # @!macro word_start_scene
     module StartScene
 
       include TyranoDsl::ParsingWords::ParsingWordsModule

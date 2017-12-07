@@ -1,15 +1,10 @@
 require_relative '../elements/background'
-require_relative 'writing_words_module'
 
 module TyranoDsl
   module WritingWords
 
-    # @!macro word_set_background
     class SetBackground
 
-      include TyranoDsl::WritingWords::WritingWordsModule
-
-      # @!macro action_run
       def run(writing_context, world, word_location, parameters)
         background = world.backgrounds[parameters[:name]]
         writing_context.append_content(
