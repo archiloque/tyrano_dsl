@@ -1,10 +1,8 @@
 require 'logger'
-
-require_relative 'writing_context'
 require_relative 'elements_writers/background_writer'
 require_relative 'elements_writers/character_writer'
-
 require_relative 'vocabulary'
+require_relative 'writing_context'
 
 module TyranoDsl
 
