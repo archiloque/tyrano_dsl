@@ -2,14 +2,14 @@
 
 **PROJECT IS A WIP, NOT USABLE FOR THE MOMENT !**
 
-A DSL to generate TyranoBuilder games from human-readable ruby
+A DSL to generate TyranoBuilder games from Ruby.
 
-I add things as I need them for my needs, if you need something please ask me.  
+The goal is to provide a simple syntax you can use directly or you can build upon. 
 
 Example :
 
 ```ruby
-declare_character 'Shinji', 'characters/shinji', 
+declare_character 'Shinji', 
     'default' => 'default_stance.jpg',
     'angry' => 'angry.jpg'
 
@@ -25,6 +25,9 @@ jump_to 'Second scene'
 
 start_scene 'Second scene'
 ```
+
+I add things as I need them for my needs, if you need something please ask me.  
+
 
 ## How to use it
 
@@ -42,10 +45,9 @@ If there is an error it should be displayed and the message should help you to f
 - `declare_background(name, images_path)` declare a scene 
   - `name` is a `String`
   - `images_path` is a `String` indicating the path to the background images
-- `declare_character(name, images_dir_path, stances)` declare a character
+- `declare_character(name, stances)` declare a character
   - `name` is a `String`
-  - `images_dir` is a `String` indicating the path to the character images
-  - `stances` is a `Hash{String => String}` providing a list of stances with the path to their corresponding images in the images_path directory
+  - `stances` is a `Hash{String => String}` providing a list of stances with the path to their corresponding images
 - `jump_to(scene_name, label_name)` jump to a label
   - `scene_name` is a `String` indicating the name of the scene
   - `label_name` is a `String` indicating the name of the label in the scene (optional)

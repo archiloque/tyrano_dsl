@@ -1,6 +1,6 @@
-declare_character 'Shinji', 'characters/shinji',
-                  'default' => 'default_stance.jpg',
-                  'angry' => 'angry.png'
+declare_character 'Shinji',
+                  'default' => 'characters/shinji/default_stance.jpg',
+                  'angry' => 'characters/shinji/angry.png'
 
 declare_background 'School', 'backgrounds/school.jpg'
 

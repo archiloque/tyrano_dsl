@@ -28,7 +28,7 @@ module TyranoDsl
         result = []
         character.stances.each_pair do |stance_name, stance_file|
           result << TyranoDsl::FileActions::FileCopyAction.new(
-              File.join(character.images_dir, stance_file),
+              stance_file,
               character.stances_target_long_files_names[stance_name]
           )
         end

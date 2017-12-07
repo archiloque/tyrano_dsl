@@ -10,13 +10,12 @@ module TyranoDsl
       include TyranoDsl::ParsingWords::ParsingWordsModule
 
       # @param [String] character_name
-      # @param [String] images_dir
       # @param [Hash{String => String}] stances
       # @return [void]
-      def declare_character(character_name, images_dir, stances)
+      def declare_character(character_name, stances)
         stances.values.each do |path|
           validate_image_exist(
-              File.join(images_dir, path)
+              path
           )
         end
         if context.world.characters.key? character_name
@@ -24,14 +23,13 @@ module TyranoDsl
         end
         context.world.characters[character_name] = TyranoDsl::Elements::Character.new(
             character_name,
-            images_dir,
             stances,
             context.world.characters.length + 1
         )
 
         add_parsed_word(
             TyranoDsl::Vocabulary::DECLARE_CHARACTER,
-            name: character_name, images_dir: images_dir, stances: stances
+            name: character_name, stances: stances
         )
       end
     end

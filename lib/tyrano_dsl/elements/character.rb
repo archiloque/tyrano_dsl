@@ -5,21 +5,18 @@ module TyranoDsl
     # A declared character
     # @attr [String] name
     # @attr [Hash{String => String}] stances
-    # @attr [String] images_dir
     # @attr [Hash{String => String}] stances_target_long_files_names
     class Character
 
       CHARACTER_DIRECTORY = File.join('fgimage')
 
-      attr_reader :name, :images_dir, :stances, :stances_target_long_files_names
+      attr_reader :name, :stances, :stances_target_long_files_names
 
       # @param [String] name
-      # @param [Hash{String => String}] images_dir
       # @param [String] stances
       # @param [Integer] index
-      def initialize(name, images_dir, stances, index)
+      def initialize(name, stances, index)
         @name = name
-        @images_dir = images_dir
         @stances = stances
         @index = index
         @stances_target_long_files_names = {}
