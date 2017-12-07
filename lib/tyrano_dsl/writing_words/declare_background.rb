@@ -1,10 +1,10 @@
-require_relative 'nop_writing_word'
+require_relative 'nop'
 
 module TyranoDsl
   module WritingWords
 
     # @!macro word_declare_background
-    class DeclareBackground < NopWritingWord
+    class DeclareBackground < Nop
 
     end
   end

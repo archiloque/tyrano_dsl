@@ -4,7 +4,7 @@ module TyranoDsl
   module WritingWords
 
     # When a word has no action on the scene
-    class NopWritingWord
+    class Nop
 
       include TyranoDsl::WritingWords::WritingWordsModule
 
