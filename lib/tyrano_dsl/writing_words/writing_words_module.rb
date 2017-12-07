@@ -1,9 +1,9 @@
 require_relative '../vocabulary'
 
 module TyranoDsl
-  module Actions
+  module WritingWords
 
-    # Helpers to write actions
+    # Helpers to write writing words
     # @!macro [new] action_run
     #   Execute the action
     #   @param [TyranoDsl::WritingContext] writing_context
@@ -12,7 +12,7 @@ module TyranoDsl
     #   @param [Hash{String => Object}] parameters
     #   @return [void]
     #   @raise [TyranoDsl::TyranoException]
-    module ActionsModule
+    module WritingWordsModule
 
     end
   end

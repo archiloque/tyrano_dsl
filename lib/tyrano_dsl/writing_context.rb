@@ -1,8 +1,8 @@
 require 'logger'
 require 'set'
 
+require_relative 'elements_writers/scene_writer'
 require_relative 'tyrano_exception'
-require_relative 'writers/scene_writer'
 
 module TyranoDsl
 
@@ -21,7 +21,7 @@ module TyranoDsl
       @current_scene_content = nil
       @current_scene_name = nil
       @current_scene_assets = nil
-      @scene_writer = TyranoDsl::Writers::SceneWriter.new
+      @scene_writer = TyranoDsl::ElementsWriters::SceneWriter.new
     end
 
     # Append some content to the current scene
@@ -43,7 +43,7 @@ module TyranoDsl
     # @raise [TyranoDsl::TyranoException]
     def add_asset_loading(word_location, asset_content)
       check_in_scene(word_location)
-      asset_content << asset_content
+      @current_scene_assets << asset_content
     end
 
     # Initialize a new scene
@@ -88,7 +88,7 @@ module TyranoDsl
     # @raise [TyranoDsl::TyranoException]
     def check_in_scene(word_location)
       unless @current_scene_content
-        raise ::TyranoDsl::TyranoException, "Invalid content line #{word_location[0].lineno} this action should take place in a scene"
+        raise TyranoDsl::TyranoException, "Invalid content line #{word_location[0].lineno} this action should take place in a scene"
       end
     end
 

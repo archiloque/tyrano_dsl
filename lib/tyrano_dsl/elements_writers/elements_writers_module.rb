@@ -1,10 +1,10 @@
 require 'logger'
 
 module TyranoDsl
-  module Writers
+  module ElementsWriters
 
     # Helpers to write writers
-    module WritersModule
+    module ElementsWritersModule
 
       protected
 

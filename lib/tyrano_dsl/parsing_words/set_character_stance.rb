@@ -1,13 +1,13 @@
-require_relative 'dsl_module'
 require_relative '../vocabulary'
+require_relative 'parsing_words_module'
 
 module TyranoDsl
-  module Dsl
+  module ParsingWords
 
     # @!macro word_set_character_stance
     module SetCharacterStance
 
-      include TyranoDsl::Dsl::DslModule
+      include TyranoDsl::ParsingWords::ParsingWordsModule
 
       # @param [String] character_name
       # @param [String] character_stance

@@ -20,6 +20,5 @@ module TyranoDsl
       "#{@words.length} words, #{@world.inspect}"
     end
 
-
   end
 end

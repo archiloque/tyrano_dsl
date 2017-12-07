@@ -1,14 +1,14 @@
-require_relative 'dsl_module'
-require_relative '../vocabulary'
 require_relative '../elements/character'
+require_relative '../vocabulary'
+require_relative 'parsing_words_module'
 
 module TyranoDsl
-  module Dsl
+  module ParsingWords
 
     # @!macro word_declare_character
     module DeclareCharacter
 
-      include TyranoDsl::Dsl::DslModule
+      include TyranoDsl::ParsingWords::ParsingWordsModule
 
       # @param [String] character_name
       # @param [String] images_dir
@@ -23,7 +23,12 @@ module TyranoDsl
         if context.world.characters.key? character_name
           raise ::TyranoDsl::TyranoException, "Line #{word_location.lineno} duplicated character [#{character_name}]"
         end
-        context.world.characters[character_name] = TyranoDsl::Elements::Character.new(character_name, images_dir, stances)
+        context.world.characters[character_name] = TyranoDsl::Elements::Character.new(
+            character_name,
+            images_dir,
+            stances,
+            context.world.characters.length + 1
+        )
 
         add_parsed_word(
             TyranoDsl::Vocabulary::DECLARE_CHARACTER,

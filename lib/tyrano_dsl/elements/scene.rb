@@ -10,6 +10,7 @@ module TyranoDsl
       attr_reader :name, :target_name
 
       # @param [String] name
+      # @param [Integer] index
       def initialize(name, index)
         @name = name
         @target_name = "scene#{index}"

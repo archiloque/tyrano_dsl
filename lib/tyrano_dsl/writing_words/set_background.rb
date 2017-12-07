@@ -1,24 +1,24 @@
-require_relative 'actions_module'
 require_relative '../elements/background'
+require_relative 'writing_words_module'
 
 module TyranoDsl
-  module Actions
+  module WritingWords
 
     # @!macro word_set_background
     class SetBackground
 
-      include TyranoDsl::Actions::ActionsModule
+      include TyranoDsl::WritingWords::WritingWordsModule
 
       # @!macro action_run
       def run(writing_context, world, word_location, parameters)
         background = world.backgrounds[parameters[:name]]
         writing_context.append_content(
             word_location,
-            "[bg  storage=\"#{background.target_file_name}\"  time=\"1000\"  ]"
+            "[bg  storage=\"#{background.target_short_file_name}\"  time=\"1000\"  ]"
         )
         writing_context.add_asset_loading(
             word_location,
-            File.join(::TyranoDsl::Elements::Background::BACKGROUND_DIRECTORY, background.target_file_name)
+            background.target_long_file_name
         )
       end
 

@@ -1,0 +1,30 @@
+require_relative 'files_actions_module'
+
+module TyranoDsl
+  module FileActions
+
+    # Remove all files from a directory
+    class ClearDirectory
+
+      include TyranoDsl::FileActions::FileActionsModule
+
+      attr_reader :path
+
+      # @param [String] path
+      def initialize(path)
+        @path = path
+        log {to_s}
+      end
+
+      # @param [String] tyrano_project_path
+      def run(tyrano_project_path)
+        # @todo
+      end
+
+      def to_s
+        "Clear directory [#{path}]"
+      end
+
+    end
+  end
+end

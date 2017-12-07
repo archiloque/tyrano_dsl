@@ -1,12 +1,12 @@
 require 'logger'
 
 require_relative 'writing_context'
-require_relative 'writers/background_writer'
-require_relative 'writers/character_writer'
+require_relative 'elements_writers/background_writer'
+require_relative 'elements_writers/character_writer'
 
 require_relative 'vocabulary'
 TyranoDsl::Vocabulary::ALL_WORDS.each do |word|
-  require_relative "actions/#{word}"
+  require_relative "writing_words/#{word}"
 end
 
 module TyranoDsl
@@ -19,14 +19,14 @@ module TyranoDsl
     def initialize
       @logger = Logger.new(STDOUT)
       @words = {
-          DECLARE_BACKGROUND => ::TyranoDsl::Actions::DeclareBackground.new,
-          DECLARE_CHARACTER => ::TyranoDsl::Actions::DeclareCharacter.new,
-          DISPLAY_TEXT => ::TyranoDsl::Actions::DisplayText.new,
-          JUMP_TO => ::TyranoDsl::Actions::JumpTo.new,
-          SET_BACKGROUND => ::TyranoDsl::Actions::SetBackground.new,
-          SET_CHARACTER_STANCE => ::TyranoDsl::Actions::SetCharacterStance.new,
-          SHOW_CHARACTER => ::TyranoDsl::Actions::ShowCharacter.new,
-          START_SCENE => ::TyranoDsl::Actions::StartScene.new,
+          DECLARE_BACKGROUND => ::TyranoDsl::WritingWords::DeclareBackground.new,
+          DECLARE_CHARACTER => ::TyranoDsl::WritingWords::DeclareCharacter.new,
+          DISPLAY_TEXT => ::TyranoDsl::WritingWords::DisplayText.new,
+          JUMP_TO => ::TyranoDsl::WritingWords::JumpTo.new,
+          SET_BACKGROUND => ::TyranoDsl::WritingWords::SetBackground.new,
+          SET_CHARACTER_STANCE => ::TyranoDsl::WritingWords::SetCharacterStance.new,
+          SHOW_CHARACTER => ::TyranoDsl::WritingWords::ShowCharacter.new,
+          START_SCENE => ::TyranoDsl::WritingWords::StartScene.new,
       }
     end
 
@@ -52,7 +52,8 @@ module TyranoDsl
     # @return [void]
     # @raise [TyranoDsl::TyranoException]
     def write_characters(writing_context, world)
-      character_writer = ::TyranoDsl::Writers::CharacterWriter.new
+      character_writer = ::TyranoDsl::ElementsWriters::CharacterWriter.new
+      writing_context.file_actions.concat(character_writer.init_actions)
       world.characters.each_value do |character|
         writing_context.file_actions.concat(character_writer.write(world, character))
       end
@@ -63,7 +64,7 @@ module TyranoDsl
     # @return [void]
     # @raise [TyranoDsl::TyranoException]
     def write_backgrounds(writing_context, world)
-      background_writer = ::TyranoDsl::Writers::BackgroundWriter.new
+      background_writer = ::TyranoDsl::ElementsWriters::BackgroundWriter.new
       writing_context.file_actions.concat(background_writer.init_actions)
       world.backgrounds.each_value do |background|
         writing_context.file_actions.concat(background_writer.write(world, background))

@@ -1,12 +1,12 @@
-require_relative 'actions_module'
+require_relative 'writing_words_module'
 
 module TyranoDsl
-  module Actions
+  module WritingWords
 
     # @!macro word_jump_to
     class JumpTo
 
-      include TyranoDsl::Actions::ActionsModule
+      include TyranoDsl::WritingWords::WritingWordsModule
 
       # @!macro action_run
       def run(writing_context, world, word_location, parameters)

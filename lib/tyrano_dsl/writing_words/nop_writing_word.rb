@@ -1,12 +1,12 @@
-require_relative 'actions_module'
+require_relative 'writing_words_module'
 
 module TyranoDsl
-  module Actions
+  module WritingWords
 
     # When a word has no action on the scene
-    class NopAction
+    class NopWritingWord
 
-      include TyranoDsl::Actions::ActionsModule
+      include TyranoDsl::WritingWords::WritingWordsModule
 
       # @!macro action_run
       def run(writing_context, world, word_location, parameters)
