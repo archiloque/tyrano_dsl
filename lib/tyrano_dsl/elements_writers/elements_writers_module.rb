@@ -8,6 +8,11 @@ module TyranoDsl
 
       protected
 
+      # @param [Array<String>] pathes
+      def preload_text(pathes)
+        pathes.collect {|a| "[preload storage=\"./#{a}\"]\n"}.join + '[return]'
+      end
+
       def logger
         @logger ||= Logger.new(STDOUT)
       end

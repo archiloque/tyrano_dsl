@@ -30,7 +30,7 @@ class EndToEndTest < Minitest::Test
 
   def test_simple_scene
     writing_context = run_on_file('simple_scene.rb')
-    assert_equal writing_context.file_actions.length, 11
+    assert_equal writing_context.file_actions.length, 13
 
     clear_directories = extract_by_class(writing_context.file_actions, TyranoDsl::FileActions::ClearDirectory)
     assert_equal clear_directories.length, 2
@@ -49,7 +49,7 @@ class EndToEndTest < Minitest::Test
     assert_equal files_copies['data/bgimage/1.jpg'], 'backgrounds/school.jpg'
 
     create_files = extract_by_class(writing_context.file_actions, TyranoDsl::FileActions::CreateFile)
-    assert_equal create_files.length, 5
+    assert_equal create_files.length, 7
     files_creations = {}
     create_files.each do |create_file_action|
       files_creations[create_file_action.path] = create_file_action.content
@@ -75,10 +75,43 @@ Hello!
 [preload storage="./data/fgimage/chara/1/1.png"]
 [return]'
 
-    assert_equal files_creations['data/scenario/scene2.ks'], '[_tb_system_call storage=system/_scene2.ks]
+    assert_equal files_creations['data/scenario/title_screen.ks'], '[_tb_system_call storage=system/_title_screen.ks]
 
+[hidemenubutton]
+
+[tb_keyconfig  flag="0"  ]
+[tb_hide_message_window  ]
+[bg  storage="1.jpg"  ]
+*title
+
+[glink  text="New&nbsp;Game"  x="600"  y="370"  target="*start"  ]
+[glink  text="Load&nbsp;Game"  x="600"  y="470"  target="*load"  ]
+[s  ]
+*start
+
+[showmenubutton]
+
+[cm  ]
+[tb_keyconfig  flag="1"  ]
+[jump  storage="scene1.ks"  target=""  ]
+[s  ]
+*load
+
+[cm  ]
+[showload]
+
+[jump  target="*title"  storage=""  ]
+[s  ]
 '
-    assert_equal files_creations['data/scenario/system/_scene2.ks'], '[return]'
+
+    assert_equal files_creations['data/scenario/system/_title_screen.ks'], '[preload storage="./data/bgimage/1.jpg"]
+[return]'
+
+    assert_equal files_creations['data/scenario/scene2.ks'], '[_tb_system_call storage=system/_scene2.ks]
+[bg storage="1.jpg" time="1000"]
+'
+    assert_equal files_creations['data/scenario/system/_scene2.ks'], '[preload storage="./data/bgimage/1.jpg"]
+[return]'
 
 
     json_patches = extract_by_class(writing_context.file_actions, TyranoDsl::FileActions::JsonPatch)

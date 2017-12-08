@@ -28,13 +28,13 @@ module TyranoDsl
       # @param [String] tyrano_project_path
       def run(tyrano_project_path)
         full_path = File.join(tyrano_project_path, file_path)
-        log {"Patching file [#{full_path}]"}
+        log {"Patching file [#{full_path}] at #{patching_path}"}
         unless File.exist? full_path
           raise ::TyranoDsl::TyranoException, "Missing file [#{full_path}]"
         end
         content = JSON.parse(IO.read(full_path))
         current_subtree = content
-        0.upto(patching_path - 2) do |path_segment_index|
+        0.upto(patching_path.length - 2) do |path_segment_index|
           current_subtree = current_subtree[patching_path[path_segment_index]]
         end
         current_subtree[patching_path.last] = patched_content

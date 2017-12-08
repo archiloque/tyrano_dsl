@@ -16,6 +16,9 @@ module TyranoDsl
         if context.world.scenes.key? scene_name
           raise ::TyranoDsl::TyranoException, "Line #{word_location.lineno} duplicated scene [#{scene_name}]"
         end
+        unless context.world.title_screen.first_scene_name
+          context.world.title_screen.first_scene_name = scene_name
+        end
         context.world.scenes[scene_name] =
             TyranoDsl::Elements::Scene.new(
                 scene_name,

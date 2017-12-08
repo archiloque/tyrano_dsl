@@ -1,3 +1,5 @@
+require_relative 'title_screen'
+
 module TyranoDsl
 
   module Elements
@@ -6,15 +8,17 @@ module TyranoDsl
     # @attr [Hash{String => TyranoDsl::Elements::Scene}] scenes
     # @attr [Hash{String => TyranoDsl::Elements::Character}] characters
     # @attr [Hash{String => TyranoDsl::Elements::Background}] backgrounds
+    # @attr [TyranoDsl::Elements::TitleScreen] title_screen
     class World
 
-      attr_reader :scenes, :characters, :backgrounds
+      attr_reader :scenes, :characters, :backgrounds, :title_screen
 
       def initialize(file_path)
         @scenes = {}
         @characters = {}
         @backgrounds = {}
         @file_path = file_path
+        @title_screen = TyranoDsl::Elements::TitleScreen.new
       end
 
       def inspect

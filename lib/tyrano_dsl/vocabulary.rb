@@ -13,6 +13,8 @@ module TyranoDsl
     JUMP_TO = 'jump_to'.freeze
     # Set the current background
     SET_BACKGROUND = 'set_background'.freeze
+    #  Set the background of the title screen
+    SET_TITLE_SCREEN_BACKGROUND = 'set_title_screen_background'.freeze
     #  Set the stance of a character
     SET_CHARACTER_STANCE = 'set_character_stance'.freeze
     # Show a character
@@ -27,6 +29,7 @@ module TyranoDsl
         DISPLAY_TEXT,
         JUMP_TO,
         SET_BACKGROUND,
+        SET_TITLE_SCREEN_BACKGROUND,
         SET_CHARACTER_STANCE,
         SHOW_CHARACTER,
         START_SCENE

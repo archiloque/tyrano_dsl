@@ -30,6 +30,6 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency 'bundler', '~> 1.14'
   spec.add_development_dependency 'yard', '~> 0.9.12'
-  spec.add_development_dependency 'redcarpet', '~> 3.4.0'
+  spec.add_development_dependency 'redcarpet', '~> 3.4'
   spec.add_development_dependency 'simplecov', '~> 0.15.1'
 end

@@ -18,7 +18,7 @@ module TyranoDsl
       def write(world, scene, content, assets)
         log {"Writing scene [#{scene.name}]"}
         content_text_content = "[_tb_system_call storage=system/_#{scene.target_name}.ks]\n#{content.join("\n")}\n"
-        assets_text_content = assets.to_a.sort.collect {|a| "[preload storage=\"./#{a}\"]\n"}.join() + '[return]'
+        preload_text_content = preload_text(assets.to_a)
         [
             TyranoDsl::FileActions::CreateFile.new(
                 File.join('data', 'scenario', "#{scene.target_name}.ks"),
@@ -26,7 +26,7 @@ module TyranoDsl
             ),
             TyranoDsl::FileActions::CreateFile.new(
                 File.join('data', 'scenario', 'system', "_#{scene.target_name}.ks"),
-                assets_text_content
+                preload_text_content
             )
 
         ]

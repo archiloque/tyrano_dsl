@@ -2,6 +2,7 @@ require 'logger'
 require_relative 'elements_writers/background_writer'
 require_relative 'elements_writers/character_writer'
 require_relative 'elements_writers/characters_writer'
+require_relative 'elements_writers/title_screen_writer'
 require_relative 'vocabulary'
 require_relative 'writing_context'
 
@@ -27,6 +28,7 @@ module TyranoDsl
       log {'Writing content'}
       world = parsing_context.world
       writing_context = ::TyranoDsl::WritingContext.new(world)
+      write_title_screen(writing_context, world)
       write_characters(writing_context, world)
       write_backgrounds(writing_context, world)
       write_scenes(writing_context, parsing_context)
@@ -36,6 +38,15 @@ module TyranoDsl
     end
 
     private
+
+    # @param [TyranoDsl::WritingContext] writing_context
+    # @param [TyranoDsl::Elements::World] world
+    # @return [void]
+    # @raise [TyranoDsl::TyranoException]
+    def write_title_screen(writing_context, world)
+      title_screen_writer = ::TyranoDsl::ElementsWriters::TitleScreenWriter.new
+      writing_context.file_actions.concat(title_screen_writer.write(world))
+    end
 
     # @param [TyranoDsl::WritingContext] writing_context
     # @param [TyranoDsl::Elements::World] world
