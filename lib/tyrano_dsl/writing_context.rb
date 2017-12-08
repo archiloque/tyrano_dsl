@@ -71,7 +71,6 @@ module TyranoDsl
     def write_current_scene
       if @current_scene_name
         @file_actions.concat @scene_writer.write(
-            @world,
             @world.scenes[@current_scene_name],
             @current_scene_content,
             @current_scene_assets

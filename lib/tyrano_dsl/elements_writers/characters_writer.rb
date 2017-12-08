@@ -14,7 +14,7 @@ module TyranoDsl
       # @param [TyranoDsl::Elements::World] world
       # @return [Array]
       def write(world)
-        log {"Writing characters"}
+        log {'Writing characters'}
         chara_define_content = world.characters.values.collect do |character|
           "[chara_new name=\"#{character.name}\" jname=\"#{character.name}\" storage=\"chara\/#{character.default_stance_target_short_file_name}\"]\n"
         end.join()

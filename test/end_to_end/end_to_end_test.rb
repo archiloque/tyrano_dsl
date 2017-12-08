@@ -1,8 +1,5 @@
-require 'simplecov'
-SimpleCov.start
+require_relative '../test_helper'
 
-require 'pathname'
-require 'minitest/autorun'
 require_relative '../../lib/tyrano_dsl/main'
 require_relative '../../lib/tyrano_dsl/vocabulary'
 require_relative '../../lib/tyrano_dsl/tyrano_exception'

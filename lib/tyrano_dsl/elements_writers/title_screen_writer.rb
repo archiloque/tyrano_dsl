@@ -14,16 +14,8 @@ module TyranoDsl
       # @return [Array]
       def write(world)
         log {'Writing title screen'}
-        background_name = world.title_screen.background
-        unless background_name
-          raise ::TyranoDsl::TyranoException, 'No background defined for the title screen'
-        end
-        first_scene_name = world.title_screen.first_scene_name
-        unless first_scene_name
-          raise ::TyranoDsl::TyranoException, 'No scene'
-        end
-        background = world.backgrounds[background_name]
-        first_scene = world.scenes[first_scene_name]
+        background = get_background(world)
+        first_scene = get_first_scene(world)
 
         content_text_content = title_screen_content(background, first_scene)
         preload_text_content = preload_text([background.target_long_file_name])
@@ -72,6 +64,28 @@ module TyranoDsl
 [jump  target="*title"  storage=""  ]
 [s  ]
 HEREDOC
+      end
+
+      private
+
+      # @param [TyranoDsl::Elements::World] world
+      # @return [TyranoDsl::Elements::Scene]
+      def get_first_scene(world)
+        first_scene_name = world.title_screen.first_scene_name
+        unless first_scene_name
+          raise ::TyranoDsl::TyranoException, 'No scene'
+        end
+        world.scenes[first_scene_name]
+      end
+
+      # @param [TyranoDsl::Elements::World] world
+      # @return [TyranoDsl::Elements::Background]
+      def get_background(world)
+        background_name = world.title_screen.background
+        unless background_name
+          raise ::TyranoDsl::TyranoException, 'No background defined for the title screen'
+        end
+        world.backgrounds[background_name]
       end
 
     end

@@ -56,7 +56,7 @@ module TyranoDsl
       character_writer = ::TyranoDsl::ElementsWriters::CharacterWriter.new
       writing_context.file_actions.concat(character_writer.init_actions)
       world.characters.each_value do |character|
-        writing_context.file_actions.concat(character_writer.write(world, character))
+        writing_context.file_actions.concat(character_writer.write(character))
       end
       characters_writer = ::TyranoDsl::ElementsWriters::CharactersWriter.new
       writing_context.file_actions.concat(characters_writer.write(world))
@@ -70,7 +70,7 @@ module TyranoDsl
       background_writer = ::TyranoDsl::ElementsWriters::BackgroundWriter.new
       writing_context.file_actions.concat(background_writer.init_actions)
       world.backgrounds.each_value do |background|
-        writing_context.file_actions.concat(background_writer.write(world, background))
+        writing_context.file_actions.concat(background_writer.write(background))
       end
     end
 

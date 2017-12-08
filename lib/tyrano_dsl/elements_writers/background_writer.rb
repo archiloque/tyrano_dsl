@@ -19,10 +19,9 @@ module TyranoDsl
         ]
       end
 
-      # @param [TyranoDsl::Elements::World] world
       # @param [TyranoDsl::Elements::Background] background
       # @return [Array]
-      def write(world, background)
+      def write(background)
         log {"Writing background [#{background.name}]"}
         [
             TyranoDsl::FileActions::FileCopy.new(

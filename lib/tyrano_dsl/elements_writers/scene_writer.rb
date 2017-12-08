@@ -10,14 +10,13 @@ module TyranoDsl
 
       include TyranoDsl::ElementsWriters::ElementsWritersModule
 
-      # @param [TyranoDsl::Elements::World] world
       # @param [TyranoDsl::Elements::Scene] scene
-      # @param [Array<String>] content
+      # @param [Array<String>] scene_content
       # @param [Array<String>] assets
       # @return [Array]
-      def write(world, scene, content, assets)
+      def write(scene, scene_content, assets)
         log {"Writing scene [#{scene.name}]"}
-        content_text_content = "[_tb_system_call storage=system/_#{scene.target_name}.ks]\n#{content.join("\n")}\n"
+        content_text_content = "[_tb_system_call storage=system/_#{scene.target_name}.ks]\n#{scene_content.join("\n")}\n"
         preload_text_content = preload_text(assets.to_a)
         [
             TyranoDsl::FileActions::CreateFile.new(
