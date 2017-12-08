@@ -11,6 +11,7 @@ module TyranoDsl
       # @param [String] character_name
       # @param [String] character_stance
       # @return [void]
+      # @raise [TyranoDsl::TyranoException]
       def set_character_stance(character_name, character_stance)
         check_character_exist(context, character_name, character_stance)
 

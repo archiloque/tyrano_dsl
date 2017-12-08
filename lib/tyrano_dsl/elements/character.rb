@@ -4,14 +4,16 @@ module TyranoDsl
 
     # A declared character
     # @attr [String] name
+    # @attr [Index] index
     # @attr [Hash{String => String}] stances
-    # @attr [Hash{String => String}] stances_target_long_files_names
+    # @attr [String] default_stance_target_short_file_name
+    # # @attr [Hash{String => String}] stances_target_long_files_names
     class Character
 
       CHARACTER_DIRECTORY = File.join('data', 'fgimage', 'chara')
 
 
-      attr_reader :name, :stances, :default_stance_target_short_file_name, :stances_target_long_files_names
+      attr_reader :name, :index, :stances, :default_stance_target_short_file_name, :stances_target_long_files_names
 
       # @param [String] name
       # @param [String] stances

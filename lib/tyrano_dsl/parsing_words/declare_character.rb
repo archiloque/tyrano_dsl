@@ -12,6 +12,7 @@ module TyranoDsl
       # @param [String] character_name
       # @param [Hash{String => String}] stances
       # @return [void]
+      # @raise [TyranoDsl::TyranoException]
       def declare_character(character_name, stances)
         stances.values.each do |path|
           validate_image_exist(

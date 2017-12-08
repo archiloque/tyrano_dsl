@@ -1,6 +1,6 @@
 require_relative '../elements/character'
 require_relative '../file_actions/clear_directory'
-require_relative '../file_actions/file_copy_action'
+require_relative '../file_actions/file_copy'
 require_relative 'elements_writers_module'
 
 module TyranoDsl
@@ -27,7 +27,7 @@ module TyranoDsl
         # @todo
         result = []
         character.stances.each_pair do |stance_name, stance_file|
-          result << TyranoDsl::FileActions::FileCopyAction.new(
+          result << TyranoDsl::FileActions::FileCopy.new(
               stance_file,
               character.stances_target_long_files_names[stance_name]
           )

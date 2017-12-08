@@ -11,6 +11,7 @@ module TyranoDsl
       # @param [String] scene_name
       # @param [String, nil] label_name
       # @return [void]
+      # @raise [TyranoDsl::TyranoException]
       def jump_to(scene_name, label_name = nil)
         add_parsed_word(
             TyranoDsl::Vocabulary::JUMP_TO,

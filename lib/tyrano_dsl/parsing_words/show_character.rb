@@ -13,6 +13,7 @@ module TyranoDsl
       # @param [Integer] left
       # @param [Integer] top
       # @return [void]
+      # @raise [TyranoDsl::TyranoException]
       def show_character(character_name, character_stance, left, top)
         check_character_exist(context, character_name, character_stance)
         add_parsed_word(

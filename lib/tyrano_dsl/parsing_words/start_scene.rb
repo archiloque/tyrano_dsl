@@ -11,6 +11,7 @@ module TyranoDsl
 
       # @param [String] scene_name
       # @return [void]
+      # @raise [TyranoDsl::TyranoException]
       def start_scene(scene_name)
         if context.world.scenes.key? scene_name
           raise ::TyranoDsl::TyranoException, "Line #{word_location.lineno} duplicated scene [#{scene_name}]"

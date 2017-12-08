@@ -6,6 +6,7 @@ module TyranoDsl
   module FileActions
 
     # Remove all files from a directory
+    # @attr [String] path
     class ClearDirectory
 
       include TyranoDsl::FileActions::FileActionsModule

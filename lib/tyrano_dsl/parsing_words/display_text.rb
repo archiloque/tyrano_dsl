@@ -11,6 +11,7 @@ module TyranoDsl
       # @param [String] character_name
       # @param [String] text
       # @return [void]
+      # @raise [TyranoDsl::TyranoException]
       def display_text(character_name, text)
         check_character_exist(context, character_name)
         add_parsed_word(

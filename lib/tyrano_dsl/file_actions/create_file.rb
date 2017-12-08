@@ -1,12 +1,12 @@
-require 'fileutils'
-
 require_relative 'files_actions_module'
 
 module TyranoDsl
   module FileActions
 
     # Create a file with a custom content
-    class CreateFileAction
+    # @attr [String] path
+    # @attr [String] content
+    class CreateFile
 
       include TyranoDsl::FileActions::FileActionsModule
 

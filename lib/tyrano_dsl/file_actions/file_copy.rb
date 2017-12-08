@@ -6,7 +6,9 @@ module TyranoDsl
   module FileActions
 
     # Direct copy of a file from a source to a destination
-    class FileCopyAction
+    # @attr [String] from_path
+    # @attr [String] to_path
+    class FileCopy
       attr_reader :from_path, :to_path
 
       include TyranoDsl::FileActions::FileActionsModule

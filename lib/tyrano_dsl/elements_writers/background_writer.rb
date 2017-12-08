@@ -1,6 +1,6 @@
 require_relative '../elements/background'
 require_relative '../file_actions/clear_directory'
-require_relative '../file_actions/file_copy_action'
+require_relative '../file_actions/file_copy'
 require_relative 'elements_writers_module'
 
 module TyranoDsl
@@ -25,7 +25,7 @@ module TyranoDsl
       def write(world, background)
         log {"Writing background [#{background.name}]"}
         [
-            TyranoDsl::FileActions::FileCopyAction.new(
+            TyranoDsl::FileActions::FileCopy.new(
                 background.image_path,
                 background.target_long_file_name
             )

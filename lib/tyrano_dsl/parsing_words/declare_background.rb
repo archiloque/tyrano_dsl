@@ -12,6 +12,7 @@ module TyranoDsl
       # @param [String] background_name
       # @param [String] image_path
       # @return [void]
+      # @raise [TyranoDsl::TyranoException]
       def declare_background(background_name, image_path)
         validate_image_exist(image_path)
         if context.world.backgrounds.key? background_name

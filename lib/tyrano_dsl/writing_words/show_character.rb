@@ -7,7 +7,7 @@ module TyranoDsl
         character = world.characters[parameters[:name]]
         character_stance = parameters[:stance]
         left = parameters[:left]
-        top= parameters[:top]
+        top = parameters[:top]
         writing_context.add_asset_loading(
             word_location,
             character.stances_target_long_files_names[character_stance]
