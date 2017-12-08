@@ -15,6 +15,8 @@ declare_character 'Shinji',
 
 declare_background 'School', 'background/school.jpg'
 
+set_title_screen_background 'School'
+
 start_scene 'First scene'
 set_background 'School'
 show_character 'Shinji', 'default', 434, 128
