@@ -2,7 +2,7 @@
 
 **PROJECT IS A WIP, NOT USABLE FOR THE MOMENT !**
 
-A DSL to generate TyranoBuilder games from Ruby.
+A DSL to write visual novels games in Ruby using [TyranoBuilder](http://tyranobuilder.com).
 
 The goal is to provide a simple syntax you can use directly or you can build upon. 
 
@@ -33,12 +33,16 @@ I add things as I need them for my needs, if you need something please ask me.
 
 ## How to use it
 
+- Install [TyranoBuilder](http://tyranobuilder.com)
+- Create a project in it
 - Install the gem
-- Execute `tyrano-dsl PATH_TO_YOUR_TYRANO_PROJECT` in your project directory.
+- Execute `tyrano-dsl PATH_TO_YOUR_TYRANO_PROJECT PATH_TO_YPUR_RUBY_CODE.rb` in your project directory.
 
 `PATH_TO_YOUR_TYRANO_PROJECT` should look like `/Users/u/Library/Application\ Support/Steam/steamapps/common/TyranoBuilder/myproject/Test`
 
 If everything is OK it should update the files in your TyranoBuilder project.
+
+You can then reopen the project in TyranoBuilder and see the changes.
 
 If there is an error it should be displayed and the message should help you to fix the problem.
 
