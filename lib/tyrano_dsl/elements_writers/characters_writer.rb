@@ -15,12 +15,13 @@ module TyranoDsl
       def write(world)
         log {"Writing characters"}
         content = world.characters.values.collect do |character|
-          "[chara_new name=\"#{character.name}\" jname=\"#{character.name}\" storage=\"#{character.default_stance_target_long_file_name}\"]\n"
+          file_name =
+          "[chara_new name=\"#{character.name}\" jname=\"#{character.name}\" storage=\"chara\/#{character.default_stance_target_short_file_name}\"]\n"
         end.join()
         content += "[iscript]\n[endscript]\n"
         [
             TyranoDsl::FileActions::CreateFileAction.new(
-                File.join('system', 'chara_define.ks'),
+                File.join('data', 'scenario', 'system', 'chara_define.ks'),
                 content
             )
         ]

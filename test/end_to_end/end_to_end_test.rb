@@ -35,8 +35,8 @@ class EndToEndTest < Minitest::Test
     clear_directory_actions = extract_by_class(writing_context.file_actions, TyranoDsl::FileActions::ClearDirectory)
     assert_equal clear_directory_actions.length, 2
     directories_to_clean = clear_directory_actions.collect {|d| d.path}
-    assert directories_to_clean.include? 'bgimage'
-    assert directories_to_clean.include? 'fgimage'
+    assert directories_to_clean.include? 'data/bgimage'
+    assert directories_to_clean.include? 'data/fgimage/chara'
 
     file_copy_actions = extract_by_class(writing_context.file_actions, TyranoDsl::FileActions::FileCopyAction)
     assert_equal file_copy_actions.length, 3
@@ -44,9 +44,9 @@ class EndToEndTest < Minitest::Test
     file_copy_actions.each do |file_copy_action|
       files_copies[file_copy_action.to_path] = file_copy_action.from_path
     end
-    assert_equal files_copies['fgimage/1/0.jpg'], 'characters/shinji/default_stance.jpg'
-    assert_equal files_copies['fgimage/1/1.png'], 'characters/shinji/angry.png'
-    assert_equal files_copies['bgimage/1.jpg'], 'backgrounds/school.jpg'
+    assert_equal files_copies['data/fgimage/chara/1/0.jpg'], 'characters/shinji/default_stance.jpg'
+    assert_equal files_copies['data/fgimage/chara/1/1.png'], 'characters/shinji/angry.png'
+    assert_equal files_copies['data/bgimage/1.jpg'], 'backgrounds/school.jpg'
 
     create_file_actions = extract_by_class(writing_context.file_actions, TyranoDsl::FileActions::CreateFileAction)
     assert_equal create_file_actions.length, 5
@@ -55,12 +55,12 @@ class EndToEndTest < Minitest::Test
       files_creations[create_file_action.path] = create_file_action.content
     end
 
-    assert_equal files_creations['system/chara_define.ks'], '[chara_new name="Shinji" jname="Shinji" storage="fgimage/1/0.jpg"]
+    assert_equal files_creations['data/scenario/system/chara_define.ks'], '[chara_new name="Shinji" jname="Shinji" storage="chara/1/0.jpg"]
 [iscript]
 [endscript]
 '
 
-    assert_equal files_creations['scene1.ks'], '[_tb_system_call storage=system/_scene1.ks]
+    assert_equal files_creations['data/scenario/scene1.ks'], '[_tb_system_call storage=system/_scene1.ks]
 [bg storage="1.jpg" time="1000"]
 [chara_show name="Shinji" time="1000" wait="true" left="434" top="128" width="" height="" reflect="false"]
 [tb_start_text mode=1 ]
@@ -70,15 +70,15 @@ Hello!
 
 [jump storage="scene2.ks" target=""]
 '
-    assert_equal files_creations['system/_scene1.ks'], '[preload storage="./data/bgimage/1.jpg"]
-[preload storage="./data/fgimage/1/0.jpg"]
-[preload storage="./data/fgimage/1/1.png"]
+    assert_equal files_creations['data/scenario/system/_scene1.ks'], '[preload storage="./data/bgimage/1.jpg"]
+[preload storage="./data/fgimage/chara/1/0.jpg"]
+[preload storage="./data/fgimage/chara/1/1.png"]
 [return]'
 
-    assert_equal files_creations['scene2.ks'], '[_tb_system_call storage=system/_scene2.ks]
+    assert_equal files_creations['data/scenario/scene2.ks'], '[_tb_system_call storage=system/_scene2.ks]
 
 '
-    assert_equal files_creations['system/_scene2.ks'], '[return]'
+    assert_equal files_creations['data/scenario/system/_scene2.ks'], '[return]'
 
 
     p writing_context.world.inspect

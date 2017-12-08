@@ -1,3 +1,5 @@
+require 'fileutils'
+
 require_relative 'files_actions_module'
 
 module TyranoDsl
@@ -20,7 +22,10 @@ module TyranoDsl
 
       # @param [String] tyrano_project_path
       def run(tyrano_project_path)
-        # @todo
+        full_path = File.join(tyrano_project_path, path)
+        log {"Creating file [#{full_path}]"}
+        create_parent_dir_if_not_exist(full_path)
+        File.write(full_path, content)
       end
 
       def to_s

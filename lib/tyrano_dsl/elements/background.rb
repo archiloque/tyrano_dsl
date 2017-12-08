@@ -12,7 +12,7 @@ module TyranoDsl
 
       attr_reader :name, :image_path, :target_short_file_name, :target_long_file_name
 
-      BACKGROUND_DIRECTORY = 'bgimage'
+      BACKGROUND_DIRECTORY = File.join('data', 'bgimage')
 
       # @param [String] name
       # @param [String] image_path

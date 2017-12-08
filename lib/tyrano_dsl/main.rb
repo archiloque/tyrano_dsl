@@ -7,8 +7,6 @@ module TyranoDsl
 
   class Main
 
-    DEFAULT_FILENAME = 'content.rb'.freeze
-
     def initialize
       @logger = Logger.new(STDOUT)
     end

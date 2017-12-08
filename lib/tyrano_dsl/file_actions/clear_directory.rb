@@ -1,3 +1,5 @@
+require 'fileutils'
+
 require_relative 'files_actions_module'
 
 module TyranoDsl
@@ -18,7 +20,12 @@ module TyranoDsl
 
       # @param [String] tyrano_project_path
       def run(tyrano_project_path)
-        # @todo
+        full_path = File.join(tyrano_project_path, path)
+        log {"Cleaning [#{full_path}]"}
+        if File.exists? full_path
+          FileUtils.remove_entry full_path
+        end
+        FileUtils.mkdir_p full_path
       end
 
       def to_s
