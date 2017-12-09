@@ -14,7 +14,7 @@ module TyranoDsl
       # @raise [TyranoDsl::TyranoException]
       def start_scene(scene_name)
         if context.world.scenes.key? scene_name
-          raise ::TyranoDsl::TyranoException, "Line #{word_location.lineno} duplicated scene [#{scene_name}]"
+          raise TyranoDsl::TyranoException, "Line #{word_location.lineno} duplicated scene [#{scene_name}]"
         end
         unless context.world.title_screen.first_scene_name
           context.world.title_screen.first_scene_name = scene_name

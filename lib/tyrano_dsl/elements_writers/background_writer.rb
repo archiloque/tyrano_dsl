@@ -10,7 +10,7 @@ module TyranoDsl
     # Write a background
     class BackgroundWriter
 
-      include ::TyranoDsl::ElementsWriters::ElementsWritersModule
+      include TyranoDsl::ElementsWriters::ElementsWritersModule
 
       # @return [Array]
       def init_actions

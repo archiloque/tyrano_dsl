@@ -8,7 +8,7 @@ module TyranoDsl
         label_name = parameters[:label_name]
         target_scene = world.scenes[scene_name]
         unless target_scene
-          raise ::TyranoDsl::TyranoException, "Line #{word_location.lineno} unknown scene [#{scene_name}], currently defined: #{world.scenes.keys.sort.join(', ')}"
+          raise TyranoDsl::TyranoException, "Line #{word_location.lineno} unknown scene [#{scene_name}], currently defined: #{world.scenes.keys.sort.join(', ')}"
         end
         writing_context.append_content(
             word_location,

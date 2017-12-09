@@ -9,7 +9,7 @@ module TyranoDsl
     # Write things where all characters are implied
     class CharactersWriter
 
-      include ::TyranoDsl::ElementsWriters::ElementsWritersModule
+      include TyranoDsl::ElementsWriters::ElementsWritersModule
 
       # @param [TyranoDsl::Elements::World] world
       # @return [Array]

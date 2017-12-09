@@ -13,7 +13,7 @@ module TyranoDsl
       # @raise [TyranoDsl::TyranoException]
       def validate_image_exist(image_path)
         unless File.exist?(File.join(context.base_path, image_path))
-          raise ::TyranoDsl::TyranoException, "Line #{word_location[0].lineno} missing file [#{image_path}]"
+          raise TyranoDsl::TyranoException, "Line #{word_location[0].lineno} missing file [#{image_path}]"
         end
       end
 
@@ -25,10 +25,10 @@ module TyranoDsl
       def check_character_exist(parsing_context, character_name, character_stance = nil)
         character = parsing_context.world.characters[character_name]
         unless character
-          raise ::TyranoDsl::TyranoException, "Line #{word_location[0].lineno} unknown character [#{character_name}], currently defined: #{world.characters.keys.sort.join(', ')}"
+          raise TyranoDsl::TyranoException, "Line #{word_location[0].lineno} unknown character [#{character_name}], currently defined: #{world.characters.keys.sort.join(', ')}"
         end
         if character_stance && !character.stances.key?(character_stance)
-          raise ::TyranoDsl::TyranoException, "Line #{word_location[0].lineno} unknown stance [#{character_stance}], currently defined: #{character.stances.keys.sort.join(', ')}"
+          raise TyranoDsl::TyranoException, "Line #{word_location[0].lineno} unknown stance [#{character_stance}], currently defined: #{character.stances.keys.sort.join(', ')}"
         end
       end
 

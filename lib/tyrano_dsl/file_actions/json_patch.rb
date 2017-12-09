@@ -30,7 +30,7 @@ module TyranoDsl
         full_path = File.join(tyrano_project_path, file_path)
         log {"Patching file [#{full_path}] at #{patching_path}"}
         unless File.exist? full_path
-          raise ::TyranoDsl::TyranoException, "Missing file [#{full_path}]"
+          raise TyranoDsl::TyranoException, "Missing file [#{full_path}]"
         end
         content = JSON.parse(IO.read(full_path))
         current_subtree = content

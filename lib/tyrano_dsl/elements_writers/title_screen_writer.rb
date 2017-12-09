@@ -32,6 +32,8 @@ module TyranoDsl
         ]
       end
 
+      private
+
       # @param [TyranoDsl::Elements::Background] background
       # @param [TyranoDsl::Elements::Scene] first_scene
       def title_screen_content(background, first_scene)
@@ -66,14 +68,12 @@ module TyranoDsl
 HEREDOC
       end
 
-      private
-
       # @param [TyranoDsl::Elements::World] world
       # @return [TyranoDsl::Elements::Scene]
       def get_first_scene(world)
         first_scene_name = world.title_screen.first_scene_name
         unless first_scene_name
-          raise ::TyranoDsl::TyranoException, 'No scene'
+          raise TyranoDsl::TyranoException, 'No scene defined'
         end
         world.scenes[first_scene_name]
       end
@@ -83,7 +83,7 @@ HEREDOC
       def get_background(world)
         background_name = world.title_screen.background
         unless background_name
-          raise ::TyranoDsl::TyranoException, 'No background defined for the title screen'
+          raise TyranoDsl::TyranoException, 'No background defined for the title screen'
         end
         world.backgrounds[background_name]
       end

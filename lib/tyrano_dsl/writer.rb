@@ -27,7 +27,7 @@ module TyranoDsl
     def write(parsing_context)
       log {'Writing content'}
       world = parsing_context.world
-      writing_context = ::TyranoDsl::WritingContext.new(world)
+      writing_context = TyranoDsl::WritingContext.new(world)
       write_title_screen(writing_context, world)
       write_characters(writing_context, world)
       write_backgrounds(writing_context, world)
@@ -44,7 +44,7 @@ module TyranoDsl
     # @return [void]
     # @raise [TyranoDsl::TyranoException]
     def write_title_screen(writing_context, world)
-      title_screen_writer = ::TyranoDsl::ElementsWriters::TitleScreenWriter.new
+      title_screen_writer = TyranoDsl::ElementsWriters::TitleScreenWriter.new
       writing_context.file_actions.concat(title_screen_writer.write(world))
     end
 
@@ -53,12 +53,12 @@ module TyranoDsl
     # @return [void]
     # @raise [TyranoDsl::TyranoException]
     def write_characters(writing_context, world)
-      character_writer = ::TyranoDsl::ElementsWriters::CharacterWriter.new
+      character_writer = TyranoDsl::ElementsWriters::CharacterWriter.new
       writing_context.file_actions.concat(character_writer.init_actions)
       world.characters.each_value do |character|
         writing_context.file_actions.concat(character_writer.write(character))
       end
-      characters_writer = ::TyranoDsl::ElementsWriters::CharactersWriter.new
+      characters_writer = TyranoDsl::ElementsWriters::CharactersWriter.new
       writing_context.file_actions.concat(characters_writer.write(world))
     end
 
@@ -67,7 +67,7 @@ module TyranoDsl
     # @return [void]
     # @raise [TyranoDsl::TyranoException]
     def write_backgrounds(writing_context, world)
-      background_writer = ::TyranoDsl::ElementsWriters::BackgroundWriter.new
+      background_writer = TyranoDsl::ElementsWriters::BackgroundWriter.new
       writing_context.file_actions.concat(background_writer.init_actions)
       world.backgrounds.each_value do |background|
         writing_context.file_actions.concat(background_writer.write(background))

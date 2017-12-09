@@ -21,10 +21,10 @@ module TyranoDsl
         end
         default_stance = stances[:default] || stances['default']
         unless default_stance
-          raise ::TyranoDsl::TyranoException, "Line #{word_location.lineno} you need a default stance"
+          raise TyranoDsl::TyranoException, "Line #{word_location.lineno} you need a default stance"
         end
         if context.world.characters.key? character_name
-          raise ::TyranoDsl::TyranoException, "Line #{word_location.lineno} duplicated character [#{character_name}]"
+          raise TyranoDsl::TyranoException, "Line #{word_location.lineno} duplicated character [#{character_name}]"
         end
         context.world.characters[character_name] = TyranoDsl::Elements::Character.new(
             character_name,
