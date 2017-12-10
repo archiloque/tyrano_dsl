@@ -18,15 +18,8 @@ class EndToEndTest < Minitest::Test
     end
   end
 
-  def test_missing_file
-    validate_exception(
-        'missing_file.rb',
-        'Line 1 missing file [missing_file.png]'
-    )
-  end
-
-  def test_simple_scene
-    writing_context = run_on_file('simple_scene.rb')
+  def test_end_to_end
+    writing_context = run_on_file('end_to_end_scene.rb')
     assert_equal writing_context.file_actions.length, 13
 
     clear_directories = extract_by_class(writing_context.file_actions, TyranoDsl::FileActions::ClearDirectory)
@@ -41,9 +34,9 @@ class EndToEndTest < Minitest::Test
     file_copies.each do |file_copy_action|
       files_copies[file_copy_action.to_path] = file_copy_action.from_path
     end
-    assert_equal files_copies['data/fgimage/chara/1/0.jpg'], 'characters/shinji/default_stance.jpg'
-    assert_equal files_copies['data/fgimage/chara/1/1.png'], 'characters/shinji/angry.png'
-    assert_equal files_copies['data/bgimage/1.jpg'], 'backgrounds/school.jpg'
+    assert_equal files_copies['data/fgimage/chara/1/0.jpg'], '../assets/characters/shinji/default_stance.jpg'
+    assert_equal files_copies['data/fgimage/chara/1/1.png'], '../assets/characters/shinji/angry.png'
+    assert_equal files_copies['data/bgimage/1.jpg'], '../assets/backgrounds/school.jpg'
 
     create_files = extract_by_class(writing_context.file_actions, TyranoDsl::FileActions::CreateFile)
     assert_equal create_files.length, 7

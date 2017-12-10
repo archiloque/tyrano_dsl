@@ -1,8 +1,8 @@
 declare_character 'Shinji',
-                  'default' => 'characters/shinji/default_stance.jpg',
-                  'angry' => 'characters/shinji/angry.png'
+                  'default' => '../assets/characters/shinji/default_stance.jpg',
+                  'angry' => '../assets/characters/shinji/angry.png'
 
-declare_background 'School', 'backgrounds/school.jpg'
+declare_background 'School', '../assets/backgrounds/school.jpg'
 
 set_title_screen_background 'School'
 
