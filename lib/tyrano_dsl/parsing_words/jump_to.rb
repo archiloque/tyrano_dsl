@@ -1,3 +1,4 @@
+require_relative '../elements/jump_target'
 require_relative '../vocabulary'
 require_relative 'parsing_words_module'
 
@@ -15,9 +16,10 @@ module TyranoDsl
       def jump_to(scene_name, label_name = nil)
         add_parsed_word(
             TyranoDsl::Vocabulary::JUMP_TO,
-            name: scene_name,
-            label: label_name
+            scene_name: scene_name,
+            label_name: label_name
         )
+        context.world.jump_targets << TyranoDsl::Elements::JumpTarget.new(scene_name, label_name)
       end
     end
   end

@@ -51,6 +51,8 @@ If there is an error it should be displayed and the message should help you to f
 - `declare_background(name, images_path)` declare a scene 
   - `name` is a `String`
   - `images_path` is a `String` indicating the path to the background images
+- `declare_label(name)` declare a label 
+  - `name` is a `String`
 - `declare_character(name, stances)` declare a character
   - `name` is a `String`
   - `stances` is a `Hash{String => String}` providing a list of stances with the path to their corresponding images

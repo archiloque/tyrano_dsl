@@ -7,6 +7,8 @@ module TyranoDsl
     DECLARE_BACKGROUND = 'declare_background'.freeze
     # Declare a character
     DECLARE_CHARACTER = 'declare_character'.freeze
+    # Declare a characterlabel
+    DECLARE_LABEL = 'declare_label'.freeze
     # Display some text
     DISPLAY_TEXT = 'display_text'.freeze
     # Jump to a scene
@@ -26,6 +28,7 @@ module TyranoDsl
     ALL_WORDS = [
         DECLARE_BACKGROUND,
         DECLARE_CHARACTER,
+        DECLARE_LABEL,
         DISPLAY_TEXT,
         JUMP_TO,
         SET_BACKGROUND,

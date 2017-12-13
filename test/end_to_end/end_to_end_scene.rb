@@ -8,11 +8,12 @@ set_title_screen_background 'School'
 
 start_scene 'First scene'
 set_background 'School'
+declare_label 'Label 1'
 show_character 'Shinji', 'default', 434, 128
 
 display_text 'Shinji', 'Hello!'
 set_character_stance 'Shinji', 'angry'
-jump_to 'Second scene', ''
+jump_to 'Second scene'
 
 start_scene 'Second scene'
 set_background 'School'

@@ -3,7 +3,7 @@ require_relative '../../../lib/tyrano_dsl/parser'
 
 class DeclareCharacterTest < Minitest::Test
 
-  include ParsingWorldsHelper
+  include ParsingWordsHelper
 
   def test_missing_background
     parser = create_parser
@@ -11,7 +11,7 @@ class DeclareCharacterTest < Minitest::Test
       parser.declare_character('missing image', {:default => 'missing_file.png'})
       fail
     rescue TyranoDsl::TyranoException => e
-      assert_equal e.message, 'Line 11 missing file [missing_file.png]'
+      assert_match /Line \d+ missing file \[missing_file.png\]/, e.message
     end
   end
 
@@ -22,7 +22,7 @@ class DeclareCharacterTest < Minitest::Test
       parser.declare_character('character', {:default => '../../assets/characters/shinji/default_stance.jpg'})
       fail
     rescue TyranoDsl::TyranoException => e
-      assert_equal e.message, 'Line 22 duplicated character [character]'
+      assert_match /Line \d+ duplicated character \[character\]/, e.message
     end
   end
 
@@ -32,7 +32,7 @@ class DeclareCharacterTest < Minitest::Test
       parser.declare_character('character', {:dab => '../../assets/characters/shinji/default_stance.jpg'})
       fail
     rescue TyranoDsl::TyranoException => e
-      assert_equal e.message, 'Line 32 you need a default stance'
+      assert_match /Line \d+ you need a default stance/, e.message
     end
   end
 
@@ -45,14 +45,14 @@ class DeclareCharacterTest < Minitest::Test
     assert_equal parser.context.world.characters.values.first.index, 1
     assert_equal parser.context.world.characters.values.first.stances, {:default => '../../assets/characters/shinji/default_stance.jpg'}
     assert_equal parser.context.world.characters.values.first.default_stance_target_short_file_name, '1/0.jpg'
-    assert_equal parser.context.world.characters.values.first.stances_target_long_files_names, {:default => "data/fgimage/chara/1/0.jpg"}
+    assert_equal parser.context.world.characters.values.first.stances_target_long_files_names, {:default => 'data/fgimage/chara/1/0.jpg'}
 
     assert_equal parser.context.words[0].word, TyranoDsl::Vocabulary::DECLARE_CHARACTER
     assert_kind_of Array, parser.context.words[0].word_location
     assert_equal parser.context.words[0].parameters, {
-        :name => "character",
-        :stances => {:default => "../../assets/characters/shinji/default_stance.jpg"},
-        :default_stance => "../../assets/characters/shinji/default_stance.jpg"
+        :name => 'character',
+        :stances => {default: '../../assets/characters/shinji/default_stance.jpg'},
+        :default_stance => '../../assets/characters/shinji/default_stance.jpg'
     }
   end
 

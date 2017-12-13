@@ -1,6 +1,6 @@
 require_relative '../../test_helper'
 
-module ParsingWorldsHelper
+module ParsingWordsHelper
 
   protected
 

@@ -52,6 +52,7 @@ class EndToEndTest < Minitest::Test
 
     assert_equal files_creations['data/scenario/scene1.ks'], '[_tb_system_call storage=system/_scene1.ks]
 [bg storage="1.jpg" time="1000"]
+*Label 1
 [chara_show name="Shinji" time="1000" wait="true" left="434" top="128" width="" height="" reflect="false"]
 [tb_start_text mode=1 ]
 #Shinji

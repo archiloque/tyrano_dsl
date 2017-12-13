@@ -3,7 +3,7 @@ require_relative '../../../lib/tyrano_dsl/parser'
 
 class SetBackgroundTest < Minitest::Test
 
-  include ParsingWorldsHelper
+  include ParsingWordsHelper
 
   def test_missing_character
     parser = create_parser
@@ -11,7 +11,7 @@ class SetBackgroundTest < Minitest::Test
       parser.set_background 'missing_background'
       fail
     rescue TyranoDsl::TyranoException => e
-      assert_equal e.message, 'Line 11 unknown background [missing_background], currently defined: '
+      assert_match /Line \d+ unknown background \[missing_background\], currently defined: /, e.message
     end
   end
 
@@ -26,7 +26,7 @@ class SetBackgroundTest < Minitest::Test
     assert_equal parser.context.words.length, 1
     assert_equal parser.context.words[0].word, TyranoDsl::Vocabulary::SET_BACKGROUND
     assert_kind_of Array, parser.context.words[0].word_location
-    assert_equal parser.context.words[0].parameters, :name => "background"
+    assert_equal parser.context.words[0].parameters, {name: 'background'}
 
   end
 

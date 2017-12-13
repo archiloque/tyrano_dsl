@@ -3,7 +3,7 @@ require_relative '../../../lib/tyrano_dsl/parser'
 
 class DeclareBackgroundTest < Minitest::Test
 
-  include ParsingWorldsHelper
+  include ParsingWordsHelper
 
   def test_missing_background
     parser = create_parser
@@ -11,7 +11,7 @@ class DeclareBackgroundTest < Minitest::Test
       parser.declare_background('missing background', 'missing_file.png')
       fail
     rescue TyranoDsl::TyranoException => e
-      assert_equal e.message, 'Line 11 missing file [missing_file.png]'
+      assert_match /Line \d+ missing file \[missing_file.png\]/, e.message
     end
   end
 
@@ -22,7 +22,7 @@ class DeclareBackgroundTest < Minitest::Test
       parser.declare_background('background', '../../assets/backgrounds/school.jpg')
       fail
     rescue TyranoDsl::TyranoException => e
-      assert_equal e.message, 'Line 22 duplicated background [background]'
+      assert_match /Line \d+ duplicated background \[background\]/, e.message
     end
   end
 
@@ -37,7 +37,7 @@ class DeclareBackgroundTest < Minitest::Test
     assert_equal parser.context.world.backgrounds.values.first.target_long_file_name, 'data/bgimage/1.jpg'
     assert_equal parser.context.words[0].word, TyranoDsl::Vocabulary::DECLARE_BACKGROUND
     assert_kind_of Array, parser.context.words[0].word_location
-    assert_equal parser.context.words[0].parameters, {:name=>"background", :image_path=>"../../assets/backgrounds/school.jpg"}
+    assert_equal parser.context.words[0].parameters, {name: 'background', :image_path => '../../assets/backgrounds/school.jpg'}
   end
 
 
