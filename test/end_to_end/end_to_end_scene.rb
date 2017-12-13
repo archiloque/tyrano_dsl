@@ -13,6 +13,7 @@ show_character 'Shinji', 'default', 434, 128
 
 display_text 'Shinji', 'Hello!'
 set_character_stance 'Shinji', 'angry'
+hide_character 'Shinji'
 jump_to 'Second scene'
 
 start_scene 'Second scene'

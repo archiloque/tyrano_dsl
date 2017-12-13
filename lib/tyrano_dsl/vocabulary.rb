@@ -11,6 +11,8 @@ module TyranoDsl
     DECLARE_LABEL = 'declare_label'.freeze
     # Display some text
     DISPLAY_TEXT = 'display_text'.freeze
+    # Hide a character
+    HIDE_CHARACTER = 'hide_character'.freeze
     # Jump to a scene
     JUMP_TO = 'jump_to'.freeze
     # Set the current background
@@ -30,12 +32,13 @@ module TyranoDsl
         DECLARE_CHARACTER,
         DECLARE_LABEL,
         DISPLAY_TEXT,
+        HIDE_CHARACTER,
         JUMP_TO,
         SET_BACKGROUND,
         SET_TITLE_SCREEN_BACKGROUND,
         SET_CHARACTER_STANCE,
         SHOW_CHARACTER,
-        START_SCENE
+        START_SCENE,
     ].sort.freeze
 
     # Get the word class corresponding to the words

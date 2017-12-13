@@ -10,9 +10,10 @@ module TyranoDsl
   # @attr [Hash{String => Object}] file_actions
   # @attr [TyranoDsl::Element::World] world
   # @attr [Array<String>] current_scene_content
+  # @attr [Array<String>] current_scene_assets
   class WritingContext
 
-    attr_reader :file_actions, :world, :current_scene_content
+    attr_reader :file_actions, :world, :current_scene_content, :current_scene_assets
 
     def initialize(world)
       @logger = Logger.new(STDOUT)
@@ -56,7 +57,7 @@ module TyranoDsl
     def add_label(word_location, label_name)
       check_in_scene(word_location)
       if @current_scene_labels.include? label_name
-        raise TyranoDsl::TyranoException, "Duplicated label [#{label_name}] line #{word_location[0].lineno}"
+        raise TyranoDsl::TyranoException, "Line #{word_location[0].lineno} duplicated label [#{label_name}]"
       end
       @current_scene_labels << label_name
     end

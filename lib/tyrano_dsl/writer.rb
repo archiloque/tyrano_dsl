@@ -81,9 +81,6 @@ module TyranoDsl
     def write_scenes(writing_context, parsing_context)
       parsing_context.words.each do |parsed_word|
         action_word = @words[parsed_word.word]
-        unless action_word
-          raise "Unknown word [#{action_word}]"
-        end
         action_word.run(
             writing_context,
             parsing_context.world,

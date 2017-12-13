@@ -59,6 +59,7 @@ class EndToEndTest < Minitest::Test
 Hello!
 [_tb_end_text]
 
+[chara_hide name="Shinji" time="1000" wait="true"]
 [jump storage="scene2.ks" target=""]
 '
     assert_equal files_creations['data/scenario/system/_scene1.ks'], '[preload storage="./data/bgimage/1.jpg"]

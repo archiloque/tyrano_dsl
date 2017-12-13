@@ -1,5 +1,3 @@
-require 'logger'
-
 require_relative 'parsed_word'
 require_relative 'tyrano_exception'
 require_relative 'vocabulary'
@@ -28,7 +26,6 @@ module TyranoDsl
 
     # @param [TyranoDsl::ParsingContext] parsing_context
     def initialize(parsing_context)
-      @logger = Logger.new(STDOUT)
       @context = parsing_context
     end
 
@@ -44,12 +41,6 @@ module TyranoDsl
           word_location,
           parameters
       )
-    end
-
-    private
-
-    def log
-      @logger.info(self.class) {yield}
     end
 
   end

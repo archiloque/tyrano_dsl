@@ -49,23 +49,25 @@ If there is an error it should be displayed and the message should help you to f
 # Current vocabulary
 
 - `declare_background(name, images_path)` declare a scene 
-  - `name` is a `String`
+  - `name` is a `String` representing the background's name
   - `images_path` is a `String` indicating the path to the background images
 - `declare_label(name)` declare a label 
-  - `name` is a `String`
+  - `name` is a `String` representing the label's name
 - `declare_character(name, stances)` declare a character
-  - `name` is a `String`
+  - `name` is a `String` representing the character's name
   - `stances` is a `Hash{String => String}` providing a list of stances with the path to their corresponding images
+- `hide_character(name)` hide a character
+  - `name` is a `String` representing the character's name
 - `jump_to(scene_name, label_name)` jump to a label
   - `scene_name` is a `String` indicating the name of the scene
   - `label_name` is a `String` indicating the name of the label in the scene (optional)
 - `set_character_stance(name, stance)` change the stance of a character
-  - `name` is a `String`
+  - `name` is a `String` representing the character's name
   - `stance` is a `String` defining the stance name
 - `start_scene(name)` start a scene 
-  - `name` is a `String`
-- `show_character(namen, stance, left, top)` show a character
-  - `name` is a `String`
+  - `name` is a `String` representing the stance's name
+- `show_character(name, stance, left, top)` show a character
+  - `name` is a `String` representing the character's name
   - `stance` is a `String` defining the stance name
   - `left` is an `Integer` defining the left position
   - `top` is an `Integer` defining the top position
