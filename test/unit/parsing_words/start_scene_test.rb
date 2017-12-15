@@ -30,5 +30,4 @@ class StartSceneTest < Minitest::Test
     assert_equal parser.context.world.scenes.values.first.target_name, 'scene1'
   end
 
-
 end

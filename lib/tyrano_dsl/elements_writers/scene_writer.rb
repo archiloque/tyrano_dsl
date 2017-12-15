@@ -16,7 +16,7 @@ module TyranoDsl
       # @return [Array]
       def write(scene, scene_content, assets)
         log {"Writing scene [#{scene.name}]"}
-        content_text_content = "[_tb_system_call storage=system/_#{scene.target_name}.ks]\n#{scene_content.join("\n")}\n"
+        content_text_content = "[_tb_system_call storage=system/_#{scene.target_name}.ks]\n[cm]\n#{scene_content.join("\n")}\n"
         preload_text_content = preload_text(assets.to_a)
         [
             TyranoDsl::FileActions::CreateFile.new(

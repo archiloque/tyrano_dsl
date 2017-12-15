@@ -10,5 +10,4 @@ module ParsingWordsHelper
     TyranoDsl::Parser.new(parsing_context)
   end
 
-
 end

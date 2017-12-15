@@ -9,6 +9,6 @@ class BackgroundTest < Minitest::Test
     assert_equal background.image_path, 'path/to/background.png'
     assert_equal background.target_short_file_name, '20.png'
     assert_equal background.target_long_file_name, 'data/bgimage/20.png'
-
   end
+
 end

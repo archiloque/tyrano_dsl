@@ -32,5 +32,4 @@ class ShowCharacterTest < Minitest::Test
     assert_equal writing_context.current_scene_assets.to_a[0], 'data/fgimage/chara/0/0.png'
   end
 
-
 end

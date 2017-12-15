@@ -8,4 +8,5 @@ class SceneTest < Minitest::Test
     assert_equal scene.name, 'my_scene'
     assert_equal scene.target_name, 'scene20'
   end
+
 end

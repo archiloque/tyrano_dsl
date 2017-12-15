@@ -16,5 +16,4 @@ class JumpToTest < Minitest::Test
     assert_equal parser.context.words[0].parameters, {scene_name: 'target scene', :label_name => 'target label'}
   end
 
-
 end

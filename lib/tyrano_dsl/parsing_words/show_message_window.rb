@@ -1,23 +1,19 @@
-require_relative '../elements/background'
 require_relative '../vocabulary'
 require_relative 'parsing_words_module'
 
 module TyranoDsl
   module ParsingWords
 
-    module DeclareLabel
+    module ShowMessageWindow
 
       include TyranoDsl::ParsingWords::ParsingWordsModule
 
-      # @param [String] label_name
       # @return [void]
       # @raise [TyranoDsl::TyranoException]
-      def declare_label(label_name)
+      def show_message_window
         add_parsed_word(
-            TyranoDsl::Vocabulary::DECLARE_LABEL,
-            label_name: label_name
+            TyranoDsl::Vocabulary::SHOW_MESSAGE_WINDOW,
         )
-        context.world.label_value(label_name)
       end
     end
   end

@@ -30,5 +30,4 @@ class HideCharacterTest < Minitest::Test
     assert_equal writing_context.current_scene_content, ['[chara_hide name="character name" time="1000" wait="true"]']
   end
 
-
 end

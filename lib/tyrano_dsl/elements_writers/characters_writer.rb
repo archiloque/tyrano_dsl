@@ -16,7 +16,7 @@ module TyranoDsl
       def write(world)
         log {'Writing characters'}
         chara_define_content = world.characters.values.collect do |character|
-          "[chara_new name=\"#{character.name}\" jname=\"#{character.name}\" storage=\"chara\/#{character.default_stance_target_short_file_name}\"]\n"
+          "[chara_new name=\"#{character.name}\" jname=\"#{character.name}\" storage=\"chara\/#{character.default_stance.short_target_file_name}\"]\n"
         end.join()
         chara_define_content << "[iscript]\n[endscript]\n"
 
@@ -31,7 +31,7 @@ module TyranoDsl
                 chara_define_content
             ),
             TyranoDsl::FileActions::JsonPatch.new(
-                File.join('builder_config.json'),
+                'builder_config.json',
                 ['map_chara'],
                 builder_config_content
             )

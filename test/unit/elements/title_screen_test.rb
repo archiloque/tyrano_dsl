@@ -10,4 +10,5 @@ class TitleScreenTest < Minitest::Test
     assert_equal title_screen.background, 'my_backgroud'
     assert_equal title_screen.first_scene_name, 'first scene'
   end
+
 end

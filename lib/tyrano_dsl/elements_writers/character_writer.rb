@@ -23,12 +23,11 @@ module TyranoDsl
       # @return [Array]
       def write(character)
         log {"Writing character [#{character.name}]"}
-        # @todo
         result = []
-        character.stances.each_pair do |stance_name, stance_file|
+        character.stances.each_value do |stance|
           result << TyranoDsl::FileActions::FileCopy.new(
-              stance_file,
-              character.stances_target_long_files_names[stance_name]
+              stance.original_file_name,
+              stance.long_target_file_name
           )
         end
         result

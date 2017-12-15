@@ -41,11 +41,23 @@ class DeclareCharacterTest < Minitest::Test
     parser.declare_character('character', {:default => '../../assets/characters/shinji/default_stance.jpg'})
     assert_equal parser.context.world.characters.length, 1
     assert_equal parser.context.world.characters.keys.first, 'character'
-    assert_equal parser.context.world.characters.values.first.name, 'character'
-    assert_equal parser.context.world.characters.values.first.index, 1
-    assert_equal parser.context.world.characters.values.first.stances, {:default => '../../assets/characters/shinji/default_stance.jpg'}
-    assert_equal parser.context.world.characters.values.first.default_stance_target_short_file_name, '1/0.jpg'
-    assert_equal parser.context.world.characters.values.first.stances_target_long_files_names, {:default => 'data/fgimage/chara/1/0.jpg'}
+    character = parser.context.world.characters.values.first
+    assert_equal character.name, 'character'
+    assert_equal character.index, 1
+    assert_equal character.stances.length, 1
+    assert_equal character.stances.keys.first, :default
+
+    stance = character.stances.values.first
+    assert_equal stance.name, :default
+    assert_equal stance.original_file_name, '../../assets/characters/shinji/default_stance.jpg'
+    assert_equal stance.short_target_file_name, '1/0.jpg'
+    assert_equal stance.long_target_file_name, 'data/fgimage/chara/1/0.jpg'
+
+    default_stance = character.default_stance
+    assert_equal default_stance.name, :default
+    assert_equal default_stance.original_file_name, '../../assets/characters/shinji/default_stance.jpg'
+    assert_equal default_stance.short_target_file_name, '1/0.jpg'
+    assert_equal default_stance.long_target_file_name, 'data/fgimage/chara/1/0.jpg'
 
     assert_equal parser.context.words[0].word, TyranoDsl::Vocabulary::DECLARE_CHARACTER
     assert_kind_of Array, parser.context.words[0].word_location
@@ -55,6 +67,5 @@ class DeclareCharacterTest < Minitest::Test
         :default_stance => '../../assets/characters/shinji/default_stance.jpg'
     }
   end
-
 
 end

@@ -38,7 +38,6 @@ class ShowCharacterTest < Minitest::Test
     assert_equal parser.context.words[0].word, TyranoDsl::Vocabulary::SHOW_CHARACTER
     assert_kind_of Array, parser.context.words[0].word_location
     assert_equal parser.context.words[0].parameters, {:name => 'Shinji', :stance => :default, :left => 10, :top => 10}
-
   end
 
 end

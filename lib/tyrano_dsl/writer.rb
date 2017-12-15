@@ -1,4 +1,5 @@
 require 'logger'
+
 require_relative 'elements_writers/background_writer'
 require_relative 'elements_writers/character_writer'
 require_relative 'elements_writers/characters_writer'
@@ -21,17 +22,17 @@ module TyranoDsl
       end
     end
 
-    # @param [ParsingContext] parsing_context
+    # @param [TyranoDsl::Elements::World] world
+    # @param [Array<TyranoDsl::ParsedWord>] parsed_words
     # @return [TyranoDsl::WritingContext]
     # @raise [TyranoDsl::TyranoException]
-    def write(parsing_context)
+    def write(world, parsed_words)
       log {'Writing content'}
-      world = parsing_context.world
       writing_context = TyranoDsl::WritingContext.new(world)
       write_title_screen(writing_context, world)
       write_characters(writing_context, world)
       write_backgrounds(writing_context, world)
-      write_scenes(writing_context, parsing_context)
+      write_scenes(writing_context, world, parsed_words)
       writing_context.end_writing
       log {'Content written'}
       writing_context
@@ -75,15 +76,16 @@ module TyranoDsl
     end
 
     # @param [TyranoDsl::WritingContext] writing_context
-    # @param [TyranoDsl::ParsingContext] parsing_context
+    # @param [Array<TyranoDsl::ParsedWord>] parsed_words
+    # @param [TyranoDsl::Elements::World] world
     # @return [void]
     # @raise [TyranoDsl::TyranoException]
-    def write_scenes(writing_context, parsing_context)
-      parsing_context.words.each do |parsed_word|
+    def write_scenes(writing_context, world, parsed_words)
+      parsed_words.each do |parsed_word|
         action_word = @words[parsed_word.word]
         action_word.run(
             writing_context,
-            parsing_context.world,
+            world,
             parsed_word.word_location,
             parsed_word.parameters
         )

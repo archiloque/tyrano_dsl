@@ -6,13 +6,14 @@ module TyranoDsl
       def run(writing_context, world, word_location, parameters)
         scene_name = parameters[:scene_name]
         label_name = parameters[:label_name]
+        label = world.labels[label_name]
         target_scene = world.scenes[scene_name]
         unless target_scene
           raise TyranoDsl::TyranoException, "Line #{word_location[0].lineno} unknown scene [#{scene_name}], currently defined: #{world.scenes.keys.sort.join(', ')}"
         end
         writing_context.append_content(
             word_location,
-            "[jump storage=\"#{target_scene.target_name}\.ks\" target=\"#{label_name}\"]"
+            "[jump storage=\"#{target_scene.target_name}\.ks\" target=\"#{label.technical_name}\"]"
         )
 
       end

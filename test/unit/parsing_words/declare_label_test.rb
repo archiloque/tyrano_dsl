@@ -13,5 +13,4 @@ class DeclareLabelTest < Minitest::Test
     assert_equal parser.context.words[0].parameters, {label_name: 'my_label'}
   end
 
-
 end

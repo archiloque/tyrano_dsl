@@ -10,9 +10,11 @@ start_scene 'First scene'
 set_background 'School'
 declare_label 'Label 1'
 show_character 'Shinji', 'default', 434, 128
-
+show_message_window
 display_text 'Shinji', 'Hello!'
 set_character_stance 'Shinji', 'angry'
+hide_message_window
+
 hide_character 'Shinji'
 jump_to 'Second scene'
 

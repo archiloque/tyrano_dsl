@@ -12,8 +12,9 @@ module TyranoDsl
     end
 
     # @param [String] file_path path to the DSL file
+    # @param [TyranoDsl::ProjectConfiguration] project_configuration
     # @return [TyranoDsl::WritingContext]
-    def run(file_path)
+    def run(file_path, project_configuration)
       log {"Reading content file at [#{file_path}]"}
       unless File.exist? file_path
         raise TyranoDsl::TyranoException, "File not found [#{file_path}]"
@@ -24,7 +25,7 @@ module TyranoDsl
       log {'Parsing begin'}
       parser.instance_eval(IO.read(file_path), file_path, 1)
       log {"Parsing end #{parsing_context.inspect}"}
-      Writer.new.write(parsing_context)
+      Writer.new.write(parsing_context.world, parsing_context.words)
     end
 
     private

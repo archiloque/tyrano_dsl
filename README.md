@@ -20,7 +20,7 @@ set_title_screen_background 'School'
 start_scene 'First scene'
 set_background 'School'
 show_character 'Shinji', 'default', 434, 128
-
+show_message_window
 display_text 'Shinji', 'Hello!'
 set_character_stance 'Shinji', 'angry'
 jump_to 'Second scene'
@@ -36,7 +36,7 @@ I add things as I need them for my needs, if you need something please ask me.
 - Install [TyranoBuilder](http://tyranobuilder.com)
 - Create a project in it
 - Install the gem
-- Execute `tyrano-dsl PATH_TO_YOUR_TYRANO_PROJECT PATH_TO_YPUR_RUBY_CODE.rb` in your project directory.
+- Execute `tyrano-dsl PATH_TO_YOUR_TYRANO_PROJECT PATH_TO_YOUR_RUBY_CODE.rb` in your project directory.
 
 `PATH_TO_YOUR_TYRANO_PROJECT` should look like `/Users/u/Library/Application\ Support/Steam/steamapps/common/TyranoBuilder/myproject/Test`
 
@@ -58,19 +58,21 @@ If there is an error it should be displayed and the message should help you to f
   - `stances` is a `Hash{String => String}` providing a list of stances with the path to their corresponding images
 - `hide_character(name)` hide a character
   - `name` is a `String` representing the character's name
+- `hide_message_window` hide the message window
 - `jump_to(scene_name, label_name)` jump to a label
   - `scene_name` is a `String` indicating the name of the scene
   - `label_name` is a `String` indicating the name of the label in the scene (optional)
 - `set_character_stance(name, stance)` change the stance of a character
   - `name` is a `String` representing the character's name
   - `stance` is a `String` defining the stance name
-- `start_scene(name)` start a scene 
-  - `name` is a `String` representing the stance's name
 - `show_character(name, stance, left, top)` show a character
   - `name` is a `String` representing the character's name
   - `stance` is a `String` defining the stance name
   - `left` is an `Integer` defining the left position
   - `top` is an `Integer` defining the top position
+- `show_message_window` show the message window 
+- `start_scene(name)` start a scene 
+  - `name` is a `String` representing the stance's name
 
 ## Default project organisation
 

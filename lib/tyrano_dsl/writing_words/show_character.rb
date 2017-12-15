@@ -10,7 +10,7 @@ module TyranoDsl
         top = parameters[:top]
         writing_context.add_asset_loading(
             word_location,
-            character.stances_target_long_files_names[character_stance]
+            character.stances[character_stance].long_target_file_name
         )
         writing_context.append_content(
             word_location,

@@ -13,6 +13,8 @@ module TyranoDsl
     DISPLAY_TEXT = 'display_text'.freeze
     # Hide a character
     HIDE_CHARACTER = 'hide_character'.freeze
+    # Hide the message window
+    HIDE_MESSAGE_WINDOW = 'hide_message_window'.freeze
     # Jump to a scene
     JUMP_TO = 'jump_to'.freeze
     # Set the current background
@@ -23,6 +25,8 @@ module TyranoDsl
     SET_CHARACTER_STANCE = 'set_character_stance'.freeze
     # Show a character
     SHOW_CHARACTER = 'show_character'.freeze
+    # Show the message window
+    SHOW_MESSAGE_WINDOW = 'show_message_window'.freeze
     # Start a scene
     START_SCENE = 'start_scene'.freeze
 
@@ -33,11 +37,13 @@ module TyranoDsl
         DECLARE_LABEL,
         DISPLAY_TEXT,
         HIDE_CHARACTER,
+        HIDE_MESSAGE_WINDOW,
         JUMP_TO,
         SET_BACKGROUND,
         SET_TITLE_SCREEN_BACKGROUND,
         SET_CHARACTER_STANCE,
         SHOW_CHARACTER,
+        SHOW_MESSAGE_WINDOW,
         START_SCENE,
     ].sort.freeze
 

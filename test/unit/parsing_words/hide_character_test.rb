@@ -27,7 +27,6 @@ class HideCharacterTest < Minitest::Test
     assert_equal parser.context.words[0].word, TyranoDsl::Vocabulary::HIDE_CHARACTER
     assert_kind_of Array, parser.context.words[0].word_location
     assert_equal parser.context.words[0].parameters, {:name => 'Shinji'}
-
   end
 
 end

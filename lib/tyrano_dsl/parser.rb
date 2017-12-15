@@ -35,7 +35,7 @@ module TyranoDsl
     # @param [String] word
     # @param [Hash{String => Object}] parameters
     # @return [void]
-    def add_parsed_word(word, parameters)
+    def add_parsed_word(word, parameters = {})
       context.words << TyranoDsl::ParsedWord.new(
           word,
           word_location,

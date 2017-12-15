@@ -1,13 +1,22 @@
 require_relative '../test_helper'
 
 require_relative '../../lib/tyrano_dsl/main'
+require_relative '../../lib/tyrano_dsl/project_configuration'
 require_relative '../../lib/tyrano_dsl/vocabulary'
 require_relative '../../lib/tyrano_dsl/tyrano_exception'
 
 class EndToEndTest < Minitest::Test
 
   def run_on_file(file_path)
-    TyranoDsl::Main.new.run(File.join(__dir__, file_path))
+    project_configuration = TyranoDsl::ProjectConfiguration.new(
+        JSON.parse(
+            IO.read(File.join(__dir__, '../assets/builder_config.json'))
+        )
+    )
+    TyranoDsl::Main.new.run(
+        File.join(__dir__, file_path),
+        project_configuration
+    )
   end
 
   def validate_exception(file_path, exception_message)
@@ -51,14 +60,18 @@ class EndToEndTest < Minitest::Test
 '
 
     assert_equal files_creations['data/scenario/scene1.ks'], '[_tb_system_call storage=system/_scene1.ks]
+[cm]
 [bg storage="1.jpg" time="1000"]
-*Label 1
+*label_0
 [chara_show name="Shinji" time="1000" wait="true" left="434" top="128" width="" height="" reflect="false"]
+[tb_show_message_window]
 [tb_start_text mode=1 ]
 #Shinji
 Hello!
 [_tb_end_text]
 
+[chara_mod name="Shinji" cross="true" storage="1/1.png"]
+[tb_hide_message_window]
 [chara_hide name="Shinji" time="1000" wait="true"]
 [jump storage="scene2.ks" target=""]
 '
@@ -100,6 +113,7 @@ Hello!
 [return]'
 
     assert_equal files_creations['data/scenario/scene2.ks'], '[_tb_system_call storage=system/_scene2.ks]
+[cm]
 [bg storage="1.jpg" time="1000"]
 '
     assert_equal files_creations['data/scenario/system/_scene2.ks'], '[preload storage="./data/bgimage/1.jpg"]
@@ -110,7 +124,7 @@ Hello!
     assert_equal json_patches.length, 1
     assert_equal json_patches[0].file_path, 'builder_config.json'
     assert_equal json_patches[0].patching_path, ['map_chara']
-    assert_equal json_patches[0].patched_content, {"Shinji"=>1}
+    assert_equal json_patches[0].patched_content, {"Shinji" => 1}
 
   end
 
