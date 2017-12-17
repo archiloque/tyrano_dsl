@@ -1,8 +1,7 @@
 require_relative 'writing_words_helper'
-require_relative '../../../lib/tyrano_dsl/parser'
 require_relative '../../../lib/tyrano_dsl/writing_words/jump_to'
 
-class JumpToTest < Minitest::Test
+class WritingWordsJumpToTest < Minitest::Test
 
   include WritingWordsHelper
 

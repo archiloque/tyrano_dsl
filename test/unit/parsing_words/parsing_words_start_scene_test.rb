@@ -1,8 +1,6 @@
-require_relative '../../../lib/tyrano_dsl/elements/scene'
-require_relative '../../../lib/tyrano_dsl/parser'
 require_relative 'parsing_words_helper'
 
-class StartSceneTest < Minitest::Test
+class ParsingWordsStartSceneTest < Minitest::Test
 
   include ParsingWordsHelper
 

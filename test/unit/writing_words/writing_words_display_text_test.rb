@@ -1,8 +1,7 @@
 require_relative 'writing_words_helper'
-require_relative '../../../lib/tyrano_dsl/parser'
 require_relative '../../../lib/tyrano_dsl/writing_words/display_text'
 
-class DisplayTextTest < Minitest::Test
+class WritingWordsDisplayTextTest < Minitest::Test
 
   include WritingWordsHelper
 

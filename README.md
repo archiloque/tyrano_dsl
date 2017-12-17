@@ -2,6 +2,8 @@
 
 **PROJECT IS A WIP, NOT USABLE FOR THE MOMENT !**
 
+[![Build Status](https://travis-ci.org/archiloque/tyrano_dsl.svg?branch=master)](https://travis-ci.org/archiloque/tyrano_dsl)
+
 A DSL to write visual novels games in Ruby using [TyranoBuilder](http://tyranobuilder.com).
 
 The goal is to provide a simple syntax you can use directly or you can build upon. 

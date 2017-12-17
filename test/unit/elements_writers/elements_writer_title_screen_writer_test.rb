@@ -4,7 +4,7 @@ require_relative '../../../lib/tyrano_dsl/elements/scene'
 require_relative '../../../lib/tyrano_dsl/elements/world'
 require_relative '../../../lib/tyrano_dsl/elements_writers/title_screen_writer'
 
-class TitleScreenWriterTest < Minitest::Test
+class ElementsWriterTitleScreenWriterTest < Minitest::Test
 
   def test_no_background
     world = TyranoDsl::Elements::World.new('game.rb')

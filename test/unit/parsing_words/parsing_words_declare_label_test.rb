@@ -1,7 +1,6 @@
 require_relative 'parsing_words_helper'
-require_relative '../../../lib/tyrano_dsl/parser'
 
-class DeclareLabelTest < Minitest::Test
+class ParsingWordsDeclareLabelTest < Minitest::Test
 
   include ParsingWordsHelper
 

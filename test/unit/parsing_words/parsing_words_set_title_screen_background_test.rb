@@ -1,8 +1,6 @@
-require_relative '../../../lib/tyrano_dsl/elements/background'
-require_relative '../../../lib/tyrano_dsl/parser'
 require_relative 'parsing_words_helper'
 
-class SetTitleScreenBackgroundTest < Minitest::Test
+class ParsingWordsSetTitleScreenBackgroundTest < Minitest::Test
 
   include ParsingWordsHelper
 

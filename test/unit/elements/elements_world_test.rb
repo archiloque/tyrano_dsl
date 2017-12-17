@@ -3,7 +3,7 @@ require_relative '../../../lib/tyrano_dsl/elements/jump_target'
 require_relative '../../../lib/tyrano_dsl/elements/scene'
 require_relative '../../../lib/tyrano_dsl/elements/world'
 
-class WorldTest < Minitest::Test
+class ElementsWorldTest < Minitest::Test
 
   include ElementsHelper
 

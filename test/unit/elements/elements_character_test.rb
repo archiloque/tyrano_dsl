@@ -1,7 +1,7 @@
 require_relative '../../test_helper'
 require_relative '../../../lib/tyrano_dsl/elements/character'
 
-class CharacterTest < Minitest::Test
+class ElementsCharacterTest < Minitest::Test
 
   def test_character
     character = TyranoDsl::Elements::Character.new(
