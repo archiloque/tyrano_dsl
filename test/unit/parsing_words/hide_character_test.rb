@@ -17,11 +17,7 @@ class HideCharacterTest < Minitest::Test
 
   def test_ok
     parser = create_parser
-    parser.context.world.characters['Shinji'] = TyranoDsl::Elements::Character.new(
-        'Shinji',
-        {default: '../../assets/characters/shinji/default_stance.jpg'},
-        1
-    )
+    declare_character(parser.context.world, 'Shinji', {default: '../../assets/characters/shinji/default_stance.jpg'})
     parser.hide_character 'Shinji'
     assert_equal parser.context.words.length, 1
     assert_equal parser.context.words[0].word, TyranoDsl::Vocabulary::HIDE_CHARACTER

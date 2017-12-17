@@ -17,7 +17,7 @@ class DeclareBackgroundTest < Minitest::Test
 
   def test_duplicated_background
     parser = create_parser
-    parser.declare_background('background', '../../assets/backgrounds/school.jpg')
+    declare_background(parser.context.world, 'background', '../../assets/backgrounds/school.jpg')
     begin
       parser.declare_background('background', '../../assets/backgrounds/school.jpg')
       fail

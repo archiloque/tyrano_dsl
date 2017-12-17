@@ -23,8 +23,22 @@ show_character 'Shinji', 'default', 434, 128
 show_message_window
 display_text 'Shinji', 'Hello!'
 set_character_stance 'Shinji', 'angry'
-jump_to 'Second scene'
-
+display_text nil, 'Do you want to go in the robot ?'
+ask_question [
+                 {
+                     'text' => 'Yes !',
+                     'left' => 200,
+                     'top' => 200,
+                     'scene' => 'Second scene'
+                 },
+                 {
+                     'text' => 'No ""?',
+                     'left' => 200,
+                     'top' => 300,
+                     'scene' => 'Third scene',
+                     'label' => 'a label'
+                 }
+             ]
 start_scene 'Second scene'
 ```
 
@@ -46,33 +60,153 @@ You can then reopen the project in TyranoBuilder and see the changes.
 
 If there is an error it should be displayed and the message should help you to fix the problem.
 
-# Current vocabulary
+## Current vocabulary
 
-- `declare_background(name, images_path)` declare a scene 
-  - `name` is a `String` representing the background's name
-  - `images_path` is a `String` indicating the path to the background images
-- `declare_label(name)` declare a label 
-  - `name` is a `String` representing the label's name
-- `declare_character(name, stances)` declare a character
-  - `name` is a `String` representing the character's name
-  - `stances` is a `Hash{String => String}` providing a list of stances with the path to their corresponding images
-- `hide_character(name)` hide a character
-  - `name` is a `String` representing the character's name
-- `hide_message_window` hide the message window
-- `jump_to(scene_name, label_name)` jump to a label
-  - `scene_name` is a `String` indicating the name of the scene
-  - `label_name` is a `String` indicating the name of the label in the scene (optional)
-- `set_character_stance(name, stance)` change the stance of a character
-  - `name` is a `String` representing the character's name
-  - `stance` is a `String` defining the stance name
-- `show_character(name, stance, left, top)` show a character
-  - `name` is a `String` representing the character's name
-  - `stance` is a `String` defining the stance name
-  - `left` is an `Integer` defining the left position
+### Background
+
+#### `declare_background` Declare a background
+
+`declare_background(name, images_path)` 
+- `name` is a `String` representing the background's name
+- `images_path` is a `String` indicating the path to the background images
+
+```ruby
+declare_background 'School', 'background/school.jpg'
+```
+
+#### `set_background` Set the background
+
+`show_background(name)` 
+- `name` is a `String` representing the background's name
+
+```ruby
+set_background 'School'
+```
+
+### Characters
+
+#### `declare_character` Declare a character
+
+`declare_character(name, stances)`
+- `name` is a `String` representing the character's name
+- `stances` is a `Hash{String => String}` providing a list of stances with the path to their corresponding images
+
+```ruby
+declare_character 'Shinji', 
+    'default' => 'default_stance.jpg',
+    'angry' => 'angry.jpg'
+```
+
+#### `hide_character` Hide a character
+
+`hide_character(name)`
+- `name` is a `String` representing the character's name
+
+```ruby
+hide_character 'Shinji'
+```
+
+#### `set_character_stance` change the stance of a character
+
+`set_character_stance(name, stance)`
+- `name` is a `String` representing the character's name
+- `stance` is a `String` defining the stance name
+
+```ruby
+set_character_stance 'Shinji', 'angry'
+```
+
+#### `show_character` show a character
+
+`show_character(name, stance, left, top)`
+- `name` is a `String` representing the character's name
+- `stance` is a `String` defining the stance name
+- `left` is an `Integer` defining the left position
+- `top` is an `Integer` defining the top position
+
+```ruby
+show_character 'Shinji', 'default', 434, 128
+```
+
+### Content
+
+#### `ask_question` Ask a question
+
+`ask_question(possible_answers)`
+- `possible_answers` is a list of possible answers with the corresponding target
+  - `text` is a `String` representing the text of the answer
+  - `left` is an `Integer` defining the left position 
   - `top` is an `Integer` defining the top position
-- `show_message_window` show the message window 
-- `start_scene(name)` start a scene 
-  - `name` is a `String` representing the stance's name
+  - `scene` is a `String` indicating the name of the scene to jump if the answer is selected
+  - `label` (optional) is a `String` indicating the name of the label in the scene to jump if the answer is selected
+
+  
+```ruby
+ask_question [
+                 {
+                     'text' => 'Yes',
+                     'left' => 200,
+                     'top' => 200,
+                     'scene' => 'Second scene'
+                 },
+                 {
+                     'text' => 'No',
+                     'left' => 200,
+                     'top' => 300,
+                     'scene_name' => 'Third scene',
+                     'label_name' => 'a label'
+                 }
+             ]
+```
+
+### Jump & Labels
+
+#### `declare_label` Declare a label
+
+`declare_label(name)` 
+- `name` is a `String` representing the label's name
+
+```ruby
+declare_label 'my label'
+```
+
+#### `jump_to` Jump to a label
+
+`jump_to(scene, label)`
+- `scene` is a `String` indicating the name of the scene to jump to
+- `label` (optional) is a `String` indicating the name of the label in the scene to jump to
+
+```ruby
+jump_to 'Scene two'
+jump_to 'Scene two', 'Label three'
+```
+
+### Misc
+
+#### `hide_message_window` Hide the message window
+
+`hide_message_window`
+
+```ruby
+hide_message_window
+```
+
+#### `show_message_window` Show the message window
+
+`show_message_window`
+
+```ruby
+show_message_window
+```
+
+#### `start_scene` Start a new scene
+
+`start_scene(name)` 
+- `name` is a `String` representing the scene's name
+
+```ruby
+start_scene 'First scene'
+```
 
 ## Default project organisation
 

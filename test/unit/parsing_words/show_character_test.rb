@@ -17,7 +17,7 @@ class ShowCharacterTest < Minitest::Test
 
   def test_missing_stance
     parser = create_parser
-    parser.declare_character 'Shinji', {:default => '../../assets/characters/shinji/default_stance.jpg'}
+    declare_character(parser.context.world, 'Shinji', {:default => '../../assets/characters/shinji/default_stance.jpg'})
     begin
       parser.show_character 'Shinji', 'missing stance', 10, 10
       fail
@@ -28,11 +28,7 @@ class ShowCharacterTest < Minitest::Test
 
   def test_ok
     parser = create_parser
-    parser.context.world.characters['Shinji'] = TyranoDsl::Elements::Character.new(
-        'Shinji',
-        {default: '../../assets/characters/shinji/default_stance.jpg'},
-        1
-    )
+    declare_character(parser.context.world, 'Shinji', {default: '../../assets/characters/shinji/default_stance.jpg'})
     parser.show_character 'Shinji', :default, 10, 10
     assert_equal parser.context.words.length, 1
     assert_equal parser.context.words[0].word, TyranoDsl::Vocabulary::SHOW_CHARACTER

@@ -5,7 +5,7 @@ class SetBackgroundTest < Minitest::Test
 
   include ParsingWordsHelper
 
-  def test_missing_character
+  def test_missing_background
     parser = create_parser
     begin
       parser.set_background 'missing_background'
@@ -17,11 +17,7 @@ class SetBackgroundTest < Minitest::Test
 
   def test_ok
     parser = create_parser
-    parser.context.world.backgrounds['background'] = TyranoDsl::Elements::Background.new(
-        'background',
-        '../../assets/backgrounds/school.jpg',
-        1
-    )
+    declare_background(parser.context.world, 'background', '../../assets/backgrounds/school.jpg')
     parser.set_background 'background'
     assert_equal parser.context.words.length, 1
     assert_equal parser.context.words[0].word, TyranoDsl::Vocabulary::SET_BACKGROUND

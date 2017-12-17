@@ -34,8 +34,9 @@ module TyranoDsl
           unless scene
             raise TyranoDsl::TyranoException, "Unknown scene [#{jump_target.scene}] declared in label"
           end
-          if jump_target.label.name && (!scene.labels.include?(jump_target.label.name))
-            raise TyranoDsl::TyranoException, "Unknown label [#{jump_target.label.name}] declared in label"
+          jump_target_label = jump_target.label
+          if jump_target_label && (!scene.labels.include?(jump_target_label.name))
+            raise TyranoDsl::TyranoException, "Unknown label [#{jump_target_label.name}] declared in label"
           end
         end
       end

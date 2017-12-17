@@ -8,7 +8,7 @@ module TyranoDsl
         label = world.labels[label_name]
         writing_context.append_content(
             word_location,
-            "*#{label.technical_name}"
+            "*#{label.target_name}"
         )
         writing_context.add_label(
             word_location,

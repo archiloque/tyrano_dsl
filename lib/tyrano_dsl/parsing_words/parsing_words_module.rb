@@ -32,6 +32,22 @@ module TyranoDsl
         end
       end
 
+      # @param [Hash] hash
+      # @return [Hash{Symbol=>Object}]
+      def symbolize_keys(hash)
+        result = {}
+        hash.keys.each do |key|
+          result[symbolize(key)] = hash[key]
+        end
+        result
+      end
+
+      # @param [String] string
+      # @return [Symbol]
+      def symbolize(string)
+        string.to_sym rescue string
+      end
+
     end
   end
 end

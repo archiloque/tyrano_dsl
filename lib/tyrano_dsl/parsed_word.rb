@@ -16,8 +16,5 @@ module TyranoDsl
       @parameters = parameters
     end
 
-    def to_s
-      "l#{word_location[0].lineno} #{word} #{parameters}"
-    end
   end
 end

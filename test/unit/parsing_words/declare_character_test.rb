@@ -17,7 +17,7 @@ class DeclareCharacterTest < Minitest::Test
 
   def test_duplicated_character
     parser = create_parser
-    parser.declare_character('character', {:default => '../../assets/characters/shinji/default_stance.jpg'})
+    declare_character(parser.context.world, 'character', {:default => '../../assets/characters/shinji/default_stance.jpg'})
     begin
       parser.declare_character('character', {:default => '../../assets/characters/shinji/default_stance.jpg'})
       fail

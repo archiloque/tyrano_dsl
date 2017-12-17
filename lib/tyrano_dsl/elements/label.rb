@@ -3,14 +3,14 @@ module TyranoDsl
 
     # A label
     # @attr [String] name
-    # @attr [String] technical_name
+    # @attr [String] target_name
     class Label
 
-      attr_reader :name, :technical_name
+      attr_reader :name, :target_name
 
-      def initialize(name, technical_name)
+      def initialize(name, target_name)
         @name = name
-        @technical_name = technical_name
+        @target_name = target_name
       end
 
     end

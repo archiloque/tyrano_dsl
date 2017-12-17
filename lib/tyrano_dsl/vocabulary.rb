@@ -4,6 +4,8 @@ module TyranoDsl
   module Vocabulary
 
     # Declare a background
+    ASK_QUESTION = 'ask_question'.freeze
+    # Declare a background
     DECLARE_BACKGROUND = 'declare_background'.freeze
     # Declare a character
     DECLARE_CHARACTER = 'declare_character'.freeze
@@ -32,6 +34,7 @@ module TyranoDsl
 
     # All the available words
     ALL_WORDS = [
+        ASK_QUESTION,
         DECLARE_BACKGROUND,
         DECLARE_CHARACTER,
         DECLARE_LABEL,

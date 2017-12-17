@@ -1,6 +1,8 @@
-require_relative '../../test_helper'
+require_relative '../unit_test_helper'
 
 module WritingWordsHelper
+
+  include UnitTestHelper
 
   protected
 

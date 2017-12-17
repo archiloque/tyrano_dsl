@@ -5,13 +5,13 @@ module TyranoDsl
 
     # A declared jump target
     # @attr [String] scene
-    # @attr [String] label
+    # @attr [TyranoDsl::Elements::Label|nil] label
     class JumpTarget
 
       attr_reader :scene, :label
 
       # @param [String] scene
-      # @param [String] label
+      # @param [TyranoDsl::Elements::Label|nil] label
       def initialize(scene, label)
         @scene = scene
         @label = label

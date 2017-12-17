@@ -18,7 +18,7 @@ class SetTitleScreenBackgroundTest < Minitest::Test
 
   def test_two_backgrounds
     parser = create_parser
-    parser.context.world.backgrounds['background 1'] = TyranoDsl::Elements::Background.new('background 1', 'background.png', 0)
+    declare_background(parser.context.world, 'background 1', 'background.png')
     parser.set_title_screen_background('background 1')
     begin
       parser.set_title_screen_background('background 1')
@@ -30,7 +30,7 @@ class SetTitleScreenBackgroundTest < Minitest::Test
 
   def test_ok
     parser = create_parser
-    parser.context.world.backgrounds['background 1'] = TyranoDsl::Elements::Background.new('background 1', 'background.png', 0)
+    declare_background(parser.context.world, 'background 1', 'background.png')
     parser.set_title_screen_background('background 1')
     assert_equal parser.context.words.length, 1
     assert_equal parser.context.words[0].word, TyranoDsl::Vocabulary::SET_TITLE_SCREEN_BACKGROUND

@@ -1,21 +1,14 @@
 require_relative '../test_helper'
 
 require_relative '../../lib/tyrano_dsl/main'
-require_relative '../../lib/tyrano_dsl/project_configuration'
 require_relative '../../lib/tyrano_dsl/vocabulary'
 require_relative '../../lib/tyrano_dsl/tyrano_exception'
 
 class EndToEndTest < Minitest::Test
 
   def run_on_file(file_path)
-    project_configuration = TyranoDsl::ProjectConfiguration.new(
-        JSON.parse(
-            IO.read(File.join(__dir__, '../assets/builder_config.json'))
-        )
-    )
     TyranoDsl::Main.new.run(
-        File.join(__dir__, file_path),
-        project_configuration
+        File.join(__dir__, file_path)
     )
   end
 
@@ -29,7 +22,7 @@ class EndToEndTest < Minitest::Test
 
   def test_end_to_end
     writing_context = run_on_file('end_to_end_scene.rb')
-    assert_equal writing_context.file_actions.length, 13
+    assert_equal writing_context.file_actions.length, 15
 
     clear_directories = extract_by_class(writing_context.file_actions, TyranoDsl::FileActions::ClearDirectory)
     assert_equal clear_directories.length, 2
@@ -48,7 +41,7 @@ class EndToEndTest < Minitest::Test
     assert_equal files_copies['data/bgimage/1.jpg'], '../assets/backgrounds/school.jpg'
 
     create_files = extract_by_class(writing_context.file_actions, TyranoDsl::FileActions::CreateFile)
-    assert_equal create_files.length, 7
+    assert_equal create_files.length, 9
     files_creations = {}
     create_files.each do |create_file_action|
       files_creations[create_file_action.path] = create_file_action.content
@@ -65,15 +58,23 @@ class EndToEndTest < Minitest::Test
 *label_0
 [chara_show name="Shinji" time="1000" wait="true" left="434" top="128" width="" height="" reflect="false"]
 [tb_show_message_window]
-[tb_start_text mode=1 ]
+[tb_start_text mode=1]
+Hello!
+[_tb_end_text]
+
+[tb_start_text mode=1]
 #Shinji
 Hello!
 [_tb_end_text]
 
 [chara_mod name="Shinji" cross="true" storage="1/1.png"]
 [tb_hide_message_window]
+[glink color="black" storage="scene2" target="" size="20" x="200" y="200" text="Yes !"]
+[glink color="black" storage="scene3" target="label_1" size="20" x="200" y="300" text="No &quot;&quot;?"]
+[s]
+
 [chara_hide name="Shinji" time="1000" wait="true"]
-[jump storage="scene2.ks" target=""]
+[jump storage="scene2.ks"]
 '
     assert_equal files_creations['data/scenario/system/_scene1.ks'], '[preload storage="./data/bgimage/1.jpg"]
 [preload storage="./data/fgimage/chara/1/0.jpg"]
@@ -119,6 +120,13 @@ Hello!
     assert_equal files_creations['data/scenario/system/_scene2.ks'], '[preload storage="./data/bgimage/1.jpg"]
 [return]'
 
+    assert_equal files_creations['data/scenario/scene3.ks'], '[_tb_system_call storage=system/_scene3.ks]
+[cm]
+[bg storage="1.jpg" time="1000"]
+*label_1
+'
+    assert_equal files_creations['data/scenario/system/_scene3.ks'], '[preload storage="./data/bgimage/1.jpg"]
+[return]'
 
     json_patches = extract_by_class(writing_context.file_actions, TyranoDsl::FileActions::JsonPatch)
     assert_equal json_patches.length, 1

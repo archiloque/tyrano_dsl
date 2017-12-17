@@ -19,7 +19,8 @@ module TyranoDsl
               path
           )
         end
-        default_stance = stances[:default] || stances['default']
+        symbolized_stances = symbolize_keys(stances)
+        default_stance = symbolized_stances[:default]
         unless default_stance
           raise TyranoDsl::TyranoException, "Line #{word_location[0].lineno} you need a default stance"
         end
@@ -28,13 +29,13 @@ module TyranoDsl
         end
         context.world.characters[character_name] = TyranoDsl::Elements::Character.new(
             character_name,
-            stances,
+            symbolized_stances,
             context.world.characters.length + 1
         )
 
         add_parsed_word(
             TyranoDsl::Vocabulary::DECLARE_CHARACTER,
-            name: character_name, stances: stances, default_stance: default_stance
+            name: character_name, stances: symbolized_stances, default_stance: default_stance
         )
       end
     end

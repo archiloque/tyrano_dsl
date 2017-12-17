@@ -19,7 +19,8 @@ module TyranoDsl
             scene_name: scene_name,
             label_name: label_name
         )
-        context.world.jump_targets << TyranoDsl::Elements::JumpTarget.new(scene_name, context.world.label_value(label_name))
+        label = label_name ? context.world.label_value(label_name) : nil
+        context.world.jump_targets << TyranoDsl::Elements::JumpTarget.new(scene_name, label)
       end
     end
   end

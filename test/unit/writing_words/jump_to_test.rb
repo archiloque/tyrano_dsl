@@ -9,8 +9,8 @@ class JumpToTest < Minitest::Test
   def test_no_current_scene
     world = create_world
     writing_context = create_writing_context(world)
-    world.scenes['scene name'] = TyranoDsl::Elements::Scene.new('scene name', 0)
-    world.label_value('label name')
+    declare_scene(world, 'scene name')
+    declare_label(world, 'label name')
     jump_to = TyranoDsl::WritingWords::JumpTo.new
     begin
       jump_to.run(writing_context, world, caller_locations, {scene_name: 'scene name', label_name: 'label name'})
@@ -24,7 +24,7 @@ class JumpToTest < Minitest::Test
     world = create_world
     writing_context = create_writing_context(world)
     writing_context.init_new_scene 'scene'
-    world.label_value('label name')
+    declare_label(world,'label name')
     jump_to = TyranoDsl::WritingWords::JumpTo.new
     begin
       jump_to.run(writing_context, world, caller_locations, {scene_name: 'scene name', label_name: 'label name'})
@@ -38,11 +38,11 @@ class JumpToTest < Minitest::Test
     world = create_world
     writing_context = create_writing_context(world)
     writing_context.init_new_scene 'scene'
-    world.scenes['scene name'] = TyranoDsl::Elements::Scene.new('scene name', 0)
-    world.label_value('label name')
+    declare_scene(world, 'scene name')
+    declare_label(world,'label name')
     jump_to = TyranoDsl::WritingWords::JumpTo.new
     jump_to.run(writing_context, world, caller_locations, {scene_name: 'scene name', label_name: 'label name'})
-    assert_equal writing_context.current_scene_content, ['[jump storage="scene0.ks" target="label_0"]']
+    assert_equal writing_context.current_scene_content, ['[jump storage="scene1.ks" target="label_0"]']
   end
 
 end

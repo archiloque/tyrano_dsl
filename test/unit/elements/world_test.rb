@@ -1,13 +1,15 @@
-require_relative '../../test_helper'
+require_relative 'elements_helper'
 require_relative '../../../lib/tyrano_dsl/elements/jump_target'
 require_relative '../../../lib/tyrano_dsl/elements/scene'
 require_relative '../../../lib/tyrano_dsl/elements/world'
 
 class WorldTest < Minitest::Test
 
+  include ElementsHelper
+
   def test_validate_unknown_scene_in_jump
     world = TyranoDsl::Elements::World.new(__FILE__)
-    world.jump_targets << TyranoDsl::Elements::JumpTarget.new('missing scene', nil)
+    declare_jump_target(world, 'missing scene')
     begin
       world.validate
       fail
@@ -18,7 +20,7 @@ class WorldTest < Minitest::Test
 
   def test_validate_unknown_label_in_jump
     world = TyranoDsl::Elements::World.new(__FILE__)
-    world.jump_targets << TyranoDsl::Elements::JumpTarget.new('scene name', world.label_value('missing label'))
+    declare_jump_target(world, 'scene name', 'missing label')
     world.scenes['scene name'] = TyranoDsl::Elements::Scene.new('scene name', 1)
     begin
       world.validate
@@ -30,8 +32,8 @@ class WorldTest < Minitest::Test
 
   def test_validate_ok
     world = TyranoDsl::Elements::World.new(__FILE__)
-    world.jump_targets << TyranoDsl::Elements::JumpTarget.new('scene without label', world.label_value(nil))
-    world.jump_targets << TyranoDsl::Elements::JumpTarget.new('scene with label', world.label_value('label name'))
+    declare_jump_target(world, 'scene without label')
+    declare_jump_target(world, 'scene with label', 'label name')
     scene_with_label = TyranoDsl::Elements::Scene.new('scene with label', 1)
     scene_with_label.labels << 'label name'
     world.scenes['scene with label'] = scene_with_label
@@ -44,7 +46,7 @@ class WorldTest < Minitest::Test
     label1 = world.label_value('label')
     label2 = world.label_value('label')
     assert_equal label1, label2
-    assert_equal label1.technical_name, label2.technical_name
+    assert_equal label1.target_name, label2.target_name
   end
 
 end

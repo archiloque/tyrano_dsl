@@ -9,8 +9,8 @@ class HideCharacterTest < Minitest::Test
   def test_no_current_scene
     world = create_world
     writing_context = create_writing_context(world)
-    world.scenes['scene name'] = TyranoDsl::Elements::Scene.new('scene name', 0)
-    world.characters['character name'] = TyranoDsl::Elements::Character.new('character name', {}, 0)
+    declare_scene(world, 'scene name')
+    declare_character(world, 'character name', {})
     hide_character = TyranoDsl::WritingWords::HideCharacter.new
     begin
       hide_character.run(writing_context, world, caller_locations, {name: 'character name'})
@@ -24,7 +24,7 @@ class HideCharacterTest < Minitest::Test
     world = create_world
     writing_context = create_writing_context(world)
     writing_context.init_new_scene 'scene'
-    world.characters['character name'] = TyranoDsl::Elements::Character.new('character name', {}, 0)
+    declare_character(world, 'character name', {})
     hide_character = TyranoDsl::WritingWords::HideCharacter.new
     hide_character.run(writing_context, world, caller_locations, {name: 'character name'})
     assert_equal writing_context.current_scene_content, ['[chara_hide name="character name" time="1000" wait="true"]']

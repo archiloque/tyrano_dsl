@@ -38,7 +38,7 @@ module TyranoDsl
               long_file_name)
           @stances[stance_name] = stance
 
-          if [:default, 'default'].include? stance_name
+          if stance_name == :default
             @default_stance = stance
             @default_stance_target_short_file_name = short_file_name
           end
