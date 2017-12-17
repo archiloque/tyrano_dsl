@@ -7,4 +7,5 @@ SimpleCov.start do
   add_group 'Parsing words', 'parsing_words/'
   add_group 'Writing words', 'writing_words/'
 end
+
 require 'minitest/autorun'
