@@ -208,12 +208,6 @@ show_message_window
 start_scene 'First scene'
 ```
 
-## Default project organisation
-
-- `content.rb` : the main content
-- `backgrounds` : the backgrounds images
-- `characters` : the characters images
-
 ## How the thing works
 
 The tool works like a two passes compiler :
