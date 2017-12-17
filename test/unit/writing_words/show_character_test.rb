@@ -16,7 +16,7 @@ class ShowCharacterTest < Minitest::Test
       show_character.run(writing_context, world, caller_locations, {name: 'character name', stance: :default, left: 10, top: 20})
       fail
     rescue TyranoDsl::TyranoException => e
-      assert_match /Line \d+ this action should take place in a scene/, e.message
+      assert_match(/Line \d+ this action should take place in a scene/, e.message)
     end
   end
 
@@ -28,13 +28,12 @@ class ShowCharacterTest < Minitest::Test
     declare_character(world, 'character name', {:default => 'default.png'})
     show_character = TyranoDsl::WritingWords::ShowCharacter.new
     show_character.run(writing_context, world, caller_locations, {name: 'character name', stance: :default, left: 10, top: 20})
-    assert_equal writing_context.current_scene_content, [
+    assert_equal(writing_context.current_scene_content, [
         '[chara_show name="character name" time="1000" wait="true" left="10" top="20" width="" height="" reflect="false"]'
-    ]
-    assert_equal writing_context.current_scene_assets.length, 1
-    assert_equal writing_context.current_scene_assets.to_a[0], 'data/fgimage/chara/1/0.png'
+    ])
+    assert_equal(writing_context.current_scene_assets.length, 1)
+    assert_equal(writing_context.current_scene_assets.to_a[0], 'data/fgimage/chara/1/0.png')
   end
-
 
   def test_ok_non_default_stance
     world = create_world
@@ -44,13 +43,13 @@ class ShowCharacterTest < Minitest::Test
     declare_character(world, 'character name', {:default => 'default.png', :other => 'other.png'})
     show_character = TyranoDsl::WritingWords::ShowCharacter.new
     show_character.run(writing_context, world, caller_locations, {name: 'character name', stance: :other, left: 10, top: 20})
-    assert_equal writing_context.current_scene_content, [
+    assert_equal(writing_context.current_scene_content, [
         '[chara_show name="character name" time="1000" wait="true" left="10" top="20" width="" height="" reflect="false"]',
         '[chara_mod name="character name" cross="true" storage="1/1.png"]'
-    ]
-    assert_equal writing_context.current_scene_assets.length, 2
-    assert_equal writing_context.current_scene_assets.to_a[0], 'data/fgimage/chara/1/1.png'
-    assert_equal writing_context.current_scene_assets.to_a[1], 'data/fgimage/chara/1/0.png'
+    ])
+    assert_equal(writing_context.current_scene_assets.length, 2)
+    assert_equal(writing_context.current_scene_assets.to_a[0], 'data/fgimage/chara/1/1.png')
+    assert_equal(writing_context.current_scene_assets.to_a[1], 'data/fgimage/chara/1/0.png')
   end
 
 end

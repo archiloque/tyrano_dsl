@@ -7,8 +7,8 @@ class TitleScreenTest < Minitest::Test
     title_screen = TyranoDsl::Elements::TitleScreen.new
     title_screen.background = 'my_backgroud'
     title_screen.first_scene_name = 'first scene'
-    assert_equal title_screen.background, 'my_backgroud'
-    assert_equal title_screen.first_scene_name, 'first scene'
+    assert_equal(title_screen.background, 'my_backgroud')
+    assert_equal(title_screen.first_scene_name, 'first scene')
   end
 
 end

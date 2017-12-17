@@ -12,7 +12,7 @@ class WritingContextTest < Minitest::Test
       writing_context.add_label caller_locations, 'label name'
       fail
     rescue TyranoDsl::TyranoException => e
-      assert_match /Line \d+ duplicated label \[label name\]/, e.message
+      assert_match(/Line \d+ duplicated label \[label name\]/, e.message)
     end
   end
 end

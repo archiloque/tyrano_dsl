@@ -13,7 +13,7 @@ class TitleScreenWriterTest < Minitest::Test
       title_screen_writer.write(world)
       raise
     rescue TyranoDsl::TyranoException => e
-      assert_equal e.message, 'No background defined for the title screen'
+      assert_equal(e.message, 'No background defined for the title screen')
     end
   end
 
@@ -25,7 +25,7 @@ class TitleScreenWriterTest < Minitest::Test
       title_screen_writer.write(world)
       raise
     rescue TyranoDsl::TyranoException => e
-      assert_equal e.message, 'No scene defined'
+      assert_equal(e.message, 'No scene defined')
     end
 
   end
@@ -38,9 +38,9 @@ class TitleScreenWriterTest < Minitest::Test
     world.scenes['scene 1'] = TyranoDsl::Elements::Scene.new('scene 1', 0)
     world.backgrounds['background 1'] = TyranoDsl::Elements::Background.new('background 1', 'background.png', 0)
     create_files = title_screen_writer.write(world)
-    assert_equal create_files.length, 2
-    assert_equal create_files[0].path, 'data/scenario/title_screen.ks'
-    assert_equal create_files[0].content, '[_tb_system_call storage=system/_title_screen.ks]
+    assert_equal(create_files.length, 2)
+    assert_equal(create_files[0].path, 'data/scenario/title_screen.ks')
+    assert_equal(create_files[0].content, '[_tb_system_call storage=system/_title_screen.ks]
 
 [hidemenubutton]
 
@@ -67,10 +67,10 @@ class TitleScreenWriterTest < Minitest::Test
 
 [jump  target="*title"  storage=""  ]
 [s  ]
-'
-    assert_equal create_files[1].path, 'data/scenario/system/_title_screen.ks'
-    assert_equal create_files[1].content, '[preload storage="./data/bgimage/0.png"]
-[return]'
+')
+    assert_equal(create_files[1].path, 'data/scenario/system/_title_screen.ks')
+    assert_equal(create_files[1].content, '[preload storage="./data/bgimage/0.png"]
+[return]')
   end
 
 end

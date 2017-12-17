@@ -15,7 +15,7 @@ class AskQuestionTest < Minitest::Test
       ask_question.run(writing_context, world, caller_locations, {:possible_answers => []})
       fail
     rescue TyranoDsl::TyranoException => e
-      assert_match /Line \d+ this action should take place in a scene/, e.message
+      assert_match(/Line \d+ this action should take place in a scene/, e.message)
     end
   end
 
@@ -34,7 +34,7 @@ class AskQuestionTest < Minitest::Test
           }]})
       fail
     rescue TyranoDsl::TyranoException => e
-      assert_match /Line \d+ unknown scene \[scene name\], currently defined: /, e.message
+      assert_match(/Line \d+ unknown scene \[scene name\], currently defined: /, e.message)
     end
   end
 
@@ -61,11 +61,11 @@ class AskQuestionTest < Minitest::Test
             label: 'a label'
         }
     ]})
-    assert_equal writing_context.current_scene_content, [
+    assert_equal(writing_context.current_scene_content, [
         '[glink color="black" storage="scene1" target="" size="20" x="200" y="200" text="Yes !"]
 [glink color="black" storage="scene1" target="label_0" size="20" x="200" y="300" text="No &quot;&quot;?"]
 [s]
-']
+'])
   end
 
 end

@@ -14,7 +14,7 @@ class WorldTest < Minitest::Test
       world.validate
       fail
     rescue TyranoDsl::TyranoException => e
-      assert_equal 'Unknown scene [missing scene] declared in label', e.message
+      assert_equal('Unknown scene [missing scene] declared in label', e.message)
     end
   end
 
@@ -26,7 +26,7 @@ class WorldTest < Minitest::Test
       world.validate
       fail
     rescue TyranoDsl::TyranoException => e
-      assert_equal 'Unknown label [missing label] declared in label', e.message
+      assert_equal('Unknown label [missing label] declared in label', e.message)
     end
   end
 
@@ -45,8 +45,8 @@ class WorldTest < Minitest::Test
     world = TyranoDsl::Elements::World.new(__FILE__)
     label1 = world.label_value('label')
     label2 = world.label_value('label')
-    assert_equal label1, label2
-    assert_equal label1.target_name, label2.target_name
+    assert_equal(label1, label2)
+    assert_equal(label1.target_name, label2.target_name)
   end
 
 end

@@ -14,7 +14,7 @@ class ShowMessageWindowTest < Minitest::Test
       show_message_window.run(writing_context, world, caller_locations, {})
       fail
     rescue TyranoDsl::TyranoException => e
-      assert_match /Line \d+ this action should take place in a scene/, e.message
+      assert_match(/Line \d+ this action should take place in a scene/, e.message)
     end
   end
 
@@ -24,7 +24,7 @@ class ShowMessageWindowTest < Minitest::Test
     writing_context.init_new_scene 'scene'
     show_message_window = TyranoDsl::WritingWords::ShowMessageWindow.new
     show_message_window.run(writing_context, world, caller_locations, {})
-    assert_equal writing_context.current_scene_content, ['[tb_show_message_window]']
+    assert_equal(writing_context.current_scene_content, ['[tb_show_message_window]'])
   end
 
 end

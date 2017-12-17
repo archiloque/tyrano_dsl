@@ -11,7 +11,7 @@ class AskQuestionTest < Minitest::Test
       parser.ask_question(['plop'])
       fail
     rescue TyranoDsl::TyranoException => e
-      assert_match /Line \d+ parameter is invalid/, e.message
+      assert_match(/Line \d+ parameter is invalid/, e.message)
     end
   end
 
@@ -29,7 +29,7 @@ class AskQuestionTest < Minitest::Test
       )
       fail
     rescue TyranoDsl::TyranoException => e
-      assert_match /Line \d+ missing value for top/, e.message
+      assert_match(/Line \d+ missing value for top/, e.message)
     end
     begin
       parser.ask_question(
@@ -43,7 +43,7 @@ class AskQuestionTest < Minitest::Test
       )
       fail
     rescue TyranoDsl::TyranoException => e
-      assert_match /Line \d+ missing value for text/, e.message
+      assert_match(/Line \d+ missing value for text/, e.message)
     end
     begin
       parser.ask_question(
@@ -57,7 +57,7 @@ class AskQuestionTest < Minitest::Test
       )
       fail
     rescue TyranoDsl::TyranoException => e
-      assert_match /Line \d+ missing value for left/, e.message
+      assert_match(/Line \d+ missing value for left/, e.message)
     end
     begin
       parser.ask_question(
@@ -71,7 +71,7 @@ class AskQuestionTest < Minitest::Test
       )
       fail
     rescue TyranoDsl::TyranoException => e
-      assert_match /Line \d+ missing value for text/, e.message
+      assert_match(/Line \d+ missing value for text/, e.message)
     end
 
   end
@@ -94,9 +94,9 @@ class AskQuestionTest < Minitest::Test
                 'label' => 'a label'
             }
         ])
-    assert_equal parser.context.words[0].word, TyranoDsl::Vocabulary::ASK_QUESTION
-    assert_kind_of Array, parser.context.words[0].word_location
-    assert_equal parser.context.words[0].parameters, {
+    assert_equal(parser.context.words[0].word, TyranoDsl::Vocabulary::ASK_QUESTION)
+    assert_kind_of(Array, parser.context.words[0].word_location)
+    assert_equal(parser.context.words[0].parameters, {
         :possible_answers => [
             {
                 :text => 'Yes !',
@@ -112,14 +112,14 @@ class AskQuestionTest < Minitest::Test
                 label: 'a label'
             }
         ]
-    }
-    assert_equal parser.context.world.jump_targets.length, 2
+    })
+    assert_equal(parser.context.world.jump_targets.length, 2)
     first_jump_target = parser.context.world.jump_targets[0]
-    assert_equal first_jump_target.scene, 'Second scene'
+    assert_equal(first_jump_target.scene, 'Second scene')
     assert_nil first_jump_target.label
     second_jump_target = parser.context.world.jump_targets[1]
-    assert_equal second_jump_target.scene, 'Third scene'
-    assert_equal second_jump_target.label.name, 'a label'
+    assert_equal(second_jump_target.scene, 'Third scene')
+    assert_equal(second_jump_target.label.name, 'a label')
   end
 
 end

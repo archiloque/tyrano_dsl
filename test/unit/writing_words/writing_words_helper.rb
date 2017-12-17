@@ -1,3 +1,4 @@
+require_relative '../../../lib/tyrano_dsl/writing_context'
 require_relative '../unit_test_helper'
 
 module WritingWordsHelper
