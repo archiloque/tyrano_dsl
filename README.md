@@ -23,16 +23,16 @@ show_character 'Shinji', 'default', 434, 128
 show_message_window
 display_text 'Shinji', 'Hello!'
 set_character_stance 'Shinji', 'angry'
-display_text nil, 'Do you want to go in the robot ?'
+display_text nil, 'Do you want to go in the eva ?'
 ask_question [
                  {
-                     'text' => 'Yes !',
+                     'text' => 'Yes!',
                      'left' => 200,
                      'top' => 200,
                      'scene' => 'Second scene'
                  },
                  {
-                     'text' => 'No ""?',
+                     'text' => 'No!',
                      'left' => 200,
                      'top' => 300,
                      'scene' => 'Third scene',
