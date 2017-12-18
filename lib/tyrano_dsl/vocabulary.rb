@@ -18,7 +18,7 @@ module TyranoDsl::Vocabulary
   # Hide the message window
   HIDE_MESSAGE_WINDOW = :hide_message_window
   # Jump to a scene
-  JUMP_TO = :jump_to
+  JUMP = :jump
   # Set the current background
   SET_BACKGROUND = :set_background
   #  Set the background of the title screen
@@ -41,7 +41,7 @@ module TyranoDsl::Vocabulary
       DISPLAY_TEXT,
       HIDE_CHARACTER,
       HIDE_MESSAGE_WINDOW,
-      JUMP_TO,
+      JUMP,
       SET_BACKGROUND,
       SET_TITLE_SCREEN_BACKGROUND,
       SET_CHARACTER_STANCE,

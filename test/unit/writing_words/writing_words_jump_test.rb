@@ -1,7 +1,7 @@
 require_relative 'writing_words_helper'
-require_relative '../../../lib/tyrano_dsl/writing_words/jump_to'
+require_relative '../../../lib/tyrano_dsl/writing_words/jump'
 
-class WritingWordsJumpToTest < Minitest::Test
+class WritingWordsJumpTest < Minitest::Test
 
   include WritingWordsHelper
 
@@ -10,7 +10,7 @@ class WritingWordsJumpToTest < Minitest::Test
     writing_context = create_writing_context(world)
     declare_scene(world, 'scene name')
     declare_label(world, 'label name')
-    jump_to = TyranoDsl::WritingWords::JumpTo.new
+    jump_to = TyranoDsl::WritingWords::Jump.new
     begin
       jump_to.run(writing_context, world, caller_locations, {scene_name: 'scene name', label_name: 'label name'})
       fail
@@ -24,7 +24,7 @@ class WritingWordsJumpToTest < Minitest::Test
     writing_context = create_writing_context(world)
     writing_context.init_new_scene 'scene'
     declare_label(world, 'label name')
-    jump_to = TyranoDsl::WritingWords::JumpTo.new
+    jump_to = TyranoDsl::WritingWords::Jump.new
     begin
       jump_to.run(writing_context, world, caller_locations, {scene_name: 'scene name', label_name: 'label name'})
       fail
@@ -39,7 +39,7 @@ class WritingWordsJumpToTest < Minitest::Test
     writing_context.init_new_scene 'scene'
     declare_scene(world, 'scene name')
     declare_label(world, 'label name')
-    jump_to = TyranoDsl::WritingWords::JumpTo.new
+    jump_to = TyranoDsl::WritingWords::Jump.new
     jump_to.run(writing_context, world, caller_locations, {scene_name: 'scene name', label_name: 'label name'})
     assert_equal(writing_context.current_scene_content, ['[jump storage="scene1.ks" target="label_0"]'])
   end

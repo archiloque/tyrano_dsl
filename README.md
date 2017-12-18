@@ -172,15 +172,15 @@ ask_question [
 declare_label 'my label'
 ```
 
-#### `jump_to` Jump to a label
+#### `jump` Jump to a label
 
-`jump_to(scene, label)`
+`jump(scene, label)`
 - `scene` is a `String` indicating the name of the scene to jump to
 - `label` (optional) is a `String` indicating the name of the label in the scene to jump to
 
 ```ruby
-jump_to 'Scene two'
-jump_to 'Scene two', 'Label three'
+jump 'Scene two'
+jump 'Scene two', 'Label three'
 ```
 
 ### Misc

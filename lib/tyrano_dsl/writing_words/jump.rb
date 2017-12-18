@@ -1,6 +1,6 @@
 require_relative 'writing_words_module'
 
-class TyranoDsl::WritingWords::JumpTo
+class TyranoDsl::WritingWords::Jump
 
   include TyranoDsl::WritingWords::WritingWordsModule
 

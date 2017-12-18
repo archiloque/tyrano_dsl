@@ -31,7 +31,7 @@ ask_question [
                  }
              ]
 hide_character 'Shinji'
-jump_to 'Second scene'
+jump 'Second scene'
 
 start_scene 'Second scene'
 set_background 'School'

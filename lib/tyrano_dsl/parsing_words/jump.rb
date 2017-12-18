@@ -2,7 +2,7 @@ require_relative '../elements/jump_target'
 require_relative '../vocabulary'
 require_relative 'parsing_words_module'
 
-module TyranoDsl::ParsingWords::JumpTo
+module TyranoDsl::ParsingWords::Jump
 
   include TyranoDsl::ParsingWords::ParsingWordsModule
 
@@ -10,9 +10,9 @@ module TyranoDsl::ParsingWords::JumpTo
   # @param [String, nil] label_name
   # @return [void]
   # @raise [TyranoDsl::TyranoException]
-  def jump_to(scene_name, label_name = nil)
+  def jump(scene_name, label_name = nil)
     add_parsed_word(
-        TyranoDsl::Vocabulary::JUMP_TO,
+        TyranoDsl::Vocabulary::JUMP,
         scene_name: scene_name,
         label_name: label_name
     )
