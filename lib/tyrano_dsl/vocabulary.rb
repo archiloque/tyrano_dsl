@@ -4,33 +4,33 @@ module TyranoDsl
   module Vocabulary
 
     # Declare a background
-    ASK_QUESTION = 'ask_question'.freeze
+    ASK_QUESTION = :ask_question
     # Declare a background
-    DECLARE_BACKGROUND = 'declare_background'.freeze
+    DECLARE_BACKGROUND = :declare_background
     # Declare a character
-    DECLARE_CHARACTER = 'declare_character'.freeze
-    # Declare a characterlabel
-    DECLARE_LABEL = 'declare_label'.freeze
+    DECLARE_CHARACTER = :declare_character
+    # Declare a label
+    DECLARE_LABEL = :declare_label
     # Display some text
-    DISPLAY_TEXT = 'display_text'.freeze
+    DISPLAY_TEXT = :display_text
     # Hide a character
-    HIDE_CHARACTER = 'hide_character'.freeze
+    HIDE_CHARACTER = :hide_character
     # Hide the message window
-    HIDE_MESSAGE_WINDOW = 'hide_message_window'.freeze
+    HIDE_MESSAGE_WINDOW = :hide_message_window
     # Jump to a scene
-    JUMP_TO = 'jump_to'.freeze
+    JUMP_TO = :jump_to
     # Set the current background
-    SET_BACKGROUND = 'set_background'.freeze
+    SET_BACKGROUND = :set_background
     #  Set the background of the title screen
-    SET_TITLE_SCREEN_BACKGROUND = 'set_title_screen_background'.freeze
+    SET_TITLE_SCREEN_BACKGROUND = :set_title_screen_background
     #  Set the stance of a character
-    SET_CHARACTER_STANCE = 'set_character_stance'.freeze
+    SET_CHARACTER_STANCE = :set_character_stance
     # Show a character
-    SHOW_CHARACTER = 'show_character'.freeze
+    SHOW_CHARACTER = :show_character
     # Show the message window
-    SHOW_MESSAGE_WINDOW = 'show_message_window'.freeze
+    SHOW_MESSAGE_WINDOW = :show_message_window
     # Start a scene
-    START_SCENE = 'start_scene'.freeze
+    START_SCENE = :start_scene
 
     # All the available words
     ALL_WORDS = [
@@ -38,6 +38,7 @@ module TyranoDsl
         DECLARE_BACKGROUND,
         DECLARE_CHARACTER,
         DECLARE_LABEL,
+        # DECLARE_VARIABLE,
         DISPLAY_TEXT,
         HIDE_CHARACTER,
         HIDE_MESSAGE_WINDOW,
