@@ -1,12 +1,8 @@
-module TyranoDsl
-  module WritingWords
+require_relative 'writing_words_module'
 
-    # When a word has no action on the scene
-    class Nop
+class TyranoDsl::WritingWords::Nop
 
-      def run(writing_context, world, word_location, parameters)
-      end
-
-    end
+  def run(writing_context, world, word_location, parameters)
   end
+
 end

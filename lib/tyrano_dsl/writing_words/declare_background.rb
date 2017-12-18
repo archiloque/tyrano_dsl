@@ -1,10 +1,5 @@
 require_relative 'nop'
 
-module TyranoDsl
-  module WritingWords
+class TyranoDsl::WritingWords::DeclareBackground < TyranoDsl::WritingWords::Nop
 
-    class DeclareBackground < Nop
-
-    end
-  end
 end

@@ -1,7 +1,6 @@
-module TyranoDsl
-  # When something goes wrong.
-  # This exception is rescued and only the message is displayed to the user.
-  class TyranoException < RuntimeError
+require_relative 'tyrano_dsl'
 
-  end
+# When something goes wrong.
+class TyranoDsl::TyranoException < RuntimeError
+
 end

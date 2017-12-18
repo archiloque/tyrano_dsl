@@ -1,10 +1,5 @@
 require_relative 'nop'
 
-module TyranoDsl
-  module WritingWords
+class TyranoDsl::WritingWords::DeclareCharacter < TyranoDsl::WritingWords::Nop
 
-    class DeclareCharacter < Nop
-
-    end
-  end
 end

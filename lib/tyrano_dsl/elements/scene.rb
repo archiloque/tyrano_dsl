@@ -1,24 +1,19 @@
-module TyranoDsl
+require_relative 'elements_module'
 
-  module Elements
+# A declared scene
+# @attr [String] name
+# @attr [String] target_name
+# @attr [Array<String>] labels
+class TyranoDsl::Elements::Scene
 
-    # A declared scene
-    # @attr [String] name
-    # @attr [String] target_name
-    # @attr [Array<String>] labels
-    class Scene
+  attr_reader :name, :target_name, :labels
 
-      attr_reader :name, :target_name, :labels
-
-      # @param [String] name
-      # @param [Integer] index
-      def initialize(name, index)
-        @name = name
-        @target_name = "scene#{index}"
-        @labels = []
-      end
-
-    end
+  # @param [String] name
+  # @param [Integer] index
+  def initialize(name, index)
+    @name = name
+    @target_name = "scene#{index}"
+    @labels = []
   end
 
 end

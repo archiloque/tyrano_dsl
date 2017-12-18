@@ -1,23 +1,17 @@
-module TyranoDsl
+require_relative 'elements_module'
 
-  module Elements
+# A declared jump target
+# @attr [String] scene
+# @attr [TyranoDsl::Elements::Label|nil] label
+class TyranoDsl::Elements::JumpTarget
 
+  attr_reader :scene, :label
 
-    # A declared jump target
-    # @attr [String] scene
-    # @attr [TyranoDsl::Elements::Label|nil] label
-    class JumpTarget
-
-      attr_reader :scene, :label
-
-      # @param [String] scene
-      # @param [TyranoDsl::Elements::Label|nil] label
-      def initialize(scene, label)
-        @scene = scene
-        @label = label
-      end
-
-    end
+  # @param [String] scene
+  # @param [TyranoDsl::Elements::Label|nil] label
+  def initialize(scene, label)
+    @scene = scene
+    @label = label
   end
 
 end

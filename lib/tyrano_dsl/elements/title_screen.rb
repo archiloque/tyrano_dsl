@@ -1,20 +1,15 @@
-module TyranoDsl
+require_relative 'elements_module'
 
-  module Elements
+# the title screen
+# @attr [String] background
+# @attr [String] first_scene_name
+class TyranoDsl::Elements::TitleScreen
 
-    # the title screen
-    # @attr [String] background
-    # @attr [String] first_scene_name
-    class TitleScreen
+  attr_accessor :background, :first_scene_name
 
-      attr_accessor :background, :first_scene_name
-
-      def initialize
-        @background = nil
-        @first_scene_name = nil
-      end
-
-    end
+  def initialize
+    @background = nil
+    @first_scene_name = nil
   end
 
 end

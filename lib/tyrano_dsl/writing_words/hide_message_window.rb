@@ -1,14 +1,12 @@
-module TyranoDsl
-  module WritingWords
+require_relative 'writing_words_module'
 
-    class HideMessageWindow
+class TyranoDsl::WritingWords::HideMessageWindow
 
-      def run(writing_context, world, word_location, parameters)
-        writing_context.append_content(
-            word_location,
-            '[tb_hide_message_window]'
-        )
-      end
-    end
+  def run(writing_context, world, word_location, parameters)
+    writing_context.append_content(
+        word_location,
+        '[tb_hide_message_window]'
+    )
   end
+
 end
