@@ -4,10 +4,12 @@ require_relative 'files_actions_module'
 
 
 # Direct copy of a file from a source to a destination
-# @attr [String] from_path
-# @attr [String] to_path
 class TyranoDsl::FileActions::FileCopy
-  attr_reader :from_path, :to_path
+
+  # @return [String]
+  attr_reader :from_path
+  # @return [String]
+  attr_reader :to_path
 
   include TyranoDsl::FileActions::FileActionsModule
 

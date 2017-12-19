@@ -11,10 +11,16 @@ class TyranoDsl::ElementsWriters::CharactersWriter
   # @return [Array]
   def write(world)
     log {'Writing characters'}
-    chara_define_content = world.characters.values.collect do |character|
-      "[chara_new name=\"#{character.name}\" jname=\"#{character.name}\" storage=\"chara\/#{character.default_stance.short_target_file_name}\"]\n"
-    end.join()
-    chara_define_content << "[iscript]\n[endscript]\n"
+    chara_define_content = ''
+    world.characters.values.collect do |character|
+      chara_define_content << "[chara_new name=\"#{character.name}\" jname=\"#{character.name}\" storage=\"chara\/#{character.default_stance.short_target_file_name}\"]\n"
+    end
+    chara_define_content << "\n"
+    chara_define_content << "[iscript]\n"
+    world.variables.values.collect do |variable|
+      chara_define_content << "f['#{variable.target_name}']=#{variable.initial_value};\n"
+    end
+    chara_define_content << "[endscript]\n"
 
     builder_config_content = {}
     world.characters.values.each do |character|
@@ -31,7 +37,6 @@ class TyranoDsl::ElementsWriters::CharactersWriter
             ['map_chara'],
             builder_config_content
         )
-
     ]
   end
 

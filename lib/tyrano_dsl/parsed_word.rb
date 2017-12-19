@@ -1,11 +1,14 @@
 require_relative 'tyrano_dsl'
 
 # A parsed word
-# @attr [String] word
-# @attr [Array<Thread::Backtrace::Location>] word_location
-# @attr [Hash] parameters
 class TyranoDsl::ParsedWord
-  attr_reader :word, :word_location, :parameters
+
+  # @return [Hash]
+  attr_reader :parameters
+  # @return [String]
+  attr_reader :word
+  # @return [Array<Thread::Backtrace::Location>]
+  attr_reader :word_location
 
   # @param [String] word
   # @param [Array<Thread::Backtrace::Location>] word_location

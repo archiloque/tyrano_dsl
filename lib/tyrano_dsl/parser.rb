@@ -4,11 +4,11 @@ require_relative 'tyrano_dsl'
 require_relative 'vocabulary'
 
 # Parse the DSL
-# @attr [TyranoDsl::ParsingContext] context
-# @attr [Array<Thread::Backtrace::Location>] word_location
 class TyranoDsl::Parser
 
+  # @return [TyranoDsl::ParsingContext]
   attr_reader :context
+  # @return [Array<Thread::Backtrace::Location>]
   attr_accessor :word_location
 
   TyranoDsl::Vocabulary.get_words_class('parsing_words') do |word, word_module|

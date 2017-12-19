@@ -11,7 +11,7 @@ class WritingWordsAsksQuestionTest < Minitest::Test
     declare_scene(world, 'scene name')
     ask_question = TyranoDsl::WritingWords::AskQuestion.new
     begin
-      ask_question.run(writing_context, world, caller_locations, {:possible_answers => []})
+      ask_question.run(writing_context, world, caller_locations, :possible_answers => [])
       fail
     rescue TyranoDsl::TyranoException => e
       assert_match(/Line \d+ this action should take place in a scene/, e.message)
@@ -24,13 +24,13 @@ class WritingWordsAsksQuestionTest < Minitest::Test
     writing_context.init_new_scene 'scene'
     ask_question = TyranoDsl::WritingWords::AskQuestion.new
     begin
-      ask_question.run(writing_context, world, caller_locations, {:possible_answers => [
+      ask_question.run(writing_context, world, caller_locations, :possible_answers => [
           {
               :text => 'Yes !',
               :left => 200,
               :top => 200,
               :scene => 'scene name'
-          }]})
+          }])
       fail
     rescue TyranoDsl::TyranoException => e
       assert_match(/Line \d+ unknown scene \[scene name\], currently defined: /, e.message)
@@ -45,7 +45,7 @@ class WritingWordsAsksQuestionTest < Minitest::Test
     declare_scene(world, 'Third scene')
     declare_label(world, 'a label')
     ask_question = TyranoDsl::WritingWords::AskQuestion.new
-    ask_question.run(writing_context, world, caller_locations, {:possible_answers => [
+    ask_question.run(writing_context, world, caller_locations, :possible_answers => [
         {
             :text => 'Yes !',
             :left => 200,
@@ -59,7 +59,7 @@ class WritingWordsAsksQuestionTest < Minitest::Test
             scene: 'Third scene',
             label: 'a label'
         }
-    ]})
+    ])
     assert_equal(writing_context.current_scene_content, [
         '[glink color="black" storage="scene1" target="" size="20" x="200" y="200" text="Yes !"]
 [glink color="black" storage="scene1" target="label_0" size="20" x="200" y="300" text="No &quot;&quot;?"]

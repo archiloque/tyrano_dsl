@@ -1,10 +1,10 @@
-require_relative '../../test_helper'
-require_relative '../../../lib/tyrano_dsl/elements/background'
-require_relative '../../../lib/tyrano_dsl/elements/scene'
+require_relative '../unit_test_helper'
 require_relative '../../../lib/tyrano_dsl/elements/world'
 require_relative '../../../lib/tyrano_dsl/elements_writers/title_screen_writer'
 
 class ElementsWriterTitleScreenWriterTest < Minitest::Test
+
+  include UnitTestHelper
 
   def test_no_background
     world = TyranoDsl::Elements::World.new('game.rb')
@@ -35,8 +35,8 @@ class ElementsWriterTitleScreenWriterTest < Minitest::Test
     title_screen_writer = TyranoDsl::ElementsWriters::TitleScreenWriter.new
     world.title_screen.background = 'background 1'
     world.title_screen.first_scene_name = 'scene 1'
-    world.scenes['scene 1'] = TyranoDsl::Elements::Scene.new('scene 1', 0)
-    world.backgrounds['background 1'] = TyranoDsl::Elements::Background.new('background 1', 'background.png', 0)
+    declare_scene(world, 'scene 1')
+    declare_background(world, 'background 1', 'background.png')
     create_files = title_screen_writer.write(world)
     assert_equal(create_files.length, 2)
     assert_equal(create_files[0].path, 'data/scenario/title_screen.ks')
@@ -46,7 +46,7 @@ class ElementsWriterTitleScreenWriterTest < Minitest::Test
 
 [tb_keyconfig  flag="0"  ]
 [tb_hide_message_window  ]
-[bg  storage="0.png"  ]
+[bg  storage="1.png"  ]
 *title
 
 [glink  text="New&nbsp;Game"  x="600"  y="370"  target="*start"  ]
@@ -58,7 +58,7 @@ class ElementsWriterTitleScreenWriterTest < Minitest::Test
 
 [cm  ]
 [tb_keyconfig  flag="1"  ]
-[jump  storage="scene0.ks"  target=""  ]
+[jump  storage="scene1.ks"  target=""  ]
 [s  ]
 *load
 
@@ -69,7 +69,7 @@ class ElementsWriterTitleScreenWriterTest < Minitest::Test
 [s  ]
 ')
     assert_equal(create_files[1].path, 'data/scenario/system/_title_screen.ks')
-    assert_equal(create_files[1].content, '[preload storage="./data/bgimage/0.png"]
+    assert_equal(create_files[1].content, '[preload storage="./data/bgimage/1.png"]
 [return]')
   end
 

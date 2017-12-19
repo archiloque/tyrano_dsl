@@ -11,7 +11,7 @@ module TyranoDsl::ParsingWords::DisplayText
   # @raise [TyranoDsl::TyranoException]
   def display_text(character_name, text)
     if character_name
-      check_character_exist(context, character_name)
+      check_character_exist(character_name)
     end
     add_parsed_word(
         TyranoDsl::Vocabulary::DISPLAY_TEXT,

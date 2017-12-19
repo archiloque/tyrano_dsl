@@ -1,13 +1,14 @@
 require_relative 'files_actions_module'
 
 # Create a file with a custom content
-# @attr [String] path
-# @attr [String] content
 class TyranoDsl::FileActions::CreateFile
 
   include TyranoDsl::FileActions::FileActionsModule
 
-  attr_reader :path, :content
+  # @return [String]
+  attr_reader :content
+  # @return [String]
+  attr_reader :path
 
   # @param [String] path
   # @param [String] content

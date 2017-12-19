@@ -13,7 +13,7 @@ module TyranoDsl::ParsingWords::ShowCharacter
   # @raise [TyranoDsl::TyranoException]
   def show_character(character_name, character_stance, left, top)
     symbolized_stance = symbolize(character_stance)
-    check_character_exist(context, character_name, symbolized_stance)
+    check_character_exist(character_name, symbolized_stance)
     add_parsed_word(
         TyranoDsl::Vocabulary::SHOW_CHARACTER,
         name: character_name,

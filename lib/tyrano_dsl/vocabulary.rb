@@ -5,12 +5,16 @@ module TyranoDsl::Vocabulary
 
   # Declare a background
   ASK_QUESTION = :ask_question
+  # Conditional jump
+  CONDITIONAL_JUMP = :conditional_jump
   # Declare a background
   DECLARE_BACKGROUND = :declare_background
   # Declare a character
   DECLARE_CHARACTER = :declare_character
   # Declare a label
   DECLARE_LABEL = :declare_label
+  # Declare a variable
+  DECLARE_VARIABLE = :declare_variable
   # Display some text
   DISPLAY_TEXT = :display_text
   # Hide a character
@@ -35,9 +39,11 @@ module TyranoDsl::Vocabulary
   # All the available words
   ALL_WORDS = [
       ASK_QUESTION,
+      CONDITIONAL_JUMP,
       DECLARE_BACKGROUND,
       DECLARE_CHARACTER,
       DECLARE_LABEL,
+      DECLARE_VARIABLE,
       DISPLAY_TEXT,
       HIDE_CHARACTER,
       HIDE_MESSAGE_WINDOW,

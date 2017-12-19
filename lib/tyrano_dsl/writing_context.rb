@@ -6,14 +6,18 @@ require_relative 'tyrano_exception'
 require_relative 'tyrano_dsl'
 
 # Context for writing
-# @attr [Hash{String => Object}] file_actions
-# @attr [TyranoDsl::Element::World] world
-# @attr [Array<String>] current_scene_content
-# @attr [Array<String>] current_scene_assets
 class TyranoDsl::WritingContext
 
-  attr_reader :file_actions, :world, :current_scene_content, :current_scene_assets
+  # @return [Array<String>]
+  attr_reader :current_scene_assets
+  # @return [Array<String>]
+  attr_reader :current_scene_content
+  # @return [Hash{String => Object}]
+  attr_reader :file_actions
+  # @return [TyranoDsl::Element::World]
+  attr_reader :world
 
+  # @param [TyranoDsl::Elements::World] world
   def initialize(world)
     @logger = Logger.new(STDOUT)
     @world = world

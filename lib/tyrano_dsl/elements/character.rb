@@ -3,16 +3,18 @@ require_relative 'stance'
 
 
 # A declared character
-# @attr [String] name
-# @attr [Index] index
-# @attr [Hash{String => TyranoDsl::Elements::Stance}] stances
-# @attr [TyranoDsl::Elements::Stance] default_stance
 class TyranoDsl::Elements::Character
 
   CHARACTER_DIRECTORY = File.join('data', 'fgimage', 'chara')
 
-
-  attr_reader :name, :index, :stances, :default_stance
+  # @return [String]
+  attr_reader :name
+  # @return [Index]
+  attr_reader :index
+  # @return [Hash{String => TyranoDsl::Elements::Stance}]
+  attr_reader :stances
+  # @return [TyranoDsl::Elements::Stance]
+  attr_reader :default_stance
 
   # @param [String] name
   # @param [String] declared_stances

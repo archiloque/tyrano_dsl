@@ -18,12 +18,21 @@ module TyranoDsl
       end
 
       # @param [TyranoDsl::ParsingContext] parsing_context
+      # @param [String] variable_name
+      # @return [void]
+      # @raise [TyranoDsl::TyranoException]
+      def check_variable_exist(variable_name)
+        unless context.world.variables.key?(variable_name)
+          raise TyranoDsl::TyranoException, "Line #{word_location[0].lineno} unknown variable [#{variable_name}], currently defined: #{context.world.variables.keys.sort.join(', ')}"
+        end
+      end
+
       # @param [String] character_name
       # @param [String, nil] character_stance
       # @return [void]
       # @raise [TyranoDsl::TyranoException]
-      def check_character_exist(parsing_context, character_name, character_stance = nil)
-        character = parsing_context.world.characters[character_name]
+      def check_character_exist(character_name, character_stance = nil)
+        character = context.world.characters[character_name]
         unless character
           raise TyranoDsl::TyranoException, "Line #{word_location[0].lineno} unknown character [#{character_name}], currently defined: #{context.world.characters.keys.sort.join(', ')}"
         end

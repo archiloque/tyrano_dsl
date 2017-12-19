@@ -1,8 +1,8 @@
-require_relative 'parsing_words_helper'
+require_relative 'parsing_words_test_helper'
 
 class ParsingWordsDeclareBackgroundTest < Minitest::Test
 
-  include ParsingWordsHelper
+  include ParsingWordsTestHelper
 
   def test_missing_background
     parser = create_parser
@@ -37,7 +37,7 @@ class ParsingWordsDeclareBackgroundTest < Minitest::Test
     assert_equal(background.target_long_file_name, 'data/bgimage/1.jpg')
     assert_equal(parser.context.words[0].word, TyranoDsl::Vocabulary::DECLARE_BACKGROUND)
     assert_kind_of(Array, parser.context.words[0].word_location)
-    assert_equal(parser.context.words[0].parameters, {name: 'background', :image_path => '../../assets/backgrounds/school.jpg'})
+    assert_equal(parser.context.words[0].parameters, name: 'background', image_path: '../../assets/backgrounds/school.jpg')
   end
 
 end

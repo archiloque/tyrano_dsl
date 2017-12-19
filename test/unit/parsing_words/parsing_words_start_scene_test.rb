@@ -1,8 +1,8 @@
-require_relative 'parsing_words_helper'
+require_relative 'parsing_words_test_helper'
 
 class ParsingWordsStartSceneTest < Minitest::Test
 
-  include ParsingWordsHelper
+  include ParsingWordsTestHelper
 
   def test_duplicate
     parser = create_parser

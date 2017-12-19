@@ -1,8 +1,8 @@
-require_relative 'parsing_words_helper'
+require_relative 'parsing_words_test_helper'
 
 class ParsingWordsJumpTest < Minitest::Test
 
-  include ParsingWordsHelper
+  include ParsingWordsTestHelper
 
   def test_ok_with_scene
     parser = create_parser
@@ -13,7 +13,7 @@ class ParsingWordsJumpTest < Minitest::Test
     assert_equal(jump_target.label.name, 'target label')
     assert_equal(parser.context.words[0].word, TyranoDsl::Vocabulary::JUMP)
     assert_kind_of(Array, parser.context.words[0].word_location)
-    assert_equal(parser.context.words[0].parameters, {scene_name: 'target scene', :label_name => 'target label'})
+    assert_equal(parser.context.words[0].parameters, scene_name: 'target scene', :label_name => 'target label')
   end
 
   def test_ok_without_scene
@@ -25,7 +25,7 @@ class ParsingWordsJumpTest < Minitest::Test
     assert_nil jump_target.label
     assert_equal(parser.context.words[0].word, TyranoDsl::Vocabulary::JUMP)
     assert_kind_of(Array, parser.context.words[0].word_location)
-    assert_equal(parser.context.words[0].parameters, {scene_name: 'target scene', :label_name => nil})
+    assert_equal(parser.context.words[0].parameters, scene_name: 'target scene', :label_name => nil)
   end
 
 end

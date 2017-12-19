@@ -172,7 +172,21 @@ ask_question [
 declare_label 'my label'
 ```
 
-#### `jump` Jump to a label
+#### `conditional_jump` Jump to somewhere if a condition is met
+
+`conditional_jump(variable, operator, value, scene, label)`
+- `variable` is a `String` indicating the name of the variable to be tested
+- `operator` is a `String` indicating the comparison operator to use : `<`, `==` (equal), `>`, `!=` (different)
+- `value` is a `String` or a `Float` indicating the thing to compare the variable to, it can be a numerical value or the name of another variable
+- `scene` is a `String` indicating the name of the scene to jump to
+- `label` (optional) is a `String` indicating the name of the label in the scene to jump to
+
+```ruby
+conditional_jump 'variable_1', '<', 10, 'Scene two'
+conditional_jump 'variable_1', '=', 'variable_2', 'Scene two', 'Label three'
+```
+
+#### `jump` Jump to somewhere
 
 `jump(scene, label)`
 - `scene` is a `String` indicating the name of the scene to jump to
@@ -181,6 +195,18 @@ declare_label 'my label'
 ```ruby
 jump 'Scene two'
 jump 'Scene two', 'Label three'
+```
+
+### Variables
+
+#### `declare_variable` Declare a variable
+
+`declare_variable(variable_name, initial_value)` 
+- `variable_name` is a `String` representing the variable name
+- `initial_value` is a `Float` representing the variable initial value
+
+```ruby
+declare_variable 'happiness', 25
 ```
 
 ### Misc

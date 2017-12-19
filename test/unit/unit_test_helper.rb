@@ -27,7 +27,17 @@ module UnitTestHelper
         stances,
         world.characters.length + 1
     )
+  end
 
+  # @param [TyranoDsl::Elements::World] world
+  # @param [String] variable_name
+  # @param [Float] initial_value
+  def declare_variable(world, variable_name, initial_value)
+    world.variables[variable_name] = TyranoDsl::Elements::Variable.new(
+        variable_name,
+        "variable_#{world.variables.length + 1}",
+        initial_value
+    )
   end
 
   # @param [TyranoDsl::Elements::World] world

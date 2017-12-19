@@ -3,14 +3,16 @@ require 'json'
 require_relative 'files_actions_module'
 
 # Path a JSON file
-# @attr [String] file_path
-# @attr [Array<String>] patching_path
-# @attr [Object] patched_content
 class TyranoDsl::FileActions::JsonPatch
 
   include TyranoDsl::FileActions::FileActionsModule
 
-  attr_reader :file_path, :patching_path, :patched_content
+  # @return [String]
+  attr_reader :file_path
+  # @return [Object]
+  attr_reader :patched_content
+  # @return [Array<String>]
+  attr_reader :patching_path
 
   # @param [String] file_path
   # @param [Array<String>] patching_path

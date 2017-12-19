@@ -1,13 +1,16 @@
 require_relative 'elements_module'
 
 # A declared background
-# @attr [String] name
-# @attr [String] image_path
-# @attr [String] target_short_file_name
-# @attr [String] target_long_file_name
 class TyranoDsl::Elements::Background
 
-  attr_reader :name, :image_path, :target_short_file_name, :target_long_file_name
+  # @return [String]
+  attr_reader :name
+  # @return [String]
+  attr_reader :image_path
+  # @return [String]
+  attr_reader :target_short_file_name
+  # @return [String]
+  attr_reader :target_long_file_name
 
   BACKGROUND_DIRECTORY = File.join('data', 'bgimage')
 

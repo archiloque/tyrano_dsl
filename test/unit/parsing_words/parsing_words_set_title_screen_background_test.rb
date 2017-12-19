@@ -1,8 +1,8 @@
-require_relative 'parsing_words_helper'
+require_relative 'parsing_words_test_helper'
 
 class ParsingWordsSetTitleScreenBackgroundTest < Minitest::Test
 
-  include ParsingWordsHelper
+  include ParsingWordsTestHelper
 
   def test_unknown_background
     parser = create_parser
@@ -33,7 +33,7 @@ class ParsingWordsSetTitleScreenBackgroundTest < Minitest::Test
     assert_equal(parser.context.words.length, 1)
     assert_equal(parser.context.words[0].word, TyranoDsl::Vocabulary::SET_TITLE_SCREEN_BACKGROUND)
     assert_kind_of(Array, parser.context.words[0].word_location)
-    assert_equal(parser.context.words[0].parameters, {name: 'background 1'})
+    assert_equal(parser.context.words[0].parameters, name: 'background 1')
   end
 
 end

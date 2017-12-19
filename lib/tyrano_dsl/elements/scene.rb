@@ -1,12 +1,14 @@
 require_relative 'elements_module'
 
 # A declared scene
-# @attr [String] name
-# @attr [String] target_name
-# @attr [Array<String>] labels
 class TyranoDsl::Elements::Scene
 
-  attr_reader :name, :target_name, :labels
+  # @return [String]
+  attr_reader :name
+  # @return [String]
+  attr_reader :target_name
+  # @return [Array<String>]
+  attr_reader :labels
 
   # @param [String] name
   # @param [Integer] index

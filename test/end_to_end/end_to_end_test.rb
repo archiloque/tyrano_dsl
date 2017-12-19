@@ -22,7 +22,7 @@ class EndToEndTest < Minitest::Test
 
   def test_end_to_end
     writing_context = run_on_file('end_to_end_scene.rb')
-    assert_equal(writing_context.file_actions.length, 15)
+    assert_equal(writing_context.file_actions.length, 16)
 
     clear_directories = extract_by_class(writing_context.file_actions, TyranoDsl::FileActions::ClearDirectory)
     assert_equal(clear_directories.length, 2)
@@ -48,7 +48,9 @@ class EndToEndTest < Minitest::Test
     end
 
     assert_equal(files_creations['data/scenario/system/chara_define.ks'], '[chara_new name="Shinji" jname="Shinji" storage="chara/1/0.jpg"]
+
 [iscript]
+f[\'variable_1\']=25;
 [endscript]
 ')
 
@@ -74,7 +76,7 @@ Hello!
 [s]
 
 [chara_hide name="Shinji" time="1000" wait="true"]
-[jump storage="scene2.ks"]
+[jump storage="scene2.ks" target=""]
 ')
     assert_equal(files_creations['data/scenario/system/_scene1.ks'], '[preload storage="./data/bgimage/1.jpg"]
 [preload storage="./data/fgimage/chara/1/0.jpg"]
@@ -124,16 +126,24 @@ Hello!
 [cm]
 [bg storage="1.jpg" time="1000"]
 *label_1
+[jump storage="scene3.ks" target="" cond="f.variable_1<10"]
 ')
     assert_equal(files_creations['data/scenario/system/_scene3.ks'], '[preload storage="./data/bgimage/1.jpg"]
 [return]')
 
     json_patches = extract_by_class(writing_context.file_actions, TyranoDsl::FileActions::JsonPatch)
-    assert_equal(json_patches.length, 1)
+    assert_equal(json_patches.length, 2)
     assert_equal(json_patches[0].file_path, 'builder_config.json')
     assert_equal(json_patches[0].patching_path, ['map_chara'])
     assert_equal(json_patches[0].patched_content, {"Shinji" => 1})
-
+    assert_equal(json_patches[1].file_path, 'builder_config.json')
+    assert_equal(json_patches[1].patching_path, ['map_var'])
+    assert_equal(json_patches[1].patched_content,
+                 {
+                     'variable_1' =>
+                         {:val => 25, :kind => 'f'}
+                 }
+    )
   end
 
   private

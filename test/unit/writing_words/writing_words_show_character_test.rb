@@ -9,10 +9,10 @@ class WritingWordsShowCharacterTest < Minitest::Test
     world = create_world
     writing_context = create_writing_context(world)
     declare_scene(world, 'scene name')
-    declare_character(world, 'character name', {:default => 'default.png'})
+    declare_character(world, 'character name', :default => 'default.png')
     show_character = TyranoDsl::WritingWords::ShowCharacter.new
     begin
-      show_character.run(writing_context, world, caller_locations, {name: 'character name', stance: :default, left: 10, top: 20})
+      show_character.run(writing_context, world, caller_locations, name: 'character name', stance: :default, left: 10, top: 20)
       fail
     rescue TyranoDsl::TyranoException => e
       assert_match(/Line \d+ this action should take place in a scene/, e.message)
@@ -24,9 +24,9 @@ class WritingWordsShowCharacterTest < Minitest::Test
     writing_context = create_writing_context(world)
     writing_context.init_new_scene 'scene'
     declare_scene(world, 'scene name')
-    declare_character(world, 'character name', {:default => 'default.png'})
+    declare_character(world, 'character name', :default => 'default.png')
     show_character = TyranoDsl::WritingWords::ShowCharacter.new
-    show_character.run(writing_context, world, caller_locations, {name: 'character name', stance: :default, left: 10, top: 20})
+    show_character.run(writing_context, world, caller_locations, name: 'character name', stance: :default, left: 10, top: 20)
     assert_equal(writing_context.current_scene_content, [
         '[chara_show name="character name" time="1000" wait="true" left="10" top="20" width="" height="" reflect="false"]'
     ])
@@ -39,9 +39,9 @@ class WritingWordsShowCharacterTest < Minitest::Test
     writing_context = create_writing_context(world)
     writing_context.init_new_scene 'scene'
     declare_scene(world, 'scene name')
-    declare_character(world, 'character name', {:default => 'default.png', :other => 'other.png'})
+    declare_character(world, 'character name', :default => 'default.png', :other => 'other.png')
     show_character = TyranoDsl::WritingWords::ShowCharacter.new
-    show_character.run(writing_context, world, caller_locations, {name: 'character name', stance: :other, left: 10, top: 20})
+    show_character.run(writing_context, world, caller_locations, name: 'character name', stance: :other, left: 10, top: 20)
     assert_equal(writing_context.current_scene_content, [
         '[chara_show name="character name" time="1000" wait="true" left="10" top="20" width="" height="" reflect="false"]',
         '[chara_mod name="character name" cross="true" storage="1/1.png"]'

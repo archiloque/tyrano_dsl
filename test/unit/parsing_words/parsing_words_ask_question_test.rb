@@ -1,8 +1,8 @@
-require_relative 'parsing_words_helper'
+require_relative 'parsing_words_test_helper'
 
 class ParsingWordsAskQuestionTest < Minitest::Test
 
-  include ParsingWordsHelper
+  include ParsingWordsTestHelper
 
   def test_invalid_param
     parser = create_parser
@@ -95,23 +95,21 @@ class ParsingWordsAskQuestionTest < Minitest::Test
         ])
     assert_equal(parser.context.words[0].word, TyranoDsl::Vocabulary::ASK_QUESTION)
     assert_kind_of(Array, parser.context.words[0].word_location)
-    assert_equal(parser.context.words[0].parameters, {
-        :possible_answers => [
-            {
-                :text => 'Yes !',
-                :left => 200,
-                :top => 200,
-                :scene => 'Second scene'
-            },
-            {
-                text: 'No ""?',
-                left: 200,
-                top: 300,
-                scene: 'Third scene',
-                label: 'a label'
-            }
-        ]
-    })
+    assert_equal(parser.context.words[0].parameters, :possible_answers => [
+        {
+            :text => 'Yes !',
+            :left => 200,
+            :top => 200,
+            :scene => 'Second scene'
+        },
+        {
+            text: 'No ""?',
+            left: 200,
+            top: 300,
+            scene: 'Third scene',
+            label: 'a label'
+        }
+    ])
     assert_equal(parser.context.world.jump_targets.length, 2)
     first_jump_target = parser.context.world.jump_targets[0]
     assert_equal(first_jump_target.scene, 'Second scene')

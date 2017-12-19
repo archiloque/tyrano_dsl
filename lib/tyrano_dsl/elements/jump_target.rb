@@ -1,11 +1,12 @@
 require_relative 'elements_module'
 
 # A declared jump target
-# @attr [String] scene
-# @attr [TyranoDsl::Elements::Label|nil] label
 class TyranoDsl::Elements::JumpTarget
 
-  attr_reader :scene, :label
+  # @return [String]
+  attr_reader :scene
+  # @return [TyranoDsl::Elements::Label|nil]
+  attr_reader :label
 
   # @param [String] scene
   # @param [TyranoDsl::Elements::Label|nil] label

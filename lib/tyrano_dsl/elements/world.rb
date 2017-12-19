@@ -1,25 +1,35 @@
 require_relative 'elements_module'
 require_relative 'label'
 require_relative 'title_screen'
+require_relative 'variable'
 
 # The game world
-# @attr [Hash{String => TyranoDsl::Elements::Scene}] scenes
-# @attr [Hash{String => TyranoDsl::Elements::Character}] characters
-# @attr [Hash{String => TyranoDsl::Elements::Background}] backgrounds
-# @attr [Hash{String => TyranoDsl::Elements::Label}] labels
-# @attr [TyranoDsl::Elements::TitleScreen] title_screen
-# @attr [Array<TyranoDsl::Elements::JumpTarget>] jump_targets
 class TyranoDsl::Elements::World
 
-  attr_reader :scenes, :characters, :backgrounds, :title_screen, :jump_targets, :labels
+  # @return [Hash{String => TyranoDsl::Elements::Background}]
+  attr_reader :backgrounds
+  # @return [Hash{String => TyranoDsl::Elements::Character}]
+  attr_reader :characters
+  # @return [Array<TyranoDsl::Elements::JumpTarget>]
+  attr_reader :jump_targets
+  # @return [Hash{String => TyranoDsl::Elements::Label}]
+  attr_reader :labels
+  # @return [Hash{String => TyranoDsl::Elements::Scene}]
+  attr_reader :scenes
+  # @return [TyranoDsl::Elements::TitleScreen]
+  attr_reader :title_screen
+  # @return [Hash{String => TyranoDsl::Elements::Variable}]
+  attr_reader :variables
 
+  # @param [String] file_path
   def initialize(file_path)
-    @scenes = {}
+    @file_path = file_path
     @characters = {}
     @backgrounds = {}
     @labels = {}
     @jump_targets = []
-    @file_path = file_path
+    @scenes = {}
+    @variables = {}
     @title_screen = TyranoDsl::Elements::TitleScreen.new
   end
 

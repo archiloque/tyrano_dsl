@@ -3,7 +3,7 @@ declare_character 'Shinji',
                   'angry' => '../assets/characters/shinji/angry.png'
 
 declare_background 'School', '../assets/backgrounds/school.jpg'
-
+declare_variable 'sadness', 25
 set_title_screen_background 'School'
 
 start_scene 'First scene'
@@ -39,3 +39,4 @@ set_background 'School'
 start_scene 'Third scene'
 set_background 'School'
 declare_label 'a label'
+conditional_jump 'sadness', '<', 10, 'Third scene'

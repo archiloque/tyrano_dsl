@@ -1,8 +1,8 @@
-require_relative 'parsing_words_helper'
+require_relative 'parsing_words_test_helper'
 
 class ParsingWordsHideCharacterTest < Minitest::Test
 
-  include ParsingWordsHelper
+  include ParsingWordsTestHelper
 
   def test_missing_character
     parser = create_parser
@@ -16,12 +16,12 @@ class ParsingWordsHideCharacterTest < Minitest::Test
 
   def test_ok
     parser = create_parser
-    declare_character(parser.context.world, 'Shinji', {default: '../../assets/characters/shinji/default_stance.jpg'})
+    declare_character(parser.context.world, 'Shinji', default: '../../assets/characters/shinji/default_stance.jpg')
     parser.hide_character 'Shinji'
     assert_equal(parser.context.words.length, 1)
     assert_equal(parser.context.words[0].word, TyranoDsl::Vocabulary::HIDE_CHARACTER)
     assert_kind_of(Array, parser.context.words[0].word_location)
-    assert_equal(parser.context.words[0].parameters, {:name => 'Shinji'})
+    assert_equal(parser.context.words[0].parameters, :name => 'Shinji')
   end
 
 end

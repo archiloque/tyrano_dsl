@@ -3,11 +3,12 @@ require 'fileutils'
 require_relative 'files_actions_module'
 
 # Remove all files from a directory
-# @attr [String] path
+
 class TyranoDsl::FileActions::ClearDirectory
 
   include TyranoDsl::FileActions::FileActionsModule
 
+  # @return [String]
   attr_reader :path
 
   # @param [String] path
