@@ -1,12 +1,14 @@
 # TyranoDsl
 
-**PROJECT IS A WIP, NOT USABLE FOR THE MOMENT !**
-
 [![Build Status](https://travis-ci.org/archiloque/tyrano_dsl.svg?branch=master)](https://travis-ci.org/archiloque/tyrano_dsl)
 
 A DSL to write visual novels games in Ruby using [TyranoBuilder](http://tyranobuilder.com).
 
-The goal is to provide a simple syntax you can use directly or you can build upon. 
+The goal is to provide a simple syntax you can use directly or you can build upon.
+
+The project is a WIP : I add things as I need them, if you have any issue or need something please ask me.
+
+If you use it for a published VN, please tell me: it would make me happy and I'll add a link to it in this page.
 
 Example :
 
@@ -43,9 +45,6 @@ ask_question [
              ]
 start_scene 'Second scene'
 ```
-
-I add things as I need them for my needs, if you need something please ask me.  
-
 
 ## How to use it
 
