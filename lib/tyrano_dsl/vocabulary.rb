@@ -35,6 +35,8 @@ module TyranoDsl::Vocabulary
   SHOW_MESSAGE_WINDOW = :show_message_window
   # Start a scene
   START_SCENE = :start_scene
+  # Update a variable
+  UPDATE_VARIABLE = :update_variable
 
   # All the available words
   ALL_WORDS = [
@@ -54,6 +56,7 @@ module TyranoDsl::Vocabulary
       SHOW_CHARACTER,
       SHOW_MESSAGE_WINDOW,
       START_SCENE,
+      UPDATE_VARIABLE,
   ].sort.freeze
 
   # Get the word class corresponding to the words

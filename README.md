@@ -209,6 +209,24 @@ jump 'Scene two', 'Label three'
 declare_variable 'happiness', 25
 ```
 
+#### `update_variable` Update a variable
+
+`update_variable(variable_name, operation, value)` 
+- `variable_name` is a `String` representing the variable name
+- `operator` is a `String` indicating the operation to apply
+  - `=` set the variable with the value
+  - `+=` add the value to the variable
+  - `-=` substract the value from the variable
+  - `*=` multiply the value with the variable
+  - `/=` divide the value with the variable
+  - `%=` set the variable with the reminder of the division with the value
+- `value` is a `String` or a `Float` indicating the thing to use as a value, it can be a numerical value or the name of another variable
+
+```ruby
+update_variable 'happiness', '=', 25
+update_variable 'happiness', '+', 'calmness'
+```
+
 ### Misc
 
 #### `hide_message_window` Hide the message window

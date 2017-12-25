@@ -4,6 +4,13 @@ class TyranoDsl::WritingWords::ConditionalJump
 
   include TyranoDsl::WritingWords::WritingWordsModule
 
+  OPERATORS_RUBY_TO_TYRANO = {
+      '<' => '<',
+      '>' => '>',
+      '==' => '=',
+      '!=' => '<>',
+  }
+
   def run(writing_context, world, word_location, parameters)
     operator = parameters[:operator]
     variable = parameters[:variable]
@@ -19,10 +26,11 @@ class TyranoDsl::WritingWords::ConditionalJump
     end
     target_scene = fetch_scene(world, word_location, scene_name)
     label = label_name ? world.labels[label_name].target_name : ''
+    tyrano_operator = OPERATORS_RUBY_TO_TYRANO[operator]
 
     writing_context.append_content(
         word_location,
-        "[jump storage=\"#{target_scene.target_name}\.ks\" target=\"#{label}\" cond=\"f.#{variable_target}#{operator}#{value_target}\"]"
+        "[jump storage=\"#{target_scene.target_name}\.ks\" target=\"#{label}\" cond=\"f.#{variable_target}#{tyrano_operator}#{value_target}\"]"
     )
   end
 

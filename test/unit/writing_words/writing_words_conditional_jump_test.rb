@@ -35,7 +35,21 @@ class WritingWordsConditionalJumpTest < Minitest::Test
     end
   end
 
-  def test_ok_variable
+  def test_ok_variable_inferior
+    world = create_world
+    writing_context = create_writing_context(world)
+    writing_context.init_new_scene 'scene'
+    declare_scene(world, 'scene name')
+    declare_label(world, 'label name')
+    declare_variable(world, 'a', 10)
+    declare_variable(world, 'b', 10)
+    conditional_jump = TyranoDsl::WritingWords::ConditionalJump.new
+    conditional_jump.run(writing_context, world, caller_locations, variable: 'a', operator: '<', value: 'b', scene_name: 'scene name', label_name: 'label name')
+    assert_equal(writing_context.current_scene_content, ['[jump storage="scene1.ks" target="label_0" cond="f.variable_1<f.variable_2"]'])
+  end
+
+
+  def test_ok_variable_superior
     world = create_world
     writing_context = create_writing_context(world)
     writing_context.init_new_scene 'scene'
@@ -46,6 +60,32 @@ class WritingWordsConditionalJumpTest < Minitest::Test
     conditional_jump = TyranoDsl::WritingWords::ConditionalJump.new
     conditional_jump.run(writing_context, world, caller_locations, variable: 'a', operator: '>', value: 'b', scene_name: 'scene name', label_name: 'label name')
     assert_equal(writing_context.current_scene_content, ['[jump storage="scene1.ks" target="label_0" cond="f.variable_1>f.variable_2"]'])
+  end
+
+  def test_ok_variable_equal
+    world = create_world
+    writing_context = create_writing_context(world)
+    writing_context.init_new_scene 'scene'
+    declare_scene(world, 'scene name')
+    declare_label(world, 'label name')
+    declare_variable(world, 'a', 10)
+    declare_variable(world, 'b', 10)
+    conditional_jump = TyranoDsl::WritingWords::ConditionalJump.new
+    conditional_jump.run(writing_context, world, caller_locations, variable: 'a', operator: '==', value: 'b', scene_name: 'scene name', label_name: 'label name')
+    assert_equal(writing_context.current_scene_content, ['[jump storage="scene1.ks" target="label_0" cond="f.variable_1=f.variable_2"]'])
+  end
+
+  def test_ok_variable_different
+    world = create_world
+    writing_context = create_writing_context(world)
+    writing_context.init_new_scene 'scene'
+    declare_scene(world, 'scene name')
+    declare_label(world, 'label name')
+    declare_variable(world, 'a', 10)
+    declare_variable(world, 'b', 10)
+    conditional_jump = TyranoDsl::WritingWords::ConditionalJump.new
+    conditional_jump.run(writing_context, world, caller_locations, variable: 'a', operator: '!=', value: 'b', scene_name: 'scene name', label_name: 'label name')
+    assert_equal(writing_context.current_scene_content, ['[jump storage="scene1.ks" target="label_0" cond="f.variable_1<>f.variable_2"]'])
   end
 
   def test_ok_value

@@ -40,3 +40,4 @@ start_scene 'Third scene'
 set_background 'School'
 declare_label 'a label'
 conditional_jump 'sadness', '<', 10, 'Third scene'
+update_variable 'sadness', '+=', 20

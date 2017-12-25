@@ -127,6 +127,7 @@ Hello!
 [bg storage="1.jpg" time="1000"]
 *label_1
 [jump storage="scene3.ks" target="" cond="f.variable_1<10"]
+[tb_eval  exp="f.variable_1+=20"  name="variable_1"  cmd="+="  op="t"  val="20"  val_2="undefined"]
 ')
     assert_equal(files_creations['data/scenario/system/_scene3.ks'], '[preload storage="./data/bgimage/1.jpg"]
 [return]')
