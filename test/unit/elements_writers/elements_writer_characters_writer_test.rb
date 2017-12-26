@@ -7,7 +7,7 @@ class ElementsWriterCharactersWriterTest < Minitest::Test
   include UnitTestHelper
 
   def test_ok
-    world = TyranoDsl::Elements::World.new('game.rb')
+    world = TyranoDsl::Elements::World.new
     characters_writer = TyranoDsl::ElementsWriters::CharactersWriter.new
     declare_character(
         world,

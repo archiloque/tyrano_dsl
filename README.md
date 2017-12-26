@@ -4,7 +4,11 @@
 
 A DSL to write visual novels games in Ruby using [TyranoBuilder](http://tyranobuilder.com).
 
+TyranoBuilder is a good tool has many features but I don't like to click-heavy interface to write.
+
 The goal is to provide a simple syntax you can use directly or you can build upon.
+
+You create your TyranoBuilder project with the specific options and the library is used to modify the content without touching the other things.
 
 The project is a WIP : I add things as I need them, if you have any issue or need something please ask me.
 
@@ -234,6 +238,15 @@ update_variable 'happiness', '+', 'calmness'
 
 ```ruby
 hide_message_window
+```
+
+#### `include_file` Include a file
+
+`include_file(file_name)`
+- `name` is a `file_name` representing the file to include
+
+```ruby
+include_file('other_scene.rb')
 ```
 
 #### `show_message_window` Show the message window

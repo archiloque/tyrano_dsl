@@ -9,7 +9,7 @@ module WritingWordsHelper
 
   # @return [TyranoDsl::Elements::World]
   def create_world
-    TyranoDsl::Elements::World.new(__FILE__)
+    TyranoDsl::Elements::World.new
   end
 
   # @return [TyranoDsl::WritingContext]

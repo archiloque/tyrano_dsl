@@ -6,30 +6,13 @@ require_relative 'writer'
 
 class TyranoDsl::Main
 
-  def initialize
-    @logger = Logger.new(STDOUT)
-  end
-
   # @param [String] file_path path to the DSL file
   # @return [TyranoDsl::WritingContext]
   def run(file_path)
-    log {"Reading content file at [#{file_path}]"}
-    unless File.exist? file_path
-      raise TyranoDsl::TyranoException, "File not found [#{file_path}]"
-    end
-
-    parsing_context = TyranoDsl::ParsingContext.new(File.dirname(file_path), file_path)
-    parser = TyranoDsl::Parser.new(parsing_context)
-    log {'Parsing begin'}
-    parser.instance_eval(IO.read(file_path), file_path, 1)
-    log {"Parsing end #{parsing_context.inspect}"}
+    parsing_context = TyranoDsl::ParsingContext.new
+    parser = TyranoDsl::Parser.new(parsing_context, file_path)
+    parser.include_file(file_path)
     TyranoDsl::Writer.new.write(parsing_context.world, parsing_context.words)
-  end
-
-  private
-
-  def log
-    @logger.info(self.class) {yield}
   end
 
 end

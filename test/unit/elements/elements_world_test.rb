@@ -8,7 +8,7 @@ class ElementsWorldTest < Minitest::Test
   include ElementsHelper
 
   def test_validate_unknown_scene_in_jump
-    world = TyranoDsl::Elements::World.new(__FILE__)
+    world = TyranoDsl::Elements::World.new
     declare_jump_target(world, 'missing scene')
     begin
       world.validate
@@ -19,7 +19,7 @@ class ElementsWorldTest < Minitest::Test
   end
 
   def test_validate_unknown_label_in_jump
-    world = TyranoDsl::Elements::World.new(__FILE__)
+    world = TyranoDsl::Elements::World.new
     declare_jump_target(world, 'scene name', 'missing label')
     world.scenes['scene name'] = TyranoDsl::Elements::Scene.new('scene name', 1)
     begin
@@ -31,7 +31,7 @@ class ElementsWorldTest < Minitest::Test
   end
 
   def test_validate_ok
-    world = TyranoDsl::Elements::World.new(__FILE__)
+    world = TyranoDsl::Elements::World.new
     declare_jump_target(world, 'scene without label')
     declare_jump_target(world, 'scene with label', 'label name')
     scene_with_label = TyranoDsl::Elements::Scene.new('scene with label', 1)
@@ -42,7 +42,7 @@ class ElementsWorldTest < Minitest::Test
   end
 
   def test_same_labels
-    world = TyranoDsl::Elements::World.new(__FILE__)
+    world = TyranoDsl::Elements::World.new
     label1 = world.label_value('label')
     label2 = world.label_value('label')
     assert_equal(label1, label2)

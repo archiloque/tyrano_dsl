@@ -11,12 +11,11 @@ module TyranoDsl::ParsingWords::DeclareCharacter
   # @return [void]
   # @raise [TyranoDsl::TyranoException]
   def declare_character(character_name, stances)
-    stances.values.each do |path|
-      validate_image_exist(
-          path
-      )
-    end
     symbolized_stances = symbolize_keys(stances)
+    symbolized_stances.each_pair do |name, path|
+      symbolized_stances[name] =  file_full_path(path)
+    end
+
     default_stance = symbolized_stances[:default]
     unless default_stance
       raise TyranoDsl::TyranoException, "Line #{word_location[0].lineno} you need a default stance"

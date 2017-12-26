@@ -7,7 +7,7 @@ class ElementsWriterTitleScreenWriterTest < Minitest::Test
   include UnitTestHelper
 
   def test_no_background
-    world = TyranoDsl::Elements::World.new('game.rb')
+    world = TyranoDsl::Elements::World.new
     title_screen_writer = TyranoDsl::ElementsWriters::TitleScreenWriter.new
     begin
       title_screen_writer.write(world)
@@ -18,7 +18,7 @@ class ElementsWriterTitleScreenWriterTest < Minitest::Test
   end
 
   def test_no_scene
-    world = TyranoDsl::Elements::World.new('game.rb')
+    world = TyranoDsl::Elements::World.new
     title_screen_writer = TyranoDsl::ElementsWriters::TitleScreenWriter.new
     world.title_screen.background = 'background.png'
     begin
@@ -31,7 +31,7 @@ class ElementsWriterTitleScreenWriterTest < Minitest::Test
   end
 
   def test_ok
-    world = TyranoDsl::Elements::World.new('game.rb')
+    world = TyranoDsl::Elements::World.new
     title_screen_writer = TyranoDsl::ElementsWriters::TitleScreenWriter.new
     world.title_screen.background = 'background 1'
     world.title_screen.first_scene_name = 'scene 1'

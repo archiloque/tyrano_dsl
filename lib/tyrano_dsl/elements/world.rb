@@ -21,9 +21,7 @@ class TyranoDsl::Elements::World
   # @return [Hash{String => TyranoDsl::Elements::Variable}]
   attr_reader :variables
 
-  # @param [String] file_path
-  def initialize(file_path)
-    @file_path = file_path
+  def initialize
     @characters = {}
     @backgrounds = {}
     @labels = {}
@@ -46,10 +44,6 @@ class TyranoDsl::Elements::World
         raise TyranoDsl::TyranoException, "Unknown label [#{jump_target_label.name}] declared in label"
       end
     end
-  end
-
-  def inspect
-    "[#{@file_path}] #{scenes.length} scenes: #{scenes.values.collect {|s| "[#{s.name}]"}.join(', ')} #{characters.length} characters: #{characters.values.collect {|c| "[#{c.name}]"}.join(', ')} #{backgrounds.length} backgrounds: #{backgrounds.values.collect {|b| "[#{b.name}]"}.join(', ')}"
   end
 
   # @param [String|Nil] label_name

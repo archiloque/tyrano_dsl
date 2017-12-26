@@ -8,8 +8,12 @@ class EndToEndTest < Minitest::Test
 
   def run_on_file(file_path)
     TyranoDsl::Main.new.run(
-        File.join(__dir__, file_path)
+        File.absolute_path(file_path, __dir__)
     )
+  end
+
+  def full_path(file_path)
+    File.absolute_path(file_path, __dir__)
   end
 
   def validate_exception(file_path, exception_message)
@@ -22,7 +26,7 @@ class EndToEndTest < Minitest::Test
 
   def test_end_to_end
     writing_context = run_on_file('end_to_end_scene.rb')
-    assert_equal(writing_context.file_actions.length, 16)
+    assert_equal(writing_context.file_actions.length, 18)
 
     clear_directories = extract_by_class(writing_context.file_actions, TyranoDsl::FileActions::ClearDirectory)
     assert_equal(clear_directories.length, 2)
@@ -31,14 +35,17 @@ class EndToEndTest < Minitest::Test
     assert directories_to_clean.include? 'data/fgimage/chara'
 
     file_copies = extract_by_class(writing_context.file_actions, TyranoDsl::FileActions::FileCopy)
-    assert_equal(file_copies.length, 3)
+    assert_equal(file_copies.length, 5)
     files_copies = {}
     file_copies.each do |file_copy_action|
       files_copies[file_copy_action.to_path] = file_copy_action.from_path
     end
-    assert_equal(files_copies['data/fgimage/chara/1/0.jpg'], '../assets/characters/shinji/default_stance.jpg')
-    assert_equal(files_copies['data/fgimage/chara/1/1.png'], '../assets/characters/shinji/angry.png')
-    assert_equal(files_copies['data/bgimage/1.jpg'], '../assets/backgrounds/school.jpg')
+    assert_equal(files_copies['data/fgimage/chara/1/0.jpg'], full_path('../assets/characters/shinji/default_stance.jpg'))
+    assert_equal(files_copies['data/fgimage/chara/1/1.png'], full_path('../assets/characters/shinji/angry.png'))
+    assert_equal(files_copies['data/bgimage/1.jpg'], full_path('../assets/backgrounds/school.jpg'))
+    assert_equal(files_copies['data/bgimage/2.jpg'], full_path('subdirectory/alice.jpg'))
+    assert_equal(files_copies['data/bgimage/3.jpg'], full_path('../assets/backgrounds/school.jpg'))
+
 
     create_files = extract_by_class(writing_context.file_actions, TyranoDsl::FileActions::CreateFile)
     assert_equal(create_files.length, 9)
@@ -128,8 +135,14 @@ Hello!
 *label_1
 [jump storage="scene3.ks" target="" cond="f.variable_1<10"]
 [tb_eval  exp="f.variable_1+=20"  name="variable_1"  cmd="+="  op="t"  val="20"  val_2="undefined"]
+[tb_start_text mode=1]
+Hello from included scene!
+[_tb_end_text]
+
+[bg storage="2.jpg" time="1000"]
 ')
     assert_equal(files_creations['data/scenario/system/_scene3.ks'], '[preload storage="./data/bgimage/1.jpg"]
+[preload storage="./data/bgimage/2.jpg"]
 [return]')
 
     json_patches = extract_by_class(writing_context.file_actions, TyranoDsl::FileActions::JsonPatch)

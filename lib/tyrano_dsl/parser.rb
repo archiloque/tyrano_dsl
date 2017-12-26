@@ -1,3 +1,5 @@
+require 'logger'
+
 require_relative 'parsed_word'
 require_relative 'tyrano_exception'
 require_relative 'tyrano_dsl'
@@ -10,6 +12,8 @@ class TyranoDsl::Parser
   attr_reader :context
   # @return [Array<Thread::Backtrace::Location>]
   attr_accessor :word_location
+  # @return [Array<String>]
+  attr_reader :included_files_hierarchy
 
   TyranoDsl::Vocabulary.get_words_class('parsing_words') do |word, word_module|
     include word_module
@@ -24,8 +28,11 @@ class TyranoDsl::Parser
   end
 
   # @param [TyranoDsl::ParsingContext] parsing_context
-  def initialize(parsing_context)
+  # @param [String] initial_file_path
+  def initialize(parsing_context, initial_file_path)
     @context = parsing_context
+    @logger = Logger.new(STDOUT)
+    @included_files_hierarchy = [initial_file_path]
   end
 
   protected
@@ -40,6 +47,12 @@ class TyranoDsl::Parser
         word_location,
         parameters
     )
+  end
+
+  private
+
+  def log
+    @logger.info(self.class) {yield}
   end
 
 end

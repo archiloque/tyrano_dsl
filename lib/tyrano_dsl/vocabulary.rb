@@ -21,6 +21,8 @@ module TyranoDsl::Vocabulary
   HIDE_CHARACTER = :hide_character
   # Hide the message window
   HIDE_MESSAGE_WINDOW = :hide_message_window
+  # Include another file
+  INCLUDE_FILE = :include_file
   # Jump to a scene
   JUMP = :jump
   # Set the current background
@@ -49,6 +51,7 @@ module TyranoDsl::Vocabulary
       DISPLAY_TEXT,
       HIDE_CHARACTER,
       HIDE_MESSAGE_WINDOW,
+      INCLUDE_FILE,
       JUMP,
       SET_BACKGROUND,
       SET_TITLE_SCREEN_BACKGROUND,

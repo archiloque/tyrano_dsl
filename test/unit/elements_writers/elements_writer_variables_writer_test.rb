@@ -7,7 +7,7 @@ class ElementsWriterVariablesWriterTest < Minitest::Test
   include UnitTestHelper
 
   def test_ok
-    world = TyranoDsl::Elements::World.new('game.rb')
+    world = TyranoDsl::Elements::World.new
     variables_writer = TyranoDsl::ElementsWriters::VariablesWriter.new
     declare_variable(world, 'variable 1', 10)
     file_actions = variables_writer.write(world)

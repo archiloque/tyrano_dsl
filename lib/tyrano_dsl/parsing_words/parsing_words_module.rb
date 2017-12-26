@@ -8,13 +8,15 @@ module TyranoDsl
 
       protected
 
-      # @param [String] image_path
-      # @return [void]
+      # @param [String] file_path
+      # @return [String]
       # @raise [TyranoDsl::TyranoException]
-      def validate_image_exist(image_path)
-        unless File.exist?(File.join(context.base_path, image_path))
-          raise TyranoDsl::TyranoException, "Line #{word_location[0].lineno} missing file [#{image_path}]"
+      def file_full_path(file_path)
+        absolute_path = File.absolute_path(file_path, File.dirname(included_files_hierarchy.last))
+        unless File.exist?(absolute_path)
+          raise TyranoDsl::TyranoException, "Line #{word_location[0].lineno} missing file [#{absolute_path}]"
         end
+        absolute_path
       end
 
       # @param [TyranoDsl::ParsingContext] parsing_context
