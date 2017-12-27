@@ -60,7 +60,7 @@ class TyranoDsl::WritingContext
   def add_label(word_location, label_name)
     check_in_scene(word_location)
     if @current_scene_labels.include? label_name
-      raise TyranoDsl::TyranoException, "Line #{word_location[0].lineno} duplicated label [#{label_name}]"
+      raise TyranoDsl::TyranoException, "Duplicated label [#{label_name}]"
     end
     @current_scene_labels << label_name
   end
@@ -114,7 +114,7 @@ class TyranoDsl::WritingContext
   # @raise [TyranoDsl::TyranoException]
   def check_in_scene(word_location)
     unless @current_scene_content
-      exception = TyranoDsl::TyranoException.new("This action should take place in a scene")
+      exception = TyranoDsl::TyranoException.new('This action should take place in a scene')
       exception.set_backtrace word_location
       raise exception
     end

@@ -1,18 +1,17 @@
-require_relative '../test_helper'
 require_relative '../../lib/tyrano_dsl/writing_context'
+require_relative 'unit_test_helper'
 
 class WritingContextTest < Minitest::Test
+
+  include UnitTestHelper
 
   def test_duplicated_label
     world = TyranoDsl::Elements::World.new
     writing_context = TyranoDsl::WritingContext.new(world)
     writing_context.init_new_scene 'scene name'
-    writing_context.add_label caller_locations, 'label name'
-    begin
-      writing_context.add_label caller_locations, 'label name'
-      fail
-    rescue TyranoDsl::TyranoException => e
-      assert_match(/Line \d+ duplicated label \[label name\]/, e.message)
+    writing_context.add_label caller, 'label name'
+    assert_tyrano_exception('Duplicated label [label name]') do
+      writing_context.add_label caller, 'label name'
     end
   end
 end
