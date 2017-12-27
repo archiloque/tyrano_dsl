@@ -34,6 +34,18 @@ class WritingWordsConditionalJumpTest < Minitest::Test
     end
   end
 
+  def test_ok_no_label
+    world = create_world
+    writing_context = create_writing_context(world)
+    writing_context.init_new_scene 'scene'
+    declare_scene(world, 'scene name')
+    declare_variable(world, 'a', 10)
+    declare_variable(world, 'b', 10)
+    conditional_jump = TyranoDsl::WritingWords::ConditionalJump.new
+    conditional_jump.run(writing_context, world, caller, variable: 'a', operator: '<', value: 'b', scene_name: 'scene name', label_name: nil)
+    assert_equal(['[jump storage="scene1.ks" target="cond" cond="f.variable_1<f.variable_2"]'], writing_context.current_scene_content)
+  end
+
   def test_ok_variable_inferior
     world = create_world
     writing_context = create_writing_context(world)

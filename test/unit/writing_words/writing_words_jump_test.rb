@@ -34,7 +34,7 @@ class WritingWordsJumpTest < Minitest::Test
     end
   end
 
-  def test_ok
+  def test_ok_with_label
     world = create_world
     writing_context = create_writing_context(world)
     writing_context.init_new_scene 'scene'
@@ -45,4 +45,13 @@ class WritingWordsJumpTest < Minitest::Test
     assert_equal(['[jump storage="scene1.ks" target="label_0"]'], writing_context.current_scene_content)
   end
 
+  def test_ok_no_label
+    world = create_world
+    writing_context = create_writing_context(world)
+    writing_context.init_new_scene 'scene'
+    declare_scene(world, 'scene name')
+    jump = TyranoDsl::WritingWords::Jump.new
+    jump.run(writing_context, world, caller, scene_name: 'scene name', label_name: nil)
+    assert_equal(['[jump storage="scene1.ks" target=""]'], writing_context.current_scene_content)
+  end
 end

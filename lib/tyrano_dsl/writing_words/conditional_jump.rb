@@ -25,7 +25,7 @@ class TyranoDsl::WritingWords::ConditionalJump
       value_target = value
     end
     target_scene = fetch_scene(world, word_location, scene_name)
-    label = label_name ? world.labels[label_name].target_name : ''
+    label = label_name ? world.labels[label_name].target_name : 'cond'
     tyrano_operator = OPERATORS_RUBY_TO_TYRANO[operator]
 
     writing_context.append_content(

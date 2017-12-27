@@ -76,7 +76,7 @@ Hello!
 Hello!
 [_tb_end_text]
 
-[chara_mod name="Shinji" cross="true" storage="1/1.png"]
+[chara_mod name="Shinji" cross="true" storage="chara/1/1.png"]
 [tb_hide_message_window]
 [glink color="black" storage="scene2" target="" size="20" x="200" y="200" text="Yes !"]
 [glink color="black" storage="scene3" target="label_1" size="20" x="200" y="300" text="No &quot;&quot;?"]
@@ -133,7 +133,7 @@ Hello!
 [cm]
 [bg storage="1.jpg" time="1000"]
 *label_1
-[jump storage="scene3.ks" target="" cond="f.variable_1<10"]
+[jump storage="scene3.ks" target="cond" cond="f.variable_1<10"]
 [tb_eval  exp="f.variable_1+=20"  name="variable_1"  cmd="+="  op="t"  val="20"  val_2="undefined"]
 [tb_start_text mode=1]
 Hello from included scene!

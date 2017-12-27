@@ -28,10 +28,10 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
-  spec.add_development_dependency 'rake', '~> 12.3.0'
+  spec.add_development_dependency 'rake', '~> 12.3'
   spec.add_development_dependency 'bundler', '~> 1.14'
   spec.add_development_dependency 'yard', '~> 0.9.12'
   spec.add_development_dependency 'redcarpet', '~> 3.4'
   spec.add_development_dependency 'simplecov', '~> 0.15.1'
-  spec.add_development_dependency 'minitest', '~> 5.10.3'
+  spec.add_development_dependency 'minitest', '~> 5.10'
 end

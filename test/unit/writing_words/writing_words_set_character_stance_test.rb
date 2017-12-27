@@ -25,7 +25,7 @@ class WritingWordsSetCharacterStanceTest < Minitest::Test
     set_character_stance = TyranoDsl::WritingWords::SetCharacterStance.new
     set_character_stance.run(writing_context, world, caller, name: 'character name', stance: :default)
     assert_equal([
-                     '[chara_mod name="character name" cross="true" storage="1/0.png"]'
+                     '[chara_mod name="character name" cross="true" storage="chara/1/0.png"]'
                  ], writing_context.current_scene_content)
     assert_equal(1, writing_context.current_scene_assets.length)
     assert_equal('data/fgimage/chara/1/0.png', writing_context.current_scene_assets.to_a[0])

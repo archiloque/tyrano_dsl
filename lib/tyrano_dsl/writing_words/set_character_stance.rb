@@ -13,7 +13,7 @@ class TyranoDsl::WritingWords::SetCharacterStance
     )
     writing_context.append_content(
         word_location,
-        "[chara_mod name=\"#{character.name}\" cross=\"true\" storage=\"#{character.stances[character_stance].short_target_file_name}\"]"
+        "[chara_mod name=\"#{character.name}\" cross=\"true\" storage=\"chara/#{character.stances[character_stance].short_target_file_name}\"]"
     )
   end
 
