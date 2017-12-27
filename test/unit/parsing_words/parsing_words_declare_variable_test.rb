@@ -7,26 +7,25 @@ class ParsingWordsDeclareVariableTest < Minitest::Test
   def test_duplicated_variable
     parser = create_parser
     declare_variable(parser.context.world, 'variable', 1)
-    begin
+    assert_tyrano_exception('Duplicated variable [variable]') do
       parser.declare_variable('variable', 10)
-      fail
-    rescue TyranoDsl::TyranoException => e
-      assert_match(/Line \d+ duplicated variable \[variable\]/, e.message)
     end
   end
 
   def test_ok
     parser = create_parser
     parser.declare_variable('variable', 12)
-    assert_equal(parser.context.world.variables.length, 1)
-    assert_equal(parser.context.world.variables.keys.first, 'variable')
+    assert_equal(1, parser.context.world.variables.length)
+    assert_equal('variable', parser.context.world.variables.keys.first)
     variable = parser.context.world.variables.values.first
-    assert_equal(variable.name, 'variable')
-    assert_equal(variable.target_name, 'variable_1')
-    assert_equal(variable.initial_value, 12)
-    assert_equal(parser.context.words[0].word, TyranoDsl::Vocabulary::DECLARE_VARIABLE)
-    assert_kind_of(Array, parser.context.words[0].word_location)
-    assert_equal(parser.context.words[0].parameters, :variable_name => 'variable', :initial_value => 12)
+    assert_equal('variable', variable.name)
+    assert_equal('variable_1', variable.target_name)
+    assert_equal(12, variable.initial_value)
+    assert_word_equal(
+        TyranoDsl::Vocabulary::DECLARE_VARIABLE,
+        {:variable_name => 'variable', :initial_value => 12},
+        parser
+    )
   end
 
 end

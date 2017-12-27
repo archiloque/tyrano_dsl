@@ -6,11 +6,14 @@ class ParsingWordsSetBackgroundTest < Minitest::Test
 
   def test_missing_background
     parser = create_parser
-    begin
+    assert_tyrano_exception('Unknown background [missing_background], currently 0 defined: ') do
       parser.set_background 'missing_background'
-      fail
-    rescue TyranoDsl::TyranoException => e
-      assert_match(/Line \d+ unknown background \[missing_background\], currently defined: /, e.message)
+    end
+
+    parser = create_parser
+    declare_background(parser.context.world, 'background 1', 'background.png')
+    assert_tyrano_exception('Unknown background [missing_background], currently 1 defined: [background 1]') do
+      parser.set_background 'missing_background'
     end
   end
 
@@ -18,10 +21,11 @@ class ParsingWordsSetBackgroundTest < Minitest::Test
     parser = create_parser
     declare_background(parser.context.world, 'background', '../../assets/backgrounds/school.jpg')
     parser.set_background 'background'
-    assert_equal(parser.context.words.length, 1)
-    assert_equal(parser.context.words[0].word, TyranoDsl::Vocabulary::SET_BACKGROUND)
-    assert_kind_of(Array, parser.context.words[0].word_location)
-    assert_equal(parser.context.words[0].parameters, name: 'background')
+    assert_word_equal(
+        TyranoDsl::Vocabulary::SET_BACKGROUND,
+        {name: 'background'},
+        parser
+    )
   end
 
 end

@@ -10,10 +10,10 @@ module TyranoDsl::ParsingWords::SetTitleScreenBackground
   # @raise [TyranoDsl::TyranoException]
   def set_title_screen_background(background_name)
     unless context.world.backgrounds.key? background_name
-      raise TyranoDsl::TyranoException, "Line #{word_location[0].lineno} unknown background [#{background_name}], currently defined: #{context.world.backgrounds.keys.sort.join(', ')}"
+      raise_unknown('background', background_name, context.world.backgrounds.keys)
     end
     if context.world.title_screen.background
-      raise TyranoDsl::TyranoException, "Line #{word_location[0].lineno} title screen background already defined"
+      raise TyranoDsl::TyranoException, 'Title screen background already defined'
     end
     context.world.title_screen.background = background_name
     add_parsed_word(

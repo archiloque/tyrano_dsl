@@ -5,8 +5,8 @@ class ElementsSceneTest < Minitest::Test
 
   def test_background
     scene = TyranoDsl::Elements::Scene.new('my_scene', 20)
-    assert_equal(scene.name, 'my_scene')
-    assert_equal(scene.target_name, 'scene20')
+    assert_equal('my_scene', scene.name)
+    assert_equal('scene20', scene.target_name)
   end
 
 end

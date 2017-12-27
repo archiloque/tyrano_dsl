@@ -10,11 +10,8 @@ class ElementsWorldTest < Minitest::Test
   def test_validate_unknown_scene_in_jump
     world = TyranoDsl::Elements::World.new
     declare_jump_target(world, 'missing scene')
-    begin
+    assert_tyrano_exception('Unknown scene [missing scene] declared in label') do
       world.validate
-      fail
-    rescue TyranoDsl::TyranoException => e
-      assert_equal('Unknown scene [missing scene] declared in label', e.message)
     end
   end
 
@@ -22,11 +19,8 @@ class ElementsWorldTest < Minitest::Test
     world = TyranoDsl::Elements::World.new
     declare_jump_target(world, 'scene name', 'missing label')
     world.scenes['scene name'] = TyranoDsl::Elements::Scene.new('scene name', 1)
-    begin
+    assert_tyrano_exception('Unknown label [missing label] declared in label') do
       world.validate
-      fail
-    rescue TyranoDsl::TyranoException => e
-      assert_equal('Unknown label [missing label] declared in label', e.message)
     end
   end
 

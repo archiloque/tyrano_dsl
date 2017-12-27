@@ -12,7 +12,7 @@ module TyranoDsl::ParsingWords::DeclareVariable
   # @raise [TyranoDsl::TyranoException]
   def declare_variable(variable_name, initial_value)
     if context.world.variables.key? variable_name
-      raise TyranoDsl::TyranoException, "Line #{word_location[0].lineno} duplicated variable [#{variable_name}]"
+      raise TyranoDsl::TyranoException, "Duplicated variable [#{variable_name}]"
     else
       context.world.variables[variable_name] = TyranoDsl::Elements::Variable.new(
           variable_name,

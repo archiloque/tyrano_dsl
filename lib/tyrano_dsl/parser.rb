@@ -22,7 +22,7 @@ class TyranoDsl::Parser
     symbol_word = word.to_sym
     old_method = instance_method(symbol_word)
     define_method(symbol_word) do |*args|
-      self.word_location = caller_locations
+      self.word_location = caller
       old_method.bind(self).call(*args)
     end
   end

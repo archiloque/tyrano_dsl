@@ -6,11 +6,14 @@ class ParsingWordsSetTitleScreenBackgroundTest < Minitest::Test
 
   def test_unknown_background
     parser = create_parser
-    begin
+    assert_tyrano_exception('Unknown background [missing background], currently 0 defined: ') do
       parser.set_title_screen_background('missing background')
-      fail
-    rescue TyranoDsl::TyranoException => e
-      assert_match(/Line \d+ unknown background \[missing background\], currently defined: /, e.message)
+    end
+
+    parser = create_parser
+    declare_background(parser.context.world, 'background 1', 'background.png')
+    assert_tyrano_exception('Unknown background [missing background], currently 1 defined: [background 1]') do
+      parser.set_title_screen_background('missing background')
     end
   end
 
@@ -18,11 +21,8 @@ class ParsingWordsSetTitleScreenBackgroundTest < Minitest::Test
     parser = create_parser
     declare_background(parser.context.world, 'background 1', 'background.png')
     parser.set_title_screen_background('background 1')
-    begin
+    assert_tyrano_exception('Title screen background already defined') do
       parser.set_title_screen_background('background 1')
-      fail
-    rescue TyranoDsl::TyranoException => e
-      assert_match(/Line \d+ title screen background already defined/, e.message)
     end
   end
 
@@ -30,10 +30,11 @@ class ParsingWordsSetTitleScreenBackgroundTest < Minitest::Test
     parser = create_parser
     declare_background(parser.context.world, 'background 1', 'background.png')
     parser.set_title_screen_background('background 1')
-    assert_equal(parser.context.words.length, 1)
-    assert_equal(parser.context.words[0].word, TyranoDsl::Vocabulary::SET_TITLE_SCREEN_BACKGROUND)
-    assert_kind_of(Array, parser.context.words[0].word_location)
-    assert_equal(parser.context.words[0].parameters, name: 'background 1')
+    assert_word_equal(
+        TyranoDsl::Vocabulary::SET_TITLE_SCREEN_BACKGROUND,
+        {name: 'background 1'},
+        parser
+    )
   end
 
 end

@@ -4,7 +4,6 @@ class TyranoDsl::WritingWords::UpdateVariable
 
   include TyranoDsl::WritingWords::WritingWordsModule
 
-
   def run(writing_context, world, word_location, parameters)
     operator = parameters[:operator]
     variable = parameters[:variable]

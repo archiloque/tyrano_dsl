@@ -68,5 +68,15 @@ module UnitTestHelper
     world.jump_targets << TyranoDsl::Elements::JumpTarget.new(scene_name, label_name ? world.label_value(label_name) : nil)
   end
 
+  # @param [String] expected_message
+  # @return [void]
+  def assert_tyrano_exception(expected_message)
+    begin
+      yield
+      fail
+    rescue TyranoDsl::TyranoException => e
+      assert_equal(expected_message, e.message)
+    end
+  end
 
 end

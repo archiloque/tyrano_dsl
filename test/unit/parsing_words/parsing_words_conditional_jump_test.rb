@@ -9,26 +9,30 @@ class ParsingWordsConditionalJumpTest < Minitest::Test
     declare_variable(parser.context.world, 'a', 10)
     declare_variable(parser.context.world, 'b', 20)
     parser.conditional_jump('a', '<', 'b', 'target scene', 'target label')
-    assert_equal(parser.context.world.jump_targets.length, 1)
+    assert_equal(1, parser.context.world.jump_targets.length)
     jump_target = parser.context.world.jump_targets.first
-    assert_equal(jump_target.scene, 'target scene')
-    assert_equal(jump_target.label.name, 'target label')
-    assert_equal(parser.context.words[0].word, TyranoDsl::Vocabulary::CONDITIONAL_JUMP)
-    assert_kind_of(Array, parser.context.words[0].word_location)
-    assert_equal(parser.context.words[0].parameters, :variable => 'a', :operator => '<', :value => 'b', :scene_name => 'target scene', :label_name => 'target label')
+    assert_equal('target scene', jump_target.scene)
+    assert_equal('target label', jump_target.label.name)
+    assert_word_equal(
+        TyranoDsl::Vocabulary::CONDITIONAL_JUMP,
+        {:variable => 'a', :operator => '<', :value => 'b', :scene_name => 'target scene', :label_name => 'target label'},
+        parser
+    )
   end
 
   def test_ok_value
     parser = create_parser
     declare_variable(parser.context.world, 'a', 10)
     parser.conditional_jump('a', '<', 20, 'target scene', 'target label')
-    assert_equal(parser.context.world.jump_targets.length, 1)
+    assert_equal(1, parser.context.world.jump_targets.length)
     jump_target = parser.context.world.jump_targets.first
-    assert_equal(jump_target.scene, 'target scene')
-    assert_equal(jump_target.label.name, 'target label')
-    assert_equal(parser.context.words[0].word, TyranoDsl::Vocabulary::CONDITIONAL_JUMP)
-    assert_kind_of(Array, parser.context.words[0].word_location)
-    assert_equal(parser.context.words[0].parameters, :variable => 'a', :operator => '<', :value => 20, :scene_name => 'target scene', :label_name => 'target label')
+    assert_equal('target scene', jump_target.scene)
+    assert_equal('target label', jump_target.label.name)
+    assert_word_equal(
+        TyranoDsl::Vocabulary::CONDITIONAL_JUMP,
+        {:variable => 'a', :operator => '<', :value => 20, :scene_name => 'target scene', :label_name => 'target label'},
+        parser
+    )
   end
 
   def test_ok_without_scene
@@ -36,44 +40,43 @@ class ParsingWordsConditionalJumpTest < Minitest::Test
     declare_variable(parser.context.world, 'a', 10)
     declare_variable(parser.context.world, 'b', 20)
     parser.conditional_jump('a', '<', 'b', 'target scene')
-    assert_equal(parser.context.world.jump_targets.length, 1)
+    assert_equal(1, parser.context.world.jump_targets.length)
     jump_target = parser.context.world.jump_targets.first
-    assert_equal(jump_target.scene, 'target scene')
+    assert_equal('target scene', jump_target.scene)
     assert_nil(jump_target.label)
-    assert_equal(parser.context.words[0].word, TyranoDsl::Vocabulary::CONDITIONAL_JUMP)
-    assert_kind_of(Array, parser.context.words[0].word_location)
-    assert_equal(parser.context.words[0].parameters, :variable => 'a', :operator => '<', :value => 'b', :scene_name => 'target scene', :label_name => nil)
+    assert_word_equal(
+        TyranoDsl::Vocabulary::CONDITIONAL_JUMP,
+        {:variable => 'a', :operator => '<', :value => 'b', :scene_name => 'target scene', :label_name => nil},
+        parser
+    )
   end
 
   def test_unknown_variable
     parser = create_parser
-    begin
+    assert_tyrano_exception('Unknown variable [a], currently 0 defined: ') do
       parser.conditional_jump('a', '<', 10, 'target scene', 'target label')
-      fail
-    rescue TyranoDsl::TyranoException => e
-      assert_match(/Line \d+ unknown variable \[a\], currently defined: /, e.message)
+    end
+
+    parser = create_parser
+    declare_variable(parser.context.world, ' a ', 10)
+    assert_tyrano_exception('Unknown variable [a], currently 1 defined: [ a ]') do
+      parser.conditional_jump('a', '<', 10, 'target scene', 'target label')
     end
   end
 
   def test_unknown_operator
     parser = create_parser
-    declare_variable(parser.context.world, 'a', 10)
-    begin
-      parser.conditional_jump('a', '?', 10, 'target scene', 'target label')
-      fail
-    rescue TyranoDsl::TyranoException => e
-      assert_match(/Line \d+ unknown operator \[\?\]/, e.message)
+    declare_variable(parser.context.world, ' a ', 10)
+    assert_tyrano_exception('Unknown operator [ ? ]') do
+      parser.conditional_jump(' a ', ' ? ', 10, ' target scene ', ' target label ')
     end
   end
 
   def test_unknown_value_variable
     parser = create_parser
     declare_variable(parser.context.world, 'a', 10)
-    begin
+    assert_tyrano_exception('Unknown variable [b], currently 1 defined: [a]') do
       parser.conditional_jump('a', '?', 'b', 'target scene', 'target label')
-      fail
-    rescue TyranoDsl::TyranoException => e
-      assert_match(/Line \d+ unknown variable \[b\], currently defined: a/, e.message)
     end
   end
 

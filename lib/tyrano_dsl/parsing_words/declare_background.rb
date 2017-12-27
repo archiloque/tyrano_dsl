@@ -14,7 +14,7 @@ module TyranoDsl::ParsingWords::DeclareBackground
   def declare_background(background_name, image_path)
     image_full_path = file_full_path(image_path)
     if context.world.backgrounds.key? background_name
-      raise TyranoDsl::TyranoException, "Line #{word_location[0].lineno} duplicated background [#{background_name}]"
+      raise TyranoDsl::TyranoException, "Duplicated background [#{background_name}]"
     end
     context.world.backgrounds[background_name] =
         TyranoDsl::Elements::Background.new(

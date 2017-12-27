@@ -7,25 +7,23 @@ class ParsingWordsStartSceneTest < Minitest::Test
   def test_duplicate
     parser = create_parser
     parser.context.world.scenes['scene name'] = TyranoDsl::Elements::Scene.new('scene name', 1)
-    begin
+    assert_tyrano_exception('Duplicated scene [scene name]') do
       parser.start_scene 'scene name'
-      fail
-    rescue TyranoDsl::TyranoException => e
-      assert_match(/Line \d+ duplicated scene \[scene name\]/, e.message)
     end
   end
 
   def test_ok
     parser = create_parser
     parser.start_scene 'scene name'
-    assert_equal(parser.context.words.length, 1)
-    assert_equal(parser.context.words[0].word, TyranoDsl::Vocabulary::START_SCENE)
-    assert_kind_of(Array, parser.context.words[0].word_location)
-    assert_equal(parser.context.words[0].parameters, {:name => 'scene name'})
-    assert_equal(parser.context.world.scenes.length, 1)
-    assert_equal(parser.context.world.scenes.keys.first, 'scene name')
-    assert_equal(parser.context.world.scenes.values.first.name, 'scene name')
-    assert_equal(parser.context.world.scenes.values.first.target_name, 'scene1')
+    assert_equal(1, parser.context.world.scenes.length)
+    assert_equal('scene name', parser.context.world.scenes.keys.first)
+    assert_equal('scene name', parser.context.world.scenes.values.first.name)
+    assert_equal('scene1', parser.context.world.scenes.values.first.target_name)
+    assert_word_equal(
+        TyranoDsl::Vocabulary::START_SCENE,
+        {:name => 'scene name'},
+        parser
+    )
   end
 
 end

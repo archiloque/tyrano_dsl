@@ -6,11 +6,13 @@ class ParsingWordsDisplayTextTest < Minitest::Test
 
   def test_missing_character
     parser = create_parser
-    begin
+    assert_tyrano_exception('Unknown character [Unknwown], currently 0 defined: ') do
       parser.display_text('Unknwown', 'blah')
-      fail
-    rescue TyranoDsl::TyranoException => e
-      assert_match(/Line \d+ unknown character \[Unknwown\], currently defined: /, e.message)
+    end
+    parser = create_parser
+    declare_character(parser.context.world, 'Shinji', :default => '../../assets/characters/shinji/default_stance.jpg')
+    assert_tyrano_exception('Unknown character [Unknwown], currently 1 defined: [Shinji]') do
+      parser.display_text('Unknwown', 'blah')
     end
   end
 
@@ -18,17 +20,21 @@ class ParsingWordsDisplayTextTest < Minitest::Test
     parser = create_parser
     declare_character(parser.context.world, 'Shinji', :default => '../../assets/characters/shinji/default_stance.jpg')
     parser.display_text('Shinji', 'Blah')
-    assert_equal(parser.context.words[0].word, TyranoDsl::Vocabulary::DISPLAY_TEXT)
-    assert_kind_of(Array, parser.context.words[0].word_location)
-    assert_equal(parser.context.words[0].parameters, :character_name => "Shinji", :text => "Blah")
+    assert_word_equal(
+        TyranoDsl::Vocabulary::DISPLAY_TEXT,
+        {:character_name => 'Shinji', :text => 'Blah'},
+        parser
+    )
   end
 
   def test_ok_without_character
     parser = create_parser
     parser.display_text(nil, 'Blah')
-    assert_equal(parser.context.words[0].word, TyranoDsl::Vocabulary::DISPLAY_TEXT)
-    assert_kind_of(Array, parser.context.words[0].word_location)
-    assert_equal(parser.context.words[0].parameters, :character_name => nil, :text => "Blah")
+    assert_word_equal(
+        TyranoDsl::Vocabulary::DISPLAY_TEXT,
+        {:character_name => nil, :text => 'Blah'},
+        parser
+    )
   end
 
 end

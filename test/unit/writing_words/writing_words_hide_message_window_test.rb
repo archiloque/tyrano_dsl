@@ -10,11 +10,8 @@ class WritingWordsHideMessageWindowTest < Minitest::Test
     world = create_world
     writing_context = create_writing_context(world)
     hide_message_window = TyranoDsl::WritingWords::HideMessageWindow.new
-    begin
-      hide_message_window.run(writing_context, world, caller_locations, {})
-      fail
-    rescue TyranoDsl::TyranoException => e
-      assert_match(/Line \d+ this action should take place in a scene/, e.message)
+    assert_tyrano_exception('This action should take place in a scene') do
+      hide_message_window.run(writing_context, world, caller, {})
     end
   end
 
@@ -23,8 +20,8 @@ class WritingWordsHideMessageWindowTest < Minitest::Test
     writing_context = create_writing_context(world)
     writing_context.init_new_scene 'scene'
     hide_message_window = TyranoDsl::WritingWords::HideMessageWindow.new
-    hide_message_window.run(writing_context, world, caller_locations, {})
-    assert_equal(writing_context.current_scene_content, ['[tb_hide_message_window]'])
+    hide_message_window.run(writing_context, world, caller, {})
+    assert_equal(['[tb_hide_message_window]'], writing_context.current_scene_content)
   end
 
 end

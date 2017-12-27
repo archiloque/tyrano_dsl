@@ -6,11 +6,14 @@ class ParsingWordsHideCharacterTest < Minitest::Test
 
   def test_missing_character
     parser = create_parser
-    begin
+    assert_tyrano_exception('Unknown character [missing_character], currently 0 defined: ') do
       parser.hide_character 'missing_character'
-      fail
-    rescue TyranoDsl::TyranoException => e
-      assert_match(/Line \d+ unknown character \[missing_character\], currently defined: /, e.message)
+    end
+
+    parser = create_parser
+    declare_character(parser.context.world, 'Shinji', default: '../../assets/characters/shinji/default_stance.jpg')
+    assert_tyrano_exception('Unknown character [missing_character], currently 1 defined: [Shinji]') do
+      parser.hide_character 'missing_character'
     end
   end
 
@@ -18,10 +21,11 @@ class ParsingWordsHideCharacterTest < Minitest::Test
     parser = create_parser
     declare_character(parser.context.world, 'Shinji', default: '../../assets/characters/shinji/default_stance.jpg')
     parser.hide_character 'Shinji'
-    assert_equal(parser.context.words.length, 1)
-    assert_equal(parser.context.words[0].word, TyranoDsl::Vocabulary::HIDE_CHARACTER)
-    assert_kind_of(Array, parser.context.words[0].word_location)
-    assert_equal(parser.context.words[0].parameters, :name => 'Shinji')
+    assert_word_equal(
+        TyranoDsl::Vocabulary::HIDE_CHARACTER,
+        {:name => 'Shinji'},
+        parser
+    )
   end
 
 end

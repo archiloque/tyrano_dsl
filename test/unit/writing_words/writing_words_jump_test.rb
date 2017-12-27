@@ -11,11 +11,8 @@ class WritingWordsJumpTest < Minitest::Test
     declare_scene(world, 'scene name')
     declare_label(world, 'label name')
     jump = TyranoDsl::WritingWords::Jump.new
-    begin
-      jump.run(writing_context, world, caller_locations, scene_name: 'scene name', label_name: 'label name')
-      fail
-    rescue TyranoDsl::TyranoException => e
-      assert_match(/Line \d+ this action should take place in a scene/, e.message)
+    assert_tyrano_exception('This action should take place in a scene') do
+      jump.run(writing_context, world, caller, scene_name: 'scene name', label_name: 'label name')
     end
   end
 
@@ -25,11 +22,15 @@ class WritingWordsJumpTest < Minitest::Test
     writing_context.init_new_scene 'scene'
     declare_label(world, 'label name')
     jump = TyranoDsl::WritingWords::Jump.new
-    begin
-      jump.run(writing_context, world, caller_locations, scene_name: 'scene name', label_name: 'label name')
-      fail
-    rescue TyranoDsl::TyranoException => e
-      assert_match(/Line \d+ unknown scene \[scene name\], currently defined: /, e.message)
+    assert_tyrano_exception('Unknown scene [scene name], currently 0 defined: ') do
+      jump.run(writing_context, world, caller, scene_name: 'scene name', label_name: 'label name')
+    end
+
+    declare_scene(world, 'scene name')
+    declare_label(world, 'label name')
+
+    assert_tyrano_exception('Unknown scene [unknown scene], currently 1 defined: [scene name]') do
+      jump.run(writing_context, world, caller, scene_name: 'unknown scene', label_name: 'label name')
     end
   end
 
@@ -40,8 +41,8 @@ class WritingWordsJumpTest < Minitest::Test
     declare_scene(world, 'scene name')
     declare_label(world, 'label name')
     jump = TyranoDsl::WritingWords::Jump.new
-    jump.run(writing_context, world, caller_locations, scene_name: 'scene name', label_name: 'label name')
-    assert_equal(writing_context.current_scene_content, ['[jump storage="scene1.ks" target="label_0"]'])
+    jump.run(writing_context, world, caller, scene_name: 'scene name', label_name: 'label name')
+    assert_equal(['[jump storage="scene1.ks" target="label_0"]'], writing_context.current_scene_content)
   end
 
 end

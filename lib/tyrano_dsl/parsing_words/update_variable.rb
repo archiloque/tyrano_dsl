@@ -25,7 +25,7 @@ module TyranoDsl::ParsingWords::UpdateVariable
       check_variable_exist(value)
     end
     unless VALID_OPERATORS.include? operator
-      raise TyranoDsl::TyranoException, "Line #{word_location[0].lineno} unknown operator [#{operator}]"
+      raise TyranoDsl::TyranoException, "Unknown operator [#{operator}]"
     end
     add_parsed_word(
         TyranoDsl::Vocabulary::UPDATE_VARIABLE,

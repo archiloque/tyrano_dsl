@@ -15,7 +15,7 @@ module TyranoDsl
       def fetch_scene(world, word_location, scene_name)
         target_scene = world.scenes[scene_name]
         unless target_scene
-          raise TyranoDsl::TyranoException, "Line #{word_location[0].lineno} unknown scene [#{scene_name}], currently defined: #{world.scenes.keys.sort.join(', ')}"
+          raise_unknown('scene', scene_name, world.scenes.keys, word_location)
         end
         target_scene
       end
@@ -25,6 +25,17 @@ module TyranoDsl
       # @return [String]
       def h(text)
         CGI::escapeHTML(text)
+      end
+
+      # @param [String] type
+      # @param [String] unknown_name
+      # @param [Array<String>] current_elements
+      # @return [void]
+      # @raise [TyranoDsl::TyranoException]
+      def raise_unknown(type, unknown_name, current_elements, word_location)
+        exception = TyranoDsl::TyranoException.new("Unknown #{type} [#{unknown_name}], currently #{current_elements.length} defined: #{current_elements.sort.collect {|e| "[#{e}]"}.join(', ')}")
+        exception.set_backtrace word_location
+        raise exception
       end
 
     end

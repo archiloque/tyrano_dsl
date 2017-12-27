@@ -7,25 +7,29 @@ class ParsingWordsJumpTest < Minitest::Test
   def test_ok_with_scene
     parser = create_parser
     parser.jump('target scene', 'target label')
-    assert_equal(parser.context.world.jump_targets.length, 1)
+    assert_equal(1, parser.context.world.jump_targets.length)
     jump_target = parser.context.world.jump_targets.first
-    assert_equal(jump_target.scene, 'target scene')
-    assert_equal(jump_target.label.name, 'target label')
-    assert_equal(parser.context.words[0].word, TyranoDsl::Vocabulary::JUMP)
-    assert_kind_of(Array, parser.context.words[0].word_location)
-    assert_equal(parser.context.words[0].parameters, scene_name: 'target scene', :label_name => 'target label')
+    assert_equal('target scene', jump_target.scene)
+    assert_equal('target label', jump_target.label.name)
+    assert_word_equal(
+        TyranoDsl::Vocabulary::JUMP,
+        {scene_name: 'target scene', :label_name => 'target label'},
+        parser
+    )
   end
 
   def test_ok_without_scene
     parser = create_parser
     parser.jump('target scene')
-    assert_equal(parser.context.world.jump_targets.length, 1)
+    assert_equal(1, parser.context.world.jump_targets.length)
     jump_target = parser.context.world.jump_targets.first
-    assert_equal(jump_target.scene, 'target scene')
+    assert_equal('target scene', jump_target.scene)
     assert_nil jump_target.label
-    assert_equal(parser.context.words[0].word, TyranoDsl::Vocabulary::JUMP)
-    assert_kind_of(Array, parser.context.words[0].word_location)
-    assert_equal(parser.context.words[0].parameters, scene_name: 'target scene', :label_name => nil)
+    assert_word_equal(
+        TyranoDsl::Vocabulary::JUMP,
+        {scene_name: 'target scene', :label_name => nil},
+        parser
+    )
   end
 
 end

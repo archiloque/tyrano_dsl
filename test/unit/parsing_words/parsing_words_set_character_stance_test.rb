@@ -6,22 +6,16 @@ class ParsingWordsSetCharacterStanceTest < Minitest::Test
 
   def test_missing_character
     parser = create_parser
-    begin
+    assert_tyrano_exception('Unknown character [missing_character], currently 0 defined: ') do
       parser.set_character_stance 'missing_character', 'dab'
-      fail
-    rescue TyranoDsl::TyranoException => e
-      assert_match(/Line \d+ unknown character \[missing_character\], currently defined: /, e.message)
     end
   end
 
   def test_missing_stance
     parser = create_parser
     declare_character(parser.context.world, 'Shinji', :default => '../../assets/characters/shinji/default_stance.jpg')
-    begin
+    assert_tyrano_exception('Unknown stance [missing stance], currently 1 defined: [default]') do
       parser.set_character_stance 'Shinji', 'missing stance'
-      fail
-    rescue TyranoDsl::TyranoException => e
-      assert_match(/Line \d+ unknown stance \[missing stance\], currently defined: default/, e.message)
     end
   end
 
@@ -29,10 +23,11 @@ class ParsingWordsSetCharacterStanceTest < Minitest::Test
     parser = create_parser
     declare_character(parser.context.world, 'Shinji', default: '../../assets/characters/shinji/default_stance.jpg', :angry => '../../assets/characters/shinji/angry.png')
     parser.set_character_stance 'Shinji', 'angry'
-    assert_equal(parser.context.words.length, 1)
-    assert_equal(parser.context.words[0].word, TyranoDsl::Vocabulary::SET_CHARACTER_STANCE)
-    assert_kind_of(Array, parser.context.words[0].word_location)
-    assert_equal(parser.context.words[0].parameters, :name => 'Shinji', :stance => :angry)
+    assert_word_equal(
+        TyranoDsl::Vocabulary::SET_CHARACTER_STANCE,
+        {:name => 'Shinji', :stance => :angry},
+        parser
+    )
   end
 
 end

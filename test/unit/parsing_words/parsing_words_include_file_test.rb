@@ -6,11 +6,8 @@ class ParsingWordsIncludeFileTest < Minitest::Test
 
   def test_missing_file
     parser = create_parser
-    begin
+    assert_tyrano_exception("File not found [#{full_path('missing_file.rb')}]") do
       parser.include_file('missing_file.rb')
-      fail
-    rescue TyranoDsl::TyranoException => e
-      assert_equal(e.message, "File not found [#{full_path('missing_file.rb')}]")
     end
   end
 

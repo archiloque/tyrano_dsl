@@ -9,11 +9,8 @@ class ElementsWriterTitleScreenWriterTest < Minitest::Test
   def test_no_background
     world = TyranoDsl::Elements::World.new
     title_screen_writer = TyranoDsl::ElementsWriters::TitleScreenWriter.new
-    begin
+    assert_tyrano_exception('No background defined for the title screen') do
       title_screen_writer.write(world)
-      raise
-    rescue TyranoDsl::TyranoException => e
-      assert_equal(e.message, 'No background defined for the title screen')
     end
   end
 
@@ -21,13 +18,9 @@ class ElementsWriterTitleScreenWriterTest < Minitest::Test
     world = TyranoDsl::Elements::World.new
     title_screen_writer = TyranoDsl::ElementsWriters::TitleScreenWriter.new
     world.title_screen.background = 'background.png'
-    begin
+    assert_tyrano_exception('No scene defined') do
       title_screen_writer.write(world)
-      raise
-    rescue TyranoDsl::TyranoException => e
-      assert_equal(e.message, 'No scene defined')
     end
-
   end
 
   def test_ok
@@ -38,9 +31,9 @@ class ElementsWriterTitleScreenWriterTest < Minitest::Test
     declare_scene(world, 'scene 1')
     declare_background(world, 'background 1', 'background.png')
     create_files = title_screen_writer.write(world)
-    assert_equal(create_files.length, 2)
-    assert_equal(create_files[0].path, 'data/scenario/title_screen.ks')
-    assert_equal(create_files[0].content, '[_tb_system_call storage=system/_title_screen.ks]
+    assert_equal(2, create_files.length)
+    assert_equal('data/scenario/title_screen.ks', create_files[0].path)
+    assert_equal('[_tb_system_call storage=system/_title_screen.ks]
 
 [hidemenubutton]
 
@@ -67,10 +60,10 @@ class ElementsWriterTitleScreenWriterTest < Minitest::Test
 
 [jump  target="*title"  storage=""  ]
 [s  ]
-')
-    assert_equal(create_files[1].path, 'data/scenario/system/_title_screen.ks')
-    assert_equal(create_files[1].content, '[preload storage="./data/bgimage/1.png"]
-[return]')
+', create_files[0].content)
+    assert_equal('data/scenario/system/_title_screen.ks', create_files[1].path)
+    assert_equal('[preload storage="./data/bgimage/1.png"]
+[return]', create_files[1].content)
   end
 
 end

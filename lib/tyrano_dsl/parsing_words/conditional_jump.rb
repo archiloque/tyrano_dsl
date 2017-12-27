@@ -26,7 +26,7 @@ module TyranoDsl::ParsingWords::ConditionalJump
       check_variable_exist(value)
     end
     unless VALID_OPERATORS.include? operator
-      raise TyranoDsl::TyranoException, "Line #{word_location[0].lineno} unknown operator [#{operator}]"
+      raise TyranoDsl::TyranoException, "Unknown operator [#{operator}]"
     end
     add_parsed_word(
         TyranoDsl::Vocabulary::CONDITIONAL_JUMP,

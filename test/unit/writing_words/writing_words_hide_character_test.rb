@@ -11,11 +11,8 @@ class WritingWordsHideCharacterTest < Minitest::Test
     declare_scene(world, 'scene name')
     declare_character(world, 'character name', {})
     hide_character = TyranoDsl::WritingWords::HideCharacter.new
-    begin
-      hide_character.run(writing_context, world, caller_locations, name: 'character name')
-      fail
-    rescue TyranoDsl::TyranoException => e
-      assert_match(/Line \d+ this action should take place in a scene/, e.message)
+    assert_tyrano_exception('This action should take place in a scene') do
+      hide_character.run(writing_context, world, caller, name: 'character name')
     end
   end
 
@@ -25,8 +22,8 @@ class WritingWordsHideCharacterTest < Minitest::Test
     writing_context.init_new_scene 'scene'
     declare_character(world, 'character name', {})
     hide_character = TyranoDsl::WritingWords::HideCharacter.new
-    hide_character.run(writing_context, world, caller_locations, name: 'character name')
-    assert_equal(writing_context.current_scene_content, ['[chara_hide name="character name" time="1000" wait="true"]'])
+    hide_character.run(writing_context, world, caller, name: 'character name')
+    assert_equal(['[chara_hide name="character name" time="1000" wait="true"]'], writing_context.current_scene_content)
   end
 
 end

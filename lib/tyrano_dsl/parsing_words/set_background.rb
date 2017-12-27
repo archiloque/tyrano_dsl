@@ -10,7 +10,7 @@ module TyranoDsl::ParsingWords::SetBackground
   # @raise [TyranoDsl::TyranoException]
   def set_background(background_name)
     unless context.world.backgrounds.key? background_name
-      raise TyranoDsl::TyranoException, "Line #{word_location[0].lineno} unknown background [#{background_name}], currently defined: #{context.world.backgrounds.keys.sort.join(', ')}"
+      raise_unknown('background', background_name, context.world.backgrounds.keys)
     end
     add_parsed_word(
         TyranoDsl::Vocabulary::SET_BACKGROUND,

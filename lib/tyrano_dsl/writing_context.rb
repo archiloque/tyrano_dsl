@@ -114,7 +114,9 @@ class TyranoDsl::WritingContext
   # @raise [TyranoDsl::TyranoException]
   def check_in_scene(word_location)
     unless @current_scene_content
-      raise TyranoDsl::TyranoException, "Line #{word_location[0].lineno} this action should take place in a scene"
+      exception = TyranoDsl::TyranoException.new("This action should take place in a scene")
+      exception.set_backtrace word_location
+      raise exception
     end
   end
 
