@@ -16,7 +16,7 @@ module TyranoDsl::ParsingWords::UpdateVariable
 
   # @param [String] variable
   # @param [String] operator
-  # @param [String\Symbol|Float] value
+  # @param [String|Symbol|Float] value
   # @return [void]
   # @raise [TyranoDsl::TyranoException]
   def update_variable(variable, operator, value)

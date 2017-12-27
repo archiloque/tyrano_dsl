@@ -10,7 +10,7 @@ class TyranoDsl::Parser
 
   # @return [TyranoDsl::ParsingContext]
   attr_reader :context
-  # @return [Array<Thread::Backtrace::Location>]
+  # @return [Array<String>]
   attr_accessor :word_location
   # @return [Array<String>]
   attr_reader :included_files_hierarchy

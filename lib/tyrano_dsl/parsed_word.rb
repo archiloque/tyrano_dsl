@@ -7,11 +7,11 @@ class TyranoDsl::ParsedWord
   attr_reader :parameters
   # @return [String]
   attr_reader :word
-  # @return [Array<Thread::Backtrace::Location>]
+  # @return [Array<String>]
   attr_reader :word_location
 
   # @param [String] word
-  # @param [Array<Thread::Backtrace::Location>] word_location
+  # @param [Array<String>] word_location
   # @param [Hash] parameters
   def initialize(word, word_location, parameters)
     @word = word

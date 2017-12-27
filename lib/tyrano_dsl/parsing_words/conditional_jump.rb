@@ -15,7 +15,7 @@ module TyranoDsl::ParsingWords::ConditionalJump
 
   # @param [String] variable
   # @param [String] operator
-  # @param [String\Symbol|Float] value
+  # @param [String, Symbol, Float] value
   # @param [String] scene_name
   # @param [String, nil] label_name
   # @return [void]

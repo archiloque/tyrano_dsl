@@ -10,11 +10,11 @@ The goal is to provide a simple syntax you can use directly or you can build upo
 
 You create your TyranoBuilder project with the specific options and the library is used to modify the content without touching the other things.
 
-The project is a WIP : I add things as I need them, if you have any issue or need something please ask me.
+The project is a WIP: I add things as I need them, if you have any issue or need something please ask me.
 
 If you use it for a published VN, please tell me: it would make me happy and I'll add a link to it in this page.
 
-Example :
+Example:
 
 ```ruby
 declare_character 'Shinji', 
@@ -179,7 +179,7 @@ declare_label 'my label'
 
 `conditional_jump(variable, operator, value, scene, label)`
 - `variable` is a `String` indicating the name of the variable to be tested
-- `operator` is a `String` indicating the comparison operator to use : `<`, `==` (equal), `>`, `!=` (different)
+- `operator` is a `String` indicating the comparison operator to use: `<`, `==` (equal), `>`, `!=` (different)
 - `value` is a `String` or a `Float` indicating the thing to compare the variable to, it can be a numerical value or the name of another variable
 - `scene` is a `String` indicating the name of the scene to jump to
 - `label` (optional) is a `String` indicating the name of the label in the scene to jump to
@@ -268,7 +268,7 @@ start_scene 'First scene'
 
 ## How the thing works
 
-The tool works like a two passes compiler :
+The tool works like a two passes compiler:
 - the first pass validates the syntax, the entry point is in `parser.rb`
 - the second generate the content, the entry point is in `writer.rb`
 - the content is applied to disk
@@ -280,10 +280,11 @@ The tool works like a two passes compiler :
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/archiloque/tyrano_dsl.
+
 This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 
 ## License
 
-The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+The code is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
 

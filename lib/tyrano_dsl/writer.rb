@@ -12,8 +12,6 @@ require_relative 'writing_context'
 # Write the content that have been parsed
 class TyranoDsl::Writer
 
-  include TyranoDsl::Vocabulary
-
   def initialize
     @logger = Logger.new(STDOUT)
     @words = {}

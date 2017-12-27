@@ -5,7 +5,7 @@ require_relative 'tyrano_dsl'
 # Context for parsing, used by words to store content
 class TyranoDsl::ParsingContext
 
-  # @return [Array<TyranoDsl::ParsingContext::ParsedWord>]
+  # @return [Array<TyranoDsl::ParsedWord>]
   attr_reader :words
   # @return [TyranoDsl::Elements::World]
   attr_reader :world

@@ -14,7 +14,7 @@ class TyranoDsl::WritingContext
   attr_reader :current_scene_content
   # @return [Hash{String => Object}]
   attr_reader :file_actions
-  # @return [TyranoDsl::Element::World]
+  # @return [TyranoDsl::Elements::World]
   attr_reader :world
 
   # @param [TyranoDsl::Elements::World] world
@@ -31,7 +31,7 @@ class TyranoDsl::WritingContext
 
   # Append some content to the current scene
   #
-  # @param [Array<Thread::Backtrace::Location>] word_location
+  # @param [Array<String>] word_location
   # @param [Array<String>] content
   # @return [void]
   # @raise [TyranoDsl::TyranoException]
@@ -42,7 +42,7 @@ class TyranoDsl::WritingContext
 
   # Add an asset to be loaded in the current scene
   #
-  # @param [Array<Thread::Backtrace::Location>] word_location
+  # @param [Array<String>] word_location
   # @param [String] asset_content
   # @return [void]
   # @raise [TyranoDsl::TyranoException]
@@ -53,7 +53,7 @@ class TyranoDsl::WritingContext
 
   # Add an label in the current scene
   #
-  # @param [Array<Thread::Backtrace::Location>] word_location
+  # @param [Array<String>] word_location
   # @param [String] label_name
   # @return [void]
   # @raise [TyranoDsl::TyranoException]
@@ -109,7 +109,7 @@ class TyranoDsl::WritingContext
     @logger.info(self.class) {yield}
   end
 
-  # @param [Array<Thread::Backtrace::Location>] word_location
+  # @param [Array<String>] word_location
   # @return [void]
   # @raise [TyranoDsl::TyranoException]
   def check_in_scene(word_location)

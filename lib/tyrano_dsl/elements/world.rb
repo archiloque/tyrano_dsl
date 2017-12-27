@@ -46,7 +46,7 @@ class TyranoDsl::Elements::World
     end
   end
 
-  # @param [String|Nil] label_name
+  # @param [String, nil] label_name
   # @return [TyranoDsl::Elements::Label]
   def label_value(label_name)
     if @labels.key? label_name

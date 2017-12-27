@@ -5,11 +5,11 @@ class TyranoDsl::Elements::JumpTarget
 
   # @return [String]
   attr_reader :scene
-  # @return [TyranoDsl::Elements::Label|nil]
+  # @return [TyranoDsl::Elements::Label,nil]
   attr_reader :label
 
   # @param [String] scene
-  # @param [TyranoDsl::Elements::Label|nil] label
+  # @param [TyranoDsl::Elements::Label,nil] label
   def initialize(scene, label)
     @scene = scene
     @label = label

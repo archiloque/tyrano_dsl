@@ -5,7 +5,7 @@ module TyranoDsl::ParsingWords::DisplayText
 
   include TyranoDsl::ParsingWords::ParsingWordsModule
 
-  # @param [String|nil] character_name
+  # @param [String, nil] character_name
   # @param [String] text
   # @return [void]
   # @raise [TyranoDsl::TyranoException]

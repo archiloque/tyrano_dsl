@@ -8,7 +8,7 @@ module TyranoDsl
 
       # Get a scene from its name
       # @param [TyranoDsl::Elements::World] world
-      # @param [Array<Thread::Backtrace::Location>] word_location
+      # @param [Array<String>] word_location
       # @param [String] scene_name
       # @return [TyranoDsl::Elements::Scene]
       # @raise [TyranoDsl::TyranoException]
