@@ -19,7 +19,6 @@ module TyranoDsl
         absolute_path
       end
 
-      # @param [TyranoDsl::ParsingContext] parsing_context
       # @param [String] variable_name
       # @return [void]
       # @raise [TyranoDsl::TyranoException]
