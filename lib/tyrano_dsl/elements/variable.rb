@@ -1,6 +1,6 @@
 require_relative 'elements_module'
 
-# A label
+# A variable
 class TyranoDsl::Elements::Variable
 
   # @return [String]

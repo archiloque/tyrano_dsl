@@ -25,6 +25,7 @@ class TyranoDsl::FileActions::JsonPatch
   end
 
   # @param [String] tyrano_project_path
+  # @return [void]
   def run(tyrano_project_path)
     full_path = File.join(tyrano_project_path, file_path)
     log {"Patching file [#{full_path}] at #{patching_path}"}

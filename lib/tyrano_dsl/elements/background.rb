@@ -1,6 +1,6 @@
 require_relative 'elements_module'
 
-# A declared background
+# A background
 class TyranoDsl::Elements::Background
 
   # @return [String]

@@ -1,6 +1,6 @@
 require_relative 'elements_module'
 
-# A declared jump target
+# A jump target
 class TyranoDsl::Elements::JumpTarget
 
   # @return [String]

@@ -19,6 +19,7 @@ class TyranoDsl::FileActions::CreateFile
   end
 
   # @param [String] tyrano_project_path
+  # @return [void]
   def run(tyrano_project_path)
     full_path = File.join(tyrano_project_path, path)
     log {"Creating file [#{full_path}]"}

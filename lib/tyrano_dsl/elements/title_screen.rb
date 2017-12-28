@@ -1,6 +1,6 @@
 require_relative 'elements_module'
 
-# the title screen
+# The title screen
 class TyranoDsl::Elements::TitleScreen
 
   # @return [String]

@@ -1,8 +1,7 @@
 require_relative 'elements_module'
 require_relative 'stance'
 
-
-# A declared character
+# A character
 class TyranoDsl::Elements::Character
 
   CHARACTER_DIRECTORY = File.join('data', 'fgimage', 'chara')

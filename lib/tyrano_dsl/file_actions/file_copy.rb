@@ -22,6 +22,7 @@ class TyranoDsl::FileActions::FileCopy
   end
 
   # @param [String] tyrano_project_path
+  # @return [void]
   def run(tyrano_project_path)
     full_path = File.join(tyrano_project_path, to_path)
     log {"Copying file [#{from_path}] to [#{full_path}]"}

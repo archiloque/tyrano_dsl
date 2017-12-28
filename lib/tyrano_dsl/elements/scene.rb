@@ -1,6 +1,6 @@
 require_relative 'elements_module'
 
-# A declared scene
+# A  scene
 class TyranoDsl::Elements::Scene
 
   # @return [String]
