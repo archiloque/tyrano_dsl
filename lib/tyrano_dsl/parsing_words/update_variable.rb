@@ -1,9 +1,4 @@
-require_relative '../vocabulary'
-require_relative 'parsing_words_module'
-
 module TyranoDsl::ParsingWords::UpdateVariable
-
-  include TyranoDsl::ParsingWords::ParsingWordsModule
 
   VALID_OPERATORS = [
       '=',

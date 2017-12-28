@@ -1,10 +1,6 @@
 require_relative '../elements/variable'
-require_relative '../vocabulary'
-require_relative 'parsing_words_module'
 
 module TyranoDsl::ParsingWords::DeclareVariable
-
-  include TyranoDsl::ParsingWords::ParsingWordsModule
 
   # @param [String\Symbol] variable_name
   # @param [Float] initial_value

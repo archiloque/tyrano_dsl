@@ -1,9 +1,4 @@
-require_relative '../vocabulary'
-require_relative 'parsing_words_module'
-
 module TyranoDsl::ParsingWords::ShowMessageWindow
-
-  include TyranoDsl::ParsingWords::ParsingWordsModule
 
   # @return [void]
   # @raise [TyranoDsl::TyranoException]

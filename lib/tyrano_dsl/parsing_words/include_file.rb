@@ -1,10 +1,4 @@
-require_relative '../vocabulary'
-require_relative 'parsing_words_module'
-
-
 module TyranoDsl::ParsingWords::IncludeFile
-
-  include TyranoDsl::ParsingWords::ParsingWordsModule
 
   # @param [String] file_path
   # @return [void]

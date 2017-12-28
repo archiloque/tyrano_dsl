@@ -1,10 +1,6 @@
 require_relative '../elements/background'
-require_relative '../vocabulary'
-require_relative 'parsing_words_module'
 
 module TyranoDsl::ParsingWords::DeclareLabel
-
-  include TyranoDsl::ParsingWords::ParsingWordsModule
 
   # @param [String] label_name
   # @return [void]

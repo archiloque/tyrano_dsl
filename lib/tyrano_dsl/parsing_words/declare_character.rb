@@ -1,10 +1,6 @@
 require_relative '../elements/character'
-require_relative '../vocabulary'
-require_relative 'parsing_words_module'
 
 module TyranoDsl::ParsingWords::DeclareCharacter
-
-  include TyranoDsl::ParsingWords::ParsingWordsModule
 
   # @param [String] character_name
   # @param [Hash{String => String}] stances

@@ -1,8 +1,9 @@
 require 'logger'
 
 require_relative 'parsed_word'
-require_relative 'tyrano_exception'
+require_relative 'parsing_words/parsing_words_module'
 require_relative 'tyrano_dsl'
+require_relative 'tyrano_exception'
 require_relative 'vocabulary'
 
 # Parse the DSL
@@ -14,6 +15,8 @@ class TyranoDsl::Parser
   attr_accessor :word_location
   # @return [Array<String>]
   attr_reader :included_files_hierarchy
+
+  include TyranoDsl::ParsingWords::ParsingWordsModule
 
   TyranoDsl::Vocabulary.get_words_class('parsing_words') do |word, word_module|
     include word_module

@@ -1,11 +1,6 @@
 require_relative '../elements/background'
-require_relative '../vocabulary'
-require_relative 'parsing_words_module'
-
 
 module TyranoDsl::ParsingWords::DeclareBackground
-
-  include TyranoDsl::ParsingWords::ParsingWordsModule
 
   # @param [String] background_name
   # @param [String] image_path

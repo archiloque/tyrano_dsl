@@ -1,10 +1,6 @@
-require_relative 'parsing_words_module'
-require_relative '../vocabulary'
 require_relative '../elements/scene'
 
 module TyranoDsl::ParsingWords::StartScene
-
-  include TyranoDsl::ParsingWords::ParsingWordsModule
 
   # @param [String] scene_name
   # @return [void]

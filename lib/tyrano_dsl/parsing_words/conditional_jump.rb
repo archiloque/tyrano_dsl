@@ -1,10 +1,6 @@
 require_relative '../elements/jump_target'
-require_relative '../vocabulary'
-require_relative 'parsing_words_module'
 
 module TyranoDsl::ParsingWords::ConditionalJump
-
-  include TyranoDsl::ParsingWords::ParsingWordsModule
 
   VALID_OPERATORS = [
       '<',

@@ -1,9 +1,4 @@
-require_relative '../vocabulary'
-require_relative 'parsing_words_module'
-
 module TyranoDsl::ParsingWords::SetTitleScreenBackground
-
-  include TyranoDsl::ParsingWords::ParsingWordsModule
 
   # @param [String] background_name
   # @return [void]

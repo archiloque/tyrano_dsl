@@ -1,10 +1,5 @@
 require_relative '../elements/jump_target'
-require_relative '../vocabulary'
-require_relative 'parsing_words_module'
-
 module TyranoDsl::ParsingWords::Jump
-
-  include TyranoDsl::ParsingWords::ParsingWordsModule
 
   # @param [String] scene_name
   # @param [String, nil] label_name

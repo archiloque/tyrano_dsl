@@ -1,9 +1,4 @@
-require_relative '../vocabulary'
-require_relative 'parsing_words_module'
-
 module TyranoDsl::ParsingWords::DisplayText
-
-  include TyranoDsl::ParsingWords::ParsingWordsModule
 
   # @param [String, nil] character_name
   # @param [String] text
