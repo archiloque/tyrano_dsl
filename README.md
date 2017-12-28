@@ -68,8 +68,33 @@ If there is an error it should be displayed and the message should help you to f
 
 ## Current vocabulary
 
+* [Background](#background)
+  * [`declare_background` Declare a background](#declare_background)
+  * [`set_background` Set the background](#set_background)
+* [Characters](#characters)
+  * [`declare_character` Declare a character](#declare_character)
+  * [`hide_character` Hide a character](#hide_character)
+  * [`set_character_stance` Change the stance of a character](#set_character_stance)
+  * [`show_character` Show a character](#show_character)
+* [Content](#content)
+  * [`ask_question` Ask a question](#ask_question)
+* [Jump &amp; Labels](#jump-labels)
+  * [`declare_label` Declare a label](#declare_label)
+  * [`conditional_jump` Jump to somewhere if a condition is met](#conditional_jump)
+  * [`jump` Jump to somewhere](#jump)
+* [Variables](#variables)
+  * [`declare_variable` Declare a variable](#declare_variable)
+  * [`update_variable` Update a variable](#update_variable)
+* [Misc](#misc)
+  * [`hide_message_window` Hide the message window](#hide_message_window)
+  * [`include_file` Include a file](#include_file)
+  * [`show_message_window` Show the message window](#show_message_window)
+  * [`start_scene` Start a new scene](#start_scene)
+
+<a id="background"></a>
 ### Background
 
+<a id="declare_background"></a>
 #### `declare_background` Declare a background
 
 `declare_background(name, images_path)` 
@@ -80,6 +105,7 @@ If there is an error it should be displayed and the message should help you to f
 declare_background 'School', 'background/school.jpg'
 ```
 
+<a id="set_background"></a>
 #### `set_background` Set the background
 
 `show_background(name)` 
@@ -89,8 +115,10 @@ declare_background 'School', 'background/school.jpg'
 set_background 'School'
 ```
 
+<a id="characters"></a>
 ### Characters
 
+<a id="declare_character"></a>
 #### `declare_character` Declare a character
 
 `declare_character(name, stances)`
@@ -103,6 +131,7 @@ declare_character 'Shinji',
     'angry' => 'angry.jpg'
 ```
 
+<a id="hide_character"></a>
 #### `hide_character` Hide a character
 
 `hide_character(name)`
@@ -112,7 +141,8 @@ declare_character 'Shinji',
 hide_character 'Shinji'
 ```
 
-#### `set_character_stance` change the stance of a character
+<a id="set_character_stance"></a>
+#### `set_character_stance` Change the stance of a character
 
 `set_character_stance(name, stance)`
 - `name` is a `String` representing the character's name
@@ -122,7 +152,8 @@ hide_character 'Shinji'
 set_character_stance 'Shinji', 'angry'
 ```
 
-#### `show_character` show a character
+<a id="show_character"></a>
+#### `show_character` Show a character
 
 `show_character(name, stance, left, top)`
 - `name` is a `String` representing the character's name
@@ -134,8 +165,10 @@ set_character_stance 'Shinji', 'angry'
 show_character 'Shinji', 'default', 434, 128
 ```
 
+<a id="content"></a>
 ### Content
 
+<a id="ask_question"></a>
 #### `ask_question` Ask a question
 
 `ask_question(possible_answers)`
@@ -165,8 +198,10 @@ ask_question [
              ]
 ```
 
+<a id="jump-labels"></a>
 ### Jump & Labels
 
+<a id="declare_label"></a>
 #### `declare_label` Declare a label
 
 `declare_label(name)` 
@@ -176,6 +211,7 @@ ask_question [
 declare_label 'my label'
 ```
 
+<a id="conditional_jump"></a>
 #### `conditional_jump` Jump to somewhere if a condition is met
 
 `conditional_jump(variable, operator, value, scene, label)`
@@ -190,6 +226,7 @@ conditional_jump 'variable_1', '<', 10, 'Scene two'
 conditional_jump 'variable_1', '=', 'variable_2', 'Scene two', 'Label three'
 ```
 
+<a id="jump"></a>
 #### `jump` Jump to somewhere
 
 `jump(scene, label)`
@@ -201,8 +238,10 @@ jump 'Scene two'
 jump 'Scene two', 'Label three'
 ```
 
+<a id="variables"></a>
 ### Variables
 
+<a id="declare_variable"></a>
 #### `declare_variable` Declare a variable
 
 `declare_variable(variable_name, initial_value)` 
@@ -213,6 +252,7 @@ jump 'Scene two', 'Label three'
 declare_variable 'happiness', 25
 ```
 
+<a id="update_variable"></a>
 #### `update_variable` Update a variable
 
 `update_variable(variable_name, operation, value)` 
@@ -231,8 +271,10 @@ update_variable 'happiness', '=', 25
 update_variable 'happiness', '+', 'calmness'
 ```
 
+<a id="misc"></a>
 ### Misc
 
+<a id="hide_message_window"></a>
 #### `hide_message_window` Hide the message window
 
 `hide_message_window`
@@ -241,6 +283,7 @@ update_variable 'happiness', '+', 'calmness'
 hide_message_window
 ```
 
+<a id="include_file"></a>
 #### `include_file` Include a file
 
 `include_file(file_name)`
@@ -250,6 +293,7 @@ hide_message_window
 include_file('other_scene.rb')
 ```
 
+<a id="show_message_window"></a>
 #### `show_message_window` Show the message window
 
 `show_message_window`
@@ -258,6 +302,7 @@ include_file('other_scene.rb')
 show_message_window
 ```
 
+<a id="start_scene"></a>
 #### `start_scene` Start a new scene
 
 `start_scene(name)` 
