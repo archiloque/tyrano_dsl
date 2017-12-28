@@ -321,11 +321,11 @@ The tool works like a two passes compiler:
 
 ## Links
 
-- http://tyranobuilder.com/tyranoscript-tags-reference/ : the TyranoScript tags references
+- [the TyranoScript tags references](http://tyranobuilder.com/tyranoscript-tags-reference/)
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/archiloque/tyrano_dsl.
+Bug reports and pull requests are welcome on [GitHub](https://github.com/archiloque/tyrano_dsl).
 
 This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
