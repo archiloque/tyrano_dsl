@@ -11,7 +11,7 @@ module TyranoDsl
       # @param [Array<String>] word_location
       # @param [String] scene_name
       # @return [TyranoDsl::Elements::Scene]
-      # @raise [TyranoDsl::TyranoException]
+      # @raise [TyranoDsl::TyranoException] if the scene does not exist
       def fetch_scene(world, word_location, scene_name)
         target_scene = world.scenes[scene_name]
         unless target_scene
