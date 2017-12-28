@@ -1,6 +1,7 @@
 # TyranoDsl
 
 [![Build Status](https://travis-ci.org/archiloque/tyrano_dsl.svg?branch=master)](https://travis-ci.org/archiloque/tyrano_dsl)
+[![Gem Version](https://badge.fury.io/rb/tyrano_dsl.svg)](https://badge.fury.io/rb/tyrano_dsl)
 
 A DSL to write visual novels games in Ruby using [TyranoBuilder](http://tyranobuilder.com).
 
