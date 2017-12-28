@@ -4,7 +4,7 @@
 
 A DSL to write visual novels games in Ruby using [TyranoBuilder](http://tyranobuilder.com).
 
-TyranoBuilder is a good tool has many features but I don't like to click-heavy interface to write.
+TyranoBuilder is a good tool has many features like native web export but I don't like to click-heavy interface to write.
 
 The goal is to provide a simple syntax you can use directly or you can build upon.
 
