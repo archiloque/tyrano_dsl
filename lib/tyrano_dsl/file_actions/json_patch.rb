@@ -32,11 +32,15 @@ class TyranoDsl::FileActions::JsonPatch
       raise TyranoDsl::TyranoException, "Missing file [#{full_path}]"
     end
     content = JSON.parse(IO.read(full_path))
+
+    # Going down on the tree …
     current_subtree = content
     0.upto(patching_path.length - 2) do |path_segment_index|
       current_subtree = current_subtree[patching_path[path_segment_index]]
     end
+    # … and patch the leaf
     current_subtree[patching_path.last] = patched_content
+
     File.write(full_path, JSON.pretty_generate(content))
   end
 
