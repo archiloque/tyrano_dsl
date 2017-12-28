@@ -41,7 +41,7 @@ class TyranoDsl::FileActions::JsonPatch
   end
 
   def to_s
-    "Patch JSON [#{file_path}] at #{patching_path}"
+    "Patch [#{file_path}] at #{patching_path}"
   end
 
 end
