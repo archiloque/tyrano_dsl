@@ -4,7 +4,7 @@ require_relative '../../lib/tyrano_dsl/export_game/main'
 require_relative '../../lib/tyrano_dsl/tyrano_exception'
 require_relative '../../lib/tyrano_dsl/vocabulary'
 
-class EndToEndTest < Minitest::Test
+class EndToEndExportGameTest < Minitest::Test
 
   def run_on_file(file_path)
     TyranoDsl::ExportGame::Main.new.run(
@@ -14,14 +14,6 @@ class EndToEndTest < Minitest::Test
 
   def full_path(file_path)
     File.absolute_path(file_path, __dir__)
-  end
-
-  def validate_exception(file_path, exception_message)
-    begin
-      run_on_file(file_path)
-    rescue ::TyranoDsl::TyranoException => e
-      assert_equal(e.message, exception_message)
-    end
   end
 
   def test_end_to_end

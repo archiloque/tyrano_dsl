@@ -30,6 +30,16 @@ class TyranoDsl::Parser
     end
   end
 
+  # Parse a file
+  # @param [String] initial_file_path
+  # @return [TyranoDsl::ParsingContext]
+  def self.parse(initial_file_path)
+    parsing_context = TyranoDsl::ParsingContext.new
+    parser = TyranoDsl::Parser.new(parsing_context, initial_file_path)
+    parser.include_file(initial_file_path)
+    parsing_context
+  end
+
   # @param [TyranoDsl::ParsingContext] parsing_context
   # @param [String] initial_file_path
   def initialize(parsing_context, initial_file_path)

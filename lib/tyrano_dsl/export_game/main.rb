@@ -10,9 +10,7 @@ class TyranoDsl::ExportGame::Main
   # @param [String] file_path path to the DSL file
   # @return [TyranoDsl::ExportGame::WritingContext]
   def run(file_path)
-    parsing_context = TyranoDsl::ParsingContext.new
-    parser = TyranoDsl::Parser.new(parsing_context, file_path)
-    parser.include_file(file_path)
+    parsing_context = TyranoDsl::Parser.parse(file_path)
     TyranoDsl::ExportGame::Writer.new.write(parsing_context.world, parsing_context.words)
   end
 
