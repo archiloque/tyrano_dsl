@@ -56,7 +56,7 @@ start_scene 'Second scene'
 - Install [TyranoBuilder](http://tyranobuilder.com)
 - Create a project in it
 - Install the gem
-- Execute `tyrano-dsl PATH_TO_YOUR_TYRANO_PROJECT PATH_TO_YOUR_RUBY_CODE.rb` in your project directory.
+- Execute `tyrano-dsl export-game PATH_TO_YOUR_TYRANO_PROJECT PATH_TO_YOUR_RUBY_CODE.rb` in your project directory.
 
 `PATH_TO_YOUR_TYRANO_PROJECT` should look like `/Users/u/Library/Application\ Support/Steam/steamapps/common/TyranoBuilder/myproject/Test`
 

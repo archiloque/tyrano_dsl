@@ -2,20 +2,22 @@
 
 require 'bundler/setup'
 require 'json'
-require 'tyrano_dsl/main'
+require 'tyrano_dsl/export_game/main'
 require 'tyrano_dsl/tyrano_exception'
-if ARGV.length != 2
-  raise 'You need two arguments : the path to the tyrano project and the path to your DSL file'
+if ARGV.length != 3
+  raise 'You need three arguments : the verb to execute, the path to the tyrano project and the path to your DSL file'
 end
-tyrano_project_path = ARGV[0]
-dsl_file_path = ARGV[1]
+unless ARGV[0] != 'export-game'
+  raise "Unknown verb [#{ARGV[0]}, should be [export-game]"
+end
+tyrano_project_path = ARGV[1]
+dsl_file_path = ARGV[2]
 
 builder_configuration_file = File.join(tyrano_project_path, 'builder_config.json')
 unless File.exists? builder_configuration_file
   raise "File not found [#{builder_configuration_file}]"
 end
 
-writing_context = TyranoDsl::Main.new.run(dsl_file_path)
-writing_context.file_actions.each do |file_action|
-  file_action.run(tyrano_project_path)
-end
+main = TyranoDsl::ExportGame::Main.new
+writing_context = main.run(dsl_file_path)
+main.apply(writing_context, tyrano_project_path)
