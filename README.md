@@ -69,7 +69,7 @@ If there is an error it should be displayed and the message should help you to f
 ## Actions
 
 * `export-game` export the game to replace the current content of the Tyrano project
-* `export-text` export the text content of the game
+* `export-text` print the text content of the game 
 
 ## Current vocabulary
 
