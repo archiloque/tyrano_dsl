@@ -23,8 +23,8 @@ class EndToEndExportTextTest < Minitest::Test
             "Hello!\n",
             "Shinji\n",
             "Hello!\n",
-            "Yes !\n",
-            "No \"\"?\n",
+            "  Yes !\n",
+            "  No \"\"?\n",
             "Hello from included scene!\n",
         ], content)
 

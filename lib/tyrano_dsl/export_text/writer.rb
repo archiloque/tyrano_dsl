@@ -1,13 +1,8 @@
-require 'logger'
-
 require_relative '../tyrano_dsl'
 require_relative '../vocabulary'
 
 # Write the content that have been parsed
 class TyranoDsl::ExportText::Writer
-
-  def initialize
-  end
 
   # @param [Array<TyranoDsl::ParsedWord>] parsed_words
   # @return [Array<String>]
@@ -15,10 +10,7 @@ class TyranoDsl::ExportText::Writer
   def write(parsed_words)
     result = []
     parsed_words.each do |parsed_word|
-      word_result = write_word(parsed_word)
-      if word_result
-        result.concat(word_result)
-      end
+      result.concat(write_word(parsed_word))
     end
     result
   end
@@ -37,10 +29,10 @@ class TyranoDsl::ExportText::Writer
         content
       when TyranoDsl::Vocabulary::ASK_QUESTION
         parameters[:possible_answers].collect do |possible_answer|
-          "#{possible_answer[:text]}\n"
+          "  #{possible_answer[:text]}\n"
         end
       else
-        nil
+        []
     end
   end
 
