@@ -41,42 +41,13 @@ class EndToEndImportDslExportTyranoTest < Minitest::Test
 
     create_files = extract_by_class(writing_context.file_actions, TyranoDsl::FileActions::CreateFile)
     assert_equal(create_files.length, 9)
-    files_creations = {}
+
     create_files.each do |create_file_action|
-      files_creations[create_file_action.path] = create_file_action.content
+      assert_equal(
+          read_file(create_file_action.path.gsub('/', '#')),
+          create_file_action.content
+      )
     end
-
-    assert_equal(
-        read_file('data#scenario#system#chara_define.ks'),
-        files_creations['data/scenario/system/chara_define.ks'])
-
-    assert_equal(
-        read_file('data#scenario#scene1.ks'),
-        files_creations['data/scenario/scene1.ks'])
-    assert_equal(
-        read_file('data#scenario#system#_scene1.ks'),
-        files_creations['data/scenario/system/_scene1.ks'])
-    assert_equal(
-        read_file('data#scenario#title_screen.ks'),
-        files_creations['data/scenario/title_screen.ks'])
-
-    assert_equal(
-        read_file('data#scenario#system#_title_screen.ks'),
-        files_creations['data/scenario/system/_title_screen.ks'])
-
-    assert_equal(
-        read_file('data#scenario#scene2.ks'),
-        files_creations['data/scenario/scene2.ks'])
-    assert_equal('[preload storage="./data/bgimage/1.jpg"]
-[return]', files_creations['data/scenario/system/_scene2.ks'])
-
-    assert_equal(
-        read_file('data#scenario#scene3.ks'),
-        files_creations['data/scenario/scene3.ks']
-    )
-    assert_equal(
-        read_file('data#scenario#system_#scene3.ks'),
-        files_creations['data/scenario/system/_scene3.ks'])
 
     json_patches = extract_by_class(writing_context.file_actions, TyranoDsl::FileActions::JsonPatch)
     assert_equal(2, json_patches.length)
