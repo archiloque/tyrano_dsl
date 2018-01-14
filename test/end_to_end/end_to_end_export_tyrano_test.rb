@@ -12,6 +12,10 @@ class EndToEndExportTyranoTest < Minitest::Test
     )
   end
 
+  def read_file(path)
+    IO.read(File.join(__dir__, 'export_tyrano', path))
+  end
+
   def full_path(file_path)
     File.absolute_path(file_path, __dir__)
   end
@@ -38,7 +42,6 @@ class EndToEndExportTyranoTest < Minitest::Test
     assert_equal(full_path('subdirectory/alice.jpg'), files_copies['data/bgimage/2.jpg'])
     assert_equal(full_path('../assets/backgrounds/school.jpg'), files_copies['data/bgimage/3.jpg'])
 
-
     create_files = extract_by_class(writing_context.file_actions, TyranoDsl::ExportTyrano::FileActions::CreateFile)
     assert_equal(create_files.length, 9)
     files_creations = {}
@@ -46,96 +49,37 @@ class EndToEndExportTyranoTest < Minitest::Test
       files_creations[create_file_action.path] = create_file_action.content
     end
 
-    assert_equal('[chara_new name="Shinji" jname="Shinji" storage="chara/1/0.jpg"]
+    assert_equal(
+        read_file('data#scenario#system#chara_define.ks'),
+        files_creations['data/scenario/system/chara_define.ks'])
 
-[iscript]
-f[\'variable_1\']=25;
-[endscript]
-', files_creations['data/scenario/system/chara_define.ks'])
+    assert_equal(
+        read_file('data#scenario#scene1.ks'),
+        files_creations['data/scenario/scene1.ks'])
+    assert_equal(
+        read_file('data#scenario#system#_scene1.ks'),
+        files_creations['data/scenario/system/_scene1.ks'])
+    assert_equal(
+        read_file('data#scenario#title_screen.ks'),
+        files_creations['data/scenario/title_screen.ks'])
 
-    assert_equal('[_tb_system_call storage=system/_scene1.ks]
-[cm]
-[bg storage="1.jpg" time="1000"]
-*label_0
-[chara_show name="Shinji" time="1000" wait="true" left="434" top="128" width="" height="" reflect="false"]
-[tb_show_message_window]
-[tb_start_text mode=1]
-Hello!
-[_tb_end_text]
+    assert_equal(
+        read_file('data#scenario#system#_title_screen.ks'),
+        files_creations['data/scenario/system/_title_screen.ks'])
 
-[tb_start_text mode=1]
-#Shinji
-Hello!
-[_tb_end_text]
-
-[chara_mod name="Shinji" cross="true" storage="chara/1/1.png"]
-[tb_hide_message_window]
-[glink color="black" storage="scene2" target="" size="20" x="200" y="200" text="Yes !"]
-[glink color="black" storage="scene3" target="label_1" size="20" x="200" y="300" text="No &quot;&quot;?"]
-[s]
-
-[chara_hide name="Shinji" time="1000" wait="true"]
-[jump storage="scene2.ks" target=""]
-', files_creations['data/scenario/scene1.ks'])
-    assert_equal('[preload storage="./data/bgimage/1.jpg"]
-[preload storage="./data/fgimage/chara/1/0.jpg"]
-[preload storage="./data/fgimage/chara/1/1.png"]
-[return]', files_creations['data/scenario/system/_scene1.ks'])
-
-    assert_equal('[_tb_system_call storage=system/_title_screen.ks]
-
-[hidemenubutton]
-
-[tb_keyconfig  flag="0"  ]
-[tb_hide_message_window  ]
-[bg  storage="1.jpg"  ]
-*title
-
-[glink  text="New&nbsp;Game"  x="600"  y="370"  target="*start"  ]
-[glink  text="Load&nbsp;Game"  x="600"  y="470"  target="*load"  ]
-[s  ]
-*start
-
-[showmenubutton]
-
-[cm  ]
-[tb_keyconfig  flag="1"  ]
-[jump  storage="scene1.ks"  target=""  ]
-[s  ]
-*load
-
-[cm  ]
-[showload]
-
-[jump  target="*title"  storage=""  ]
-[s  ]
-', files_creations['data/scenario/title_screen.ks'])
-
-    assert_equal('[preload storage="./data/bgimage/1.jpg"]
-[return]', files_creations['data/scenario/system/_title_screen.ks'])
-
-    assert_equal('[_tb_system_call storage=system/_scene2.ks]
-[cm]
-[bg storage="1.jpg" time="1000"]
-', files_creations['data/scenario/scene2.ks'])
+    assert_equal(
+        read_file('data#scenario#scene2.ks'),
+        files_creations['data/scenario/scene2.ks'])
     assert_equal('[preload storage="./data/bgimage/1.jpg"]
 [return]', files_creations['data/scenario/system/_scene2.ks'])
 
-    assert_equal('[_tb_system_call storage=system/_scene3.ks]
-[cm]
-[bg storage="1.jpg" time="1000"]
-*label_1
-[jump storage="scene3.ks" target="cond" cond="f.variable_1<10"]
-[tb_eval  exp="f.variable_1+=20"  name="variable_1"  cmd="+="  op="t"  val="20"  val_2="undefined"]
-[tb_start_text mode=1]
-Hello from included scene!
-[_tb_end_text]
-
-[bg storage="2.jpg" time="1000"]
-', files_creations['data/scenario/scene3.ks'])
-    assert_equal('[preload storage="./data/bgimage/1.jpg"]
-[preload storage="./data/bgimage/2.jpg"]
-[return]', files_creations['data/scenario/system/_scene3.ks'])
+    assert_equal(
+        read_file('data#scenario#scene3.ks'),
+        files_creations['data/scenario/scene3.ks']
+    )
+    assert_equal(
+        read_file('data#scenario#system_#scene3.ks'),
+        files_creations['data/scenario/system/_scene3.ks'])
 
     json_patches = extract_by_class(writing_context.file_actions, TyranoDsl::ExportTyrano::FileActions::JsonPatch)
     assert_equal(2, json_patches.length)
