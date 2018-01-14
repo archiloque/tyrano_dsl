@@ -1,8 +1,11 @@
 require_relative 'tyrano_exception'
 require_relative 'tyrano_dsl'
+require_relative 'validation/validator'
 
 # The entry point
 class TyranoDsl::Main
+
+  attr_reader :export_result
 
   IMPORTS = {
       dsl: {
@@ -42,6 +45,9 @@ class TyranoDsl::Main
     require_relative @import_type[:path]
     @import = Kernel.const_get(@import_type[:class]).new
     @import_result = @import.run(@import_path)
+
+    validator = TyranoDsl::Validation::Validator.new
+    validator.run(@import_result[:world], @import_result[:words])
 
     require_relative @export_type[:path]
     @export = Kernel.const_get(@export_type[:class]).new

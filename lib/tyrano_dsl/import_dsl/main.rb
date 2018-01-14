@@ -5,6 +5,7 @@ class TyranoDsl::ImportDsl::Main
 
   # @param [String] file_path path to the DSL file
   # @return [TyranoDsl::ExportTyrano::WritingContext]
+  # @raise [TyranoDsl::TyranoException]
   def run(file_path)
     parsing_context = TyranoDsl::ImportDsl::Parser.parse(file_path)
     {

@@ -34,6 +34,7 @@ class TyranoDsl::ImportDsl::Parser
   # Parse a file
   # @param [String] initial_file_path
   # @return [TyranoDsl::ImportDsl::ParsingContext]
+  # @raise [TyranoDsl::TyranoException]
   def self.parse(initial_file_path)
     parsing_context = TyranoDsl::ImportDsl::ParsingContext.new
     parser = TyranoDsl::ImportDsl::Parser.new(parsing_context, initial_file_path)

@@ -1,16 +1,12 @@
 require_relative '../test_helper'
 
-require_relative '../../lib/tyrano_dsl/export_text/main'
-require_relative '../../lib/tyrano_dsl/import_dsl/main'
-require_relative '../../lib/tyrano_dsl/tyrano_exception'
-require_relative '../../lib/tyrano_dsl/vocabulary'
+require_relative '../../lib/tyrano_dsl/main'
 
-class EndToEndExportTextTest < Minitest::Test
+class EndToEndImportDslExportTextTest < Minitest::Test
 
   # @return [TyranoDsl::ExportTyrano::WritingContext]
   def run_on_file(file_path)
-    import_result = TyranoDsl::ImportDsl::Main.new.run(File.absolute_path(file_path, __dir__))
-    TyranoDsl::ExportText::Main.new.run(import_result[:world], import_result[:words])
+    TyranoDsl::Main.new('dsl', 'text', File.absolute_path(file_path, __dir__), nil).export_result
   end
 
   def full_path(file_path)
