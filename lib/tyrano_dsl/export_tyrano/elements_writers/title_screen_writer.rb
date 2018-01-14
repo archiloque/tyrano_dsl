@@ -1,4 +1,4 @@
-require_relative '../file_actions/create_file'
+require_relative '../../file_actions/create_file'
 require_relative 'elements_writers_module'
 
 # Write the title screen
@@ -16,11 +16,11 @@ class TyranoDsl::ExportTyrano::ElementsWriters::TitleScreenWriter
     content_text_content = title_screen_content(background, first_scene)
     preload_text_content = preload_text([background.target_long_file_name])
     [
-        TyranoDsl::ExportTyrano::FileActions::CreateFile.new(
+        TyranoDsl::FileActions::CreateFile.new(
             File.join('data', 'scenario', "title_screen.ks"),
             content_text_content
         ),
-        TyranoDsl::ExportTyrano::FileActions::CreateFile.new(
+        TyranoDsl::FileActions::CreateFile.new(
             File.join('data', 'scenario', 'system', "_title_screen.ks"),
             preload_text_content
         )

@@ -1,5 +1,5 @@
 require_relative '../../elements/variable'
-require_relative '../file_actions/json_patch'
+require_relative '../../file_actions/json_patch'
 require_relative 'elements_writers_module'
 
 # Write a variable
@@ -19,7 +19,7 @@ class TyranoDsl::ExportTyrano::ElementsWriters::VariablesWriter
       }
     end
     [
-        TyranoDsl::ExportTyrano::FileActions::JsonPatch.new(
+        TyranoDsl::FileActions::JsonPatch.new(
             'builder_config.json',
             ['map_var'],
             variable_content

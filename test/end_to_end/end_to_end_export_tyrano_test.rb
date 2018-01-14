@@ -1,15 +1,16 @@
 require_relative '../test_helper'
 
 require_relative '../../lib/tyrano_dsl/export_tyrano/main'
+require_relative '../../lib/tyrano_dsl/import_dsl/main'
 require_relative '../../lib/tyrano_dsl/tyrano_exception'
 require_relative '../../lib/tyrano_dsl/vocabulary'
 
 class EndToEndExportTyranoTest < Minitest::Test
 
+  # @return [TyranoDsl::ExportTyrano::WritingContext]
   def run_on_file(file_path)
-    TyranoDsl::ExportTyrano::Main.new.run(
-        File.absolute_path(file_path, __dir__)
-    )
+    import_result = TyranoDsl::ImportDsl::Main.new.run(File.absolute_path(file_path, __dir__))
+    TyranoDsl::ExportTyrano::Main.new.run(import_result[:world], import_result[:words])
   end
 
   def read_file(path)
@@ -20,17 +21,17 @@ class EndToEndExportTyranoTest < Minitest::Test
     File.absolute_path(file_path, __dir__)
   end
 
-  def test_end_to_end
+  def test_end_to_end_export_tyrano
     writing_context = run_on_file('end_to_end_scene.rb')
     assert_equal(18, writing_context.file_actions.length)
 
-    clear_directories = extract_by_class(writing_context.file_actions, TyranoDsl::ExportTyrano::FileActions::ClearDirectory)
+    clear_directories = extract_by_class(writing_context.file_actions, TyranoDsl::FileActions::ClearDirectory)
     assert_equal(2, clear_directories.length)
     directories_to_clean = clear_directories.collect {|d| d.path}
     assert directories_to_clean.include? 'data/bgimage'
     assert directories_to_clean.include? 'data/fgimage/chara'
 
-    file_copies = extract_by_class(writing_context.file_actions, TyranoDsl::ExportTyrano::FileActions::FileCopy)
+    file_copies = extract_by_class(writing_context.file_actions, TyranoDsl::FileActions::FileCopy)
     assert_equal(5, file_copies.length)
     files_copies = {}
     file_copies.each do |file_copy_action|
@@ -42,7 +43,7 @@ class EndToEndExportTyranoTest < Minitest::Test
     assert_equal(full_path('subdirectory/alice.jpg'), files_copies['data/bgimage/2.jpg'])
     assert_equal(full_path('../assets/backgrounds/school.jpg'), files_copies['data/bgimage/3.jpg'])
 
-    create_files = extract_by_class(writing_context.file_actions, TyranoDsl::ExportTyrano::FileActions::CreateFile)
+    create_files = extract_by_class(writing_context.file_actions, TyranoDsl::FileActions::CreateFile)
     assert_equal(create_files.length, 9)
     files_creations = {}
     create_files.each do |create_file_action|
@@ -81,7 +82,7 @@ class EndToEndExportTyranoTest < Minitest::Test
         read_file('data#scenario#system_#scene3.ks'),
         files_creations['data/scenario/system/_scene3.ks'])
 
-    json_patches = extract_by_class(writing_context.file_actions, TyranoDsl::ExportTyrano::FileActions::JsonPatch)
+    json_patches = extract_by_class(writing_context.file_actions, TyranoDsl::FileActions::JsonPatch)
     assert_equal(2, json_patches.length)
     assert_equal('builder_config.json', json_patches[0].file_path)
     assert_equal(['map_chara'], json_patches[0].patching_path)

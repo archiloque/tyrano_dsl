@@ -1,5 +1,5 @@
-require_relative '../file_actions/create_file'
-require_relative '../file_actions/json_patch'
+require_relative '../../file_actions/create_file'
+require_relative '../../file_actions/json_patch'
 require_relative 'elements_writers_module'
 
 # Write things where all characters are implied
@@ -28,11 +28,11 @@ class TyranoDsl::ExportTyrano::ElementsWriters::CharactersWriter
     end
 
     [
-        TyranoDsl::ExportTyrano::FileActions::CreateFile.new(
+        TyranoDsl::FileActions::CreateFile.new(
             File.join('data', 'scenario', 'system', 'chara_define.ks'),
             chara_define_content
         ),
-        TyranoDsl::ExportTyrano::FileActions::JsonPatch.new(
+        TyranoDsl::FileActions::JsonPatch.new(
             'builder_config.json',
             ['map_chara'],
             builder_config_content

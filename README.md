@@ -53,10 +53,12 @@ start_scene 'Second scene'
 
 ## How to use it
 
+The simples use case :
+
 - Install [TyranoBuilder](http://tyranobuilder.com)
 - Create a project in it
 - Install the gem
-- Execute `tyrano-dsl export-game PATH_TO_YOUR_TYRANO_PROJECT PATH_TO_YOUR_RUBY_CODE.rb` in your project directory.
+- Execute `tyrano-dsl dsl tyrano PATH_TO_YOUR_RUBY_CODE.rb PATH_TO_YOUR_TYRANO_PROJECT` in your project directory.
 
 `PATH_TO_YOUR_TYRANO_PROJECT` should look like `/Users/u/Library/Application\ Support/Steam/steamapps/common/TyranoBuilder/myproject/Test`
 
@@ -66,10 +68,18 @@ You can then reopen the project in TyranoBuilder and see the changes.
 
 If there is an error it should be displayed and the message should help you to fix the problem.
 
-## Actions
+## General format
 
-* `export-game` export the game to replace the current content of the Tyrano project
-* `export-text` print the text content of the game 
+`tyrano-dsl import-format export-format import-path export-path`
+
+## Imports formats
+
+* `dsl` the Ruby DSL
+
+## Export formats
+
+* `tyrano` export the game to replace the current content of the Tyrano project
+* `text` print the text content of the game 
 
 ## Current vocabulary
 

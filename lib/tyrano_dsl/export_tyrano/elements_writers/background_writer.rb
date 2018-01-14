@@ -1,6 +1,6 @@
 require_relative '../../elements/background'
-require_relative '../file_actions/clear_directory'
-require_relative '../file_actions/file_copy'
+require_relative '../../file_actions/clear_directory'
+require_relative '../../file_actions/file_copy'
 require_relative 'elements_writers_module'
 
 # Write a background
@@ -11,7 +11,7 @@ class TyranoDsl::ExportTyrano::ElementsWriters::BackgroundWriter
   # @return [Array]
   def init_actions
     [
-        TyranoDsl::ExportTyrano::FileActions::ClearDirectory.new(TyranoDsl::Elements::Background::BACKGROUND_DIRECTORY)
+        TyranoDsl::FileActions::ClearDirectory.new(TyranoDsl::Elements::Background::BACKGROUND_DIRECTORY)
     ]
   end
 
@@ -20,7 +20,7 @@ class TyranoDsl::ExportTyrano::ElementsWriters::BackgroundWriter
   def write(background)
     log {"Writing background [#{background.name}]"}
     [
-        TyranoDsl::ExportTyrano::FileActions::FileCopy.new(
+        TyranoDsl::FileActions::FileCopy.new(
             background.image_path,
             background.target_long_file_name
         )
