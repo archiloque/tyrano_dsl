@@ -30,7 +30,7 @@ class TyranoDsl::ExportDsl::Main
     context.file_actions
   end
 
-  # @param [Array] file_actions
+  # @param [Array<TyranoDsl::FileActions::BaseFileAction>] file_actions
   # @param [String] export_path
   # @return [void]
   def apply(file_actions, export_path)
@@ -44,5 +44,5 @@ class TyranoDsl::ExportDsl::Main
   def log
     @logger.info(self.class) {yield}
   end
-  
+
 end

@@ -13,7 +13,7 @@ class TyranoDsl::ExportTyrano::Context
   attr_reader :current_scene_assets
   # @return [Array<String>]
   attr_reader :current_scene_content
-  # @return [Array]
+  # @return [Array<TyranoDsl::FileActions::BaseFileAction>]
   attr_reader :file_actions
   # @return [TyranoDsl::Elements::World]
   attr_reader :world

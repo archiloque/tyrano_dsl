@@ -22,7 +22,7 @@ class TyranoDsl::ExportTyrano::Main
 
   # @param [TyranoDsl::Elements::World] world
   # @param [Array<TyranoDsl::ParsedWord>] parsed_words
-  # @return [Array]
+  # @return [Array<TyranoDsl::FileActions::BaseFileAction>]
   # @raise [TyranoDsl::TyranoException]
   def run(world, parsed_words)
     log {'Writing content'}
@@ -38,7 +38,7 @@ class TyranoDsl::ExportTyrano::Main
     context.file_actions
   end
 
-  # @param [Array] file_actions
+  # @param [Array<TyranoDsl::FileActions::BaseFileAction>] file_actions
   # @param [String] export_path
   # @return [void]
   def apply(file_actions, export_path)

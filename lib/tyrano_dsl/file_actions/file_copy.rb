@@ -17,10 +17,10 @@ class TyranoDsl::FileActions::FileCopy < TyranoDsl::FileActions::BaseFileAction
     log {self.to_s}
   end
 
-  # @param [String] tyrano_project_path
+  # @param [String] base_path
   # @return [void]
-  def run(tyrano_project_path)
-    full_path = File.join(tyrano_project_path, to_path)
+  def run(base_path)
+    full_path = File.join(base_path, to_path)
     log {"Copying file [#{from_path}] to [#{full_path}]"}
     create_parent_dir_if_not_exist(full_path)
     FileUtils.copy_file from_path, full_path

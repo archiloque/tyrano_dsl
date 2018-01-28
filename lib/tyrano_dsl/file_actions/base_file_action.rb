@@ -3,6 +3,12 @@ require_relative 'files_actions'
 
 class TyranoDsl::FileActions::BaseFileAction
 
+  # @param [String] base_path
+  # @return [void]
+  def run(base_path)
+    raise 'Should be implented in subclasses'
+  end
+
   protected
 
   def create_parent_dir_if_not_exist(file_path)

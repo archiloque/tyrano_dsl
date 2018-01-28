@@ -2,7 +2,6 @@ require 'fileutils'
 require_relative 'base_file_action'
 
 # Remove all files from a directory
-
 class TyranoDsl::FileActions::ClearDirectory < TyranoDsl::FileActions::BaseFileAction
 
   # @return [String]
@@ -14,10 +13,10 @@ class TyranoDsl::FileActions::ClearDirectory < TyranoDsl::FileActions::BaseFileA
     log {to_s}
   end
 
-  # @param [String] tyrano_project_path
+  # @param [String] base_path
   # @return [void]
-  def run(tyrano_project_path)
-    full_path = File.join(tyrano_project_path, path)
+  def run(base_path)
+    full_path = File.join(base_path, path)
     log {"Cleaning [#{full_path}]"}
     if File.exists? full_path
       FileUtils.remove_entry full_path

@@ -16,10 +16,10 @@ class TyranoDsl::FileActions::CreateFile < TyranoDsl::FileActions::BaseFileActio
     log {self.to_s}
   end
 
-  # @param [String] tyrano_project_path
+  # @param [String] base_path
   # @return [void]
-  def run(tyrano_project_path)
-    full_path = File.join(tyrano_project_path, path)
+  def run(base_path)
+    full_path = File.join(base_path, path)
     log {"Creating file [#{full_path}]"}
     create_parent_dir_if_not_exist(full_path)
     File.write(full_path, content)

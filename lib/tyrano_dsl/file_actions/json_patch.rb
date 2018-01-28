@@ -1,7 +1,7 @@
 require 'json'
 require_relative 'base_file_action'
 
-# Path a JSON file
+# Patch a JSON file
 class TyranoDsl::FileActions::JsonPatch < TyranoDsl::FileActions::BaseFileAction
 
   # @return [String]
@@ -21,10 +21,10 @@ class TyranoDsl::FileActions::JsonPatch < TyranoDsl::FileActions::BaseFileAction
     log {self.to_s}
   end
 
-  # @param [String] tyrano_project_path
+  # @param [String] base_path
   # @return [void]
-  def run(tyrano_project_path)
-    full_path = File.join(tyrano_project_path, file_path)
+  def run(base_path)
+    full_path = File.join(base_path, file_path)
     log {"Patching file [#{full_path}] at #{patching_path}"}
     unless File.exist? full_path
       raise TyranoDsl::TyranoException, "Missing file [#{full_path}]"

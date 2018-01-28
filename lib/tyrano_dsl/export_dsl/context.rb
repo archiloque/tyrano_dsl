@@ -9,7 +9,7 @@ class TyranoDsl::ExportDsl::Context
   # @return [TyranoDsl::Elements::World]
   attr_reader :world
 
-  # @return [Array]
+  # @return [Array<TyranoDsl::FileActions::BaseFileAction>]
   attr_reader :file_actions
 
   def initialize(world)
