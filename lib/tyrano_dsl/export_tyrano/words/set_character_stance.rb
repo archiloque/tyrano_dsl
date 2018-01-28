@@ -4,7 +4,7 @@ require_relative 'words'
 
 class TyranoDsl::ExportTyrano::Words::SetCharacterStance < TyranoDsl::ExportTyrano::Words::BaseWord
 
-  # @param [TyranoDsl::Validation::Context] context
+  # @param [TyranoDsl::Intermediate::Context] context
   # @param [TyranoDsl::Elements::World] world
   # @param [Hash{Symbol=>Object}] parameters
   # @option parameters [String] :character_name

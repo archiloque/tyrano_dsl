@@ -10,7 +10,7 @@ class TyranoDsl::ExportTyrano::Words::ConditionalJump < TyranoDsl::ExportTyrano:
       '!=' => '<>',
   }
 
-  # @param [TyranoDsl::Validation::Context] context
+  # @param [TyranoDsl::Intermediate::Context] context
   # @param [TyranoDsl::Elements::World] world
   # @param [Hash{Symbol=>Object}] parameters
   # @option parameters [String] :scene_name

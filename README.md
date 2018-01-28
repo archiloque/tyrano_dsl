@@ -331,9 +331,10 @@ start_scene 'First scene'
 
 ## How the thing works
 
-The tool works like a two passes compiler:
-- the first pass validates the syntax, the entry point is in `parser.rb`
-- the second generate the content, the entry point is in `writer.rb`
+The tool works like a compiler:
+- the first pass parse the initial version into an intermediate version
+- the intermediate pass create the world and validate the content
+- the last pass generate the result
 - the content is applied to disk
 
 ## Links

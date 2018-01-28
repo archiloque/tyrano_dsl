@@ -1,6 +1,6 @@
 require_relative 'tyrano_exception'
 require_relative 'tyrano_dsl'
-require_relative 'validation/validator'
+require_relative 'intermediate/main'
 
 # The entry point
 class TyranoDsl::Main
@@ -51,8 +51,8 @@ class TyranoDsl::Main
     @import = Kernel.const_get(@import_type[:class]).new
     @words = @import.run(@import_path)
 
-    validator = TyranoDsl::Validation::Validator.new
-    @world = validator.run(@words)
+    intermediate = TyranoDsl::Intermediate::Main.new
+    @world = intermediate.run(@words)
 
     require_relative @export_type[:path]
     @export = Kernel.const_get(@export_type[:class]).new

@@ -7,7 +7,7 @@ SimpleCov.start do
   add_group 'Export tyrano', 'export_tyrano/'
   add_group 'File actions', 'file_actions/'
   add_group 'Import DSL', 'import_dsl/'
-  add_group 'Validation', 'validation/'
+  add_group 'Intermediate', 'intermediate/'
 end
 
 require 'minitest/autorun'
