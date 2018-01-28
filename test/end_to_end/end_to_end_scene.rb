@@ -26,7 +26,7 @@ ask_question [
                      'text' => 'No ""?',
                      'left' => 200,
                      'top' => 300,
-                     'scene' => 'Third scene',
+                     'scene' => 'First scene$',
                      'label' => 'a label'
                  }
              ]
@@ -36,10 +36,11 @@ jump 'Second scene'
 start_scene 'Second scene'
 set_background 'School'
 
-start_scene 'Third scene'
+start_scene 'First scene$'
 set_background 'School'
 declare_label 'a label'
-conditional_jump 'sadness', '<', 10, 'Third scene'
+conditional_jump 'sadness', '<', 10, 'First scene$'
 update_variable 'sadness', '+=', 20
 include_file 'subdirectory/included_scene.rb'
 declare_background 'Same School', '../assets/backgrounds/school.jpg'
+jump 'First scene', 'Label 1'

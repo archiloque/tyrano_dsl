@@ -1,49 +1,67 @@
-module TyranoDsl
-  module Validation
-
-  end
-end
+require_relative '../vocabulary'
+require_relative 'context'
+require_relative 'validation'
 
 class TyranoDsl::Validation::Validator
 
-  # @param [TyranoDsl::Elements::World] world
-  # @param [Array<TyranoDsl::ParsedWord>] parsed_words
-  # @return [void]
-  # @raise [TyranoDsl::TyranoException]
-  def run(world, parsed_words)
-    current_scene = nil
+  WORDS_ONLY_IN_SCENE = [
+      TyranoDsl::Vocabulary::ASK_QUESTION,
+      TyranoDsl::Vocabulary::CONDITIONAL_JUMP,
+      TyranoDsl::Vocabulary::DECLARE_LABEL,
+      TyranoDsl::Vocabulary::DISPLAY_TEXT,
+      TyranoDsl::Vocabulary::HIDE_CHARACTER,
+      TyranoDsl::Vocabulary::HIDE_MESSAGE_WINDOW,
+      TyranoDsl::Vocabulary::JUMP,
+      TyranoDsl::Vocabulary::SET_BACKGROUND,
+      TyranoDsl::Vocabulary::SET_CHARACTER_STANCE,
+      TyranoDsl::Vocabulary::SHOW_CHARACTER,
+      TyranoDsl::Vocabulary::SHOW_MESSAGE_WINDOW,
+      TyranoDsl::Vocabulary::UPDATE_VARIABLE,
+  ]
 
-    parsed_words.each do |parsed_word|
-      parameters = parsed_word.parameters
-      case parsed_word.word
-        when TyranoDsl::Vocabulary::START_SCENE
-          current_scene = world.scenes[parameters[:name]]
-        when TyranoDsl::Vocabulary::DECLARE_LABEL
-          unless current_scene
-            raise_exception 'This action should take place in a scene', parsed_word
-          end
-          label_name = parameters[:label_name]
-          if current_scene.labels.include? label_name
-            raise_exception "Duplicated label [#{label_name}]", parsed_word
-          end
-          current_scene.labels << label_name
-        else
-          # Don't care
-      end
+  def initialize
+    @logger = Logger.new(STDOUT)
+    @words = {}
+    TyranoDsl::Vocabulary.get_words_class('validation/words') do |word, word_class|
+      @words[word] = word_class.new
     end
-    world.validate
   end
 
-  private
-
-  # @param [String] message
-  # @param [TyranoDsl::ParsedWord] parsed_word
-  # @return [void]
+  # @param [Array<TyranoDsl::ParsedWord>] parsed_words
+  # @return [TyranoDsl::Elements::World]
   # @raise [TyranoDsl::TyranoException]
-  def raise_exception(message, parsed_word)
-    exception = TyranoDsl::TyranoException.new(message)
-    exception.set_backtrace parsed_word.word_location
-    raise exception
+  def run(parsed_words)
+    world = TyranoDsl::Elements::World.new
+    context = TyranoDsl::Validation::Context.new
+
+    parsed_words.each do |parsed_word|
+      word = parsed_word.word
+      parameters = parsed_word.parameters
+
+      if WORDS_ONLY_IN_SCENE.include?(word) && (!context.current_scene)
+        TyranoDsl::TyranoException.raise_exception 'This action should take place in a scene', parsed_word.word_location
+      end
+
+      @words[word].world_construction_phase(
+          context,
+          world,
+          parsed_word.word_location,
+          parameters)
+    end
+
+    world.validate
+
+    parsed_words.each do |parsed_word|
+      word = parsed_word.word
+      parameters = parsed_word.parameters
+      @words[word].validation_phase(
+          context,
+          world,
+          parsed_word.word_location,
+          parameters)
+    end
+
+    world
   end
 
 end

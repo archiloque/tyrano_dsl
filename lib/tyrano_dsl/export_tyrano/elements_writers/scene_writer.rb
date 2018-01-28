@@ -1,29 +1,26 @@
 require_relative '../../file_actions/create_file'
-require_relative 'elements_writers_module'
+require_relative 'base_elements_writers'
 
 # Write a scene
-class TyranoDsl::ExportTyrano::ElementsWriters::SceneWriter
+class TyranoDsl::ExportTyrano::ElementsWriters::SceneWriter < TyranoDsl::ExportTyrano::ElementsWriters::BaseElementsWriters
 
-  include TyranoDsl::ExportTyrano::ElementsWriters::ElementsWritersModule
-
-  # @param [TyranoDsl::Elements::Scene] scene
+  # @param [String] mangled_scene_name
   # @param [Array<String>] scene_content
   # @param [Array<String>] assets
   # @return [Array]
-  def write(scene, scene_content, assets)
-    log {"Writing scene [#{scene.name}]"}
-    content_text_content = "[_tb_system_call storage=system/_#{scene.target_name}.ks]\n[cm]\n#{scene_content.join("\n")}\n"
+  def write(mangled_scene_name, scene_content, assets)
+    log {"Writing scene [#{mangled_scene_name}]"}
+    content_text_content = "[_tb_system_call storage=system/_#{mangled_scene_name}.ks]\n[cm]\n#{scene_content.join("\n")}\n"
     preload_text_content = preload_text(assets.to_a)
     [
         TyranoDsl::FileActions::CreateFile.new(
-            File.join('data', 'scenario', "#{scene.target_name}.ks"),
+            File.join('data', 'scenario', "#{mangled_scene_name}.ks"),
             content_text_content
         ),
         TyranoDsl::FileActions::CreateFile.new(
-            File.join('data', 'scenario', 'system', "_#{scene.target_name}.ks"),
+            File.join('data', 'scenario', 'system', "_#{mangled_scene_name}.ks"),
             preload_text_content
         )
-
     ]
   end
 

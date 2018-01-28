@@ -1,4 +1,2 @@
-module TyranoDsl
-  module ImportDsl
-  end
+module TyranoDsl::ImportDsl
 end

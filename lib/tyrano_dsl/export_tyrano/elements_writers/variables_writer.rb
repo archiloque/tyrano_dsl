@@ -1,19 +1,18 @@
 require_relative '../../elements/variable'
 require_relative '../../file_actions/json_patch'
-require_relative 'elements_writers_module'
+require_relative 'base_elements_writers'
 
 # Write a variable
-class TyranoDsl::ExportTyrano::ElementsWriters::VariablesWriter
+class TyranoDsl::ExportTyrano::ElementsWriters::VariablesWriter < TyranoDsl::ExportTyrano::ElementsWriters::BaseElementsWriters
 
-  include TyranoDsl::ExportTyrano::ElementsWriters::ElementsWritersModule
-
+  # @param [TyranoDsl::ExportTyrano::Context] context
   # @param [TyranoDsl::Elements::World] world
   # @return [Array]
-  def write(world)
+  def write(context, world)
     log {'Writing variables'}
     variable_content = {}
     world.variables.values.each do |variable|
-      variable_content[variable.target_name] = {
+      variable_content[context.mangled_variable_name(variable.name)] = {
           :val => variable.initial_value,
           :kind => 'f'
       }

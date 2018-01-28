@@ -11,8 +11,7 @@ module UnitTestHelper
     world.backgrounds[background_name] =
         TyranoDsl::Elements::Background.new(
             background_name,
-            image_path,
-            world.backgrounds.length + 1
+            image_path
         )
   end
 
@@ -24,8 +23,7 @@ module UnitTestHelper
   def declare_character(world, character_name, stances)
     world.characters[character_name] = TyranoDsl::Elements::Character.new(
         character_name,
-        stances,
-        world.characters.length + 1
+        stances
     )
   end
 
@@ -35,7 +33,6 @@ module UnitTestHelper
   def declare_variable(world, variable_name, initial_value)
     world.variables[variable_name] = TyranoDsl::Elements::Variable.new(
         variable_name,
-        "variable_#{world.variables.length + 1}",
         initial_value
     )
   end
@@ -46,17 +43,17 @@ module UnitTestHelper
   # @raise [TyranoDsl::TyranoException]
   def declare_scene(world, scene_name)
     world.scenes[scene_name] = TyranoDsl::Elements::Scene.new(
-        scene_name,
-        world.characters.length + 1
+        scene_name
     )
   end
 
   # @param [TyranoDsl::Elements::World] world
+  # @param [String] scene_name
   # @param [String] label_name
   # @return [void]
   # @raise [TyranoDsl::TyranoException]
-  def declare_label(world, label_name)
-    world.label_value(label_name)
+  def declare_label(world, scene_name, label_name)
+    world.scenes[scene_name].labels << label_name
   end
 
   # @param [TyranoDsl::Elements::World] world
@@ -65,7 +62,7 @@ module UnitTestHelper
   # @return [void]
   # @raise [TyranoDsl::TyranoException]
   def declare_jump_target(world, scene_name, label_name = nil)
-    world.jump_targets << TyranoDsl::Elements::JumpTarget.new(scene_name, label_name ? world.label_value(label_name) : nil)
+    world.jump_targets << TyranoDsl::Elements::JumpTarget.new(scene_name, label_name, [])
   end
 
   # @param [String] expected_message

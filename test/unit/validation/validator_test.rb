@@ -6,32 +6,18 @@ class ValidatorTest < Minitest::Test
 
   include UnitTestHelper
 
-  def test_duplicated_label
-    world = TyranoDsl::Elements::World.new
-    declare_scene(world, 'scene name')
+  def test_not_in_scene
     parsed_words = []
     parsed_words << create_word(
-        TyranoDsl::Vocabulary::START_SCENE,
-        name: 'scene name'
-    )
-    parsed_words << create_word(
-        TyranoDsl::Vocabulary::DECLARE_LABEL,
-        label_name: 'label name'
-    )
-    parsed_words << create_word(
-        TyranoDsl::Vocabulary::DECLARE_LABEL,
-        label_name: 'label name'
+        TyranoDsl::Vocabulary::SHOW_MESSAGE_WINDOW,
+        scene_name: 'scene name'
     )
     validator = TyranoDsl::Validation::Validator.new
-
-    writing_context = TyranoDsl::ExportTyrano::WritingContext.new(world)
-    writing_context.init_new_scene 'scene name'
-    writing_context.add_label caller, 'label name'
-    assert_tyrano_exception('Duplicated label [label name]') do
-      validator.run(world, parsed_words)
+    assert_tyrano_exception('This action should take place in a scene') do
+      validator.run(parsed_words)
     end
   end
-  
+
   def create_word(word, parameters)
     TyranoDsl::ParsedWord.new(
         word,

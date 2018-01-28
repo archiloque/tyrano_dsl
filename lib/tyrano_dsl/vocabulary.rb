@@ -67,7 +67,7 @@ module TyranoDsl::Vocabulary
   def self.get_words_class(class_file_path)
     TyranoDsl::Vocabulary::ALL_WORDS.each do |word|
       full_path = "#{class_file_path}/#{word}"
-      require_relative full_path
+      require_relative(full_path)
       full_class_name = "TyranoDsl::" + full_path.
           split('_').
           collect(&:capitalize).

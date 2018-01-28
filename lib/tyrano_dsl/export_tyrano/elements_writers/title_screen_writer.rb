@@ -1,20 +1,19 @@
 require_relative '../../file_actions/create_file'
-require_relative 'elements_writers_module'
+require_relative 'base_elements_writers'
 
 # Write the title screen
-class TyranoDsl::ExportTyrano::ElementsWriters::TitleScreenWriter
+class TyranoDsl::ExportTyrano::ElementsWriters::TitleScreenWriter < TyranoDsl::ExportTyrano::ElementsWriters::BaseElementsWriters
 
-  include TyranoDsl::ExportTyrano::ElementsWriters::ElementsWritersModule
-
+  # @param [TyranoDsl::ExportTyrano::Context] context
   # @param [TyranoDsl::Elements::World] world
   # @return [Array]
-  def write(world)
+  def write(context, world)
     log {'Writing title screen'}
     background = get_background(world)
     first_scene = get_first_scene(world)
 
-    content_text_content = title_screen_content(background, first_scene)
-    preload_text_content = preload_text([background.target_long_file_name])
+    content_text_content = title_screen_content(context, background, first_scene)
+    preload_text_content = preload_text([context.backgrounds_long_file_names[background.name]])
     [
         TyranoDsl::FileActions::CreateFile.new(
             File.join('data', 'scenario', "title_screen.ks"),
@@ -30,9 +29,10 @@ class TyranoDsl::ExportTyrano::ElementsWriters::TitleScreenWriter
 
   private
 
+  # @param [TyranoDsl::ExportTyrano::Context] context
   # @param [TyranoDsl::Elements::Background] background
   # @param [TyranoDsl::Elements::Scene] first_scene
-  def title_screen_content(background, first_scene)
+  def title_screen_content(context, background, first_scene)
     <<HEREDOC
 [_tb_system_call storage=system/_title_screen.ks]
 
@@ -40,7 +40,7 @@ class TyranoDsl::ExportTyrano::ElementsWriters::TitleScreenWriter
 
 [tb_keyconfig  flag="0"  ]
 [tb_hide_message_window  ]
-[bg  storage="#{background.target_short_file_name}"  ]
+[bg  storage="#{context.backgrounds_short_file_names[background.name]}"  ]
 *title
 
 [glink  text="New&nbsp;Game"  x="600"  y="370"  target="*start"  ]
@@ -52,7 +52,7 @@ class TyranoDsl::ExportTyrano::ElementsWriters::TitleScreenWriter
 
 [cm  ]
 [tb_keyconfig  flag="1"  ]
-[jump  storage="#{first_scene.target_name}.ks"  target=""  ]
+[jump  storage="#{context.mangled_scene_name(first_scene.name)}.ks"  target=""  ]
 [s  ]
 *load
 

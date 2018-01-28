@@ -74,12 +74,14 @@ If there is an error it should be displayed and the message should help you to f
 
 ## Imports formats
 
-* `dsl` the Ruby DSL
+* `dsl` the Ruby DSL, `import-path` must be the path to the main Ruby file
+* `tyrano` import from a Tyrano project, `import-path` must be the path to the Tyrano project
 
 ## Export formats
 
-* `tyrano` export the game to replace the current content of the Tyrano project
-* `text` print the text content of the game 
+* `dsl` the Ruby DSL, `export-path` must be the path to the directory to export to
+* `tyrano` export the game to replace the current content of the Tyrano project, `export-path` must be the path to the Tyrano project
+* `text` print the text content of the game in the console, `export-path` is not used
 
 ## Current vocabulary
 
@@ -305,7 +307,7 @@ hide_message_window
 - `name` is a `file_name` representing the file to include
 
 ```ruby
-include_file('other_scene.rb')
+include_file 'other_scene.rb'
 ```
 
 <a id="show_message_window"></a>

@@ -4,22 +4,22 @@ require_relative '../parsed_word'
 require_relative '../tyrano_exception'
 require_relative '../vocabulary'
 require_relative 'import_dsl'
-require_relative 'parsing_context'
-require_relative 'parsing_words/parsing_words_module'
+require_relative 'context'
+require_relative 'words/words'
 
 # Parse the DSL
 class TyranoDsl::ImportDsl::Parser
 
-  # @return [TyranoDsl::ImportDsl::ParsingContext]
+  # @return [TyranoDsl::ImportDsl::Context]
   attr_reader :context
   # @return [Array<String>]
   attr_accessor :word_location
   # @return [Array<String>]
   attr_reader :included_files_hierarchy
 
-  include TyranoDsl::ImportDsl::ParsingWords::ParsingWordsModule
+  include TyranoDsl::ImportDsl::Words
 
-  TyranoDsl::Vocabulary.get_words_class('import_dsl/parsing_words') do |word, word_module|
+  TyranoDsl::Vocabulary.get_words_class('import_dsl/words') do |word, word_module|
     include word_module
 
     # Patch the method to store the location when a word is called
@@ -33,19 +33,19 @@ class TyranoDsl::ImportDsl::Parser
 
   # Parse a file
   # @param [String] initial_file_path
-  # @return [TyranoDsl::ImportDsl::ParsingContext]
+  # @return [TyranoDsl::ImportDsl::Context]
   # @raise [TyranoDsl::TyranoException]
   def self.parse(initial_file_path)
-    parsing_context = TyranoDsl::ImportDsl::ParsingContext.new
-    parser = TyranoDsl::ImportDsl::Parser.new(parsing_context, initial_file_path)
+    context = TyranoDsl::ImportDsl::Context.new
+    parser = TyranoDsl::ImportDsl::Parser.new(context, initial_file_path)
     parser.include_file(initial_file_path)
-    parsing_context
+    context
   end
 
-  # @param [TyranoDsl::ImportDsl::ParsingContext] parsing_context
+  # @param [TyranoDsl::ImportDsl::Context] context
   # @param [String] initial_file_path
-  def initialize(parsing_context, initial_file_path)
-    @context = parsing_context
+  def initialize(context, initial_file_path)
+    @context = context
     @logger = Logger.new(STDOUT)
     @included_files_hierarchy = [initial_file_path]
   end

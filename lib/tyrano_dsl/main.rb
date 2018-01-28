@@ -15,6 +15,10 @@ class TyranoDsl::Main
   }
 
   EXPORTS = {
+      dsl: {
+          path: 'export_dsl/main',
+          class: 'TyranoDsl::ExportDsl::Main'
+      },
       text: {
           path: 'export_text/main',
           class: 'TyranoDsl::ExportText::Main'
@@ -37,6 +41,7 @@ class TyranoDsl::Main
     unless @import_type
       raise TyranoDsl::TyranoException, "Unknown import format [#{import_format}], possible values : #{IMPORTS.keys.sort.join(', ')}"
     end
+
     @export_type = EXPORTS[export_format.to_sym]
     unless @export_type
       raise TyranoDsl::TyranoException, "Unknown export format [#{export_format}], possible values : #{EXPORTS.keys.sort.join(', ')}"
@@ -44,14 +49,14 @@ class TyranoDsl::Main
 
     require_relative @import_type[:path]
     @import = Kernel.const_get(@import_type[:class]).new
-    @import_result = @import.run(@import_path)
+    @words = @import.run(@import_path)
 
     validator = TyranoDsl::Validation::Validator.new
-    validator.run(@import_result[:world], @import_result[:words])
+    @world = validator.run(@words)
 
     require_relative @export_type[:path]
     @export = Kernel.const_get(@export_type[:class]).new
-    @export_result = @export.run(@import_result[:world], @import_result[:words])
+    @export_result = @export.run(@world, @words)
   end
 
   def apply_export

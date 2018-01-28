@@ -1,30 +1,29 @@
 require_relative '../../file_actions/create_file'
 require_relative '../../file_actions/json_patch'
-require_relative 'elements_writers_module'
+require_relative 'base_elements_writers'
 
 # Write things where all characters are implied
-class TyranoDsl::ExportTyrano::ElementsWriters::CharactersWriter
+class TyranoDsl::ExportTyrano::ElementsWriters::CharactersWriter < TyranoDsl::ExportTyrano::ElementsWriters::BaseElementsWriters
 
-  include TyranoDsl::ExportTyrano::ElementsWriters::ElementsWritersModule
-
+  # @param [TyranoDsl::ExportTyrano::Context] context
   # @param [TyranoDsl::Elements::World] world
   # @return [Array]
-  def write(world)
+  def write(context, world)
     log {'Writing characters'}
     chara_define_content = ''
     world.characters.values.collect do |character|
-      chara_define_content << "[chara_new name=\"#{character.name}\" jname=\"#{character.name}\" storage=\"chara\/#{character.default_stance.short_target_file_name}\"]\n"
+      chara_define_content << "[chara_new name=\"#{character.name}\" jname=\"#{character.name}\" storage=\"chara\/#{context.stance_short_file_name(character.name, character.default_stance.name)}\"]\n"
     end
     chara_define_content << "\n"
     chara_define_content << "[iscript]\n"
     world.variables.values.collect do |variable|
-      chara_define_content << "f['#{variable.target_name}']=#{variable.initial_value};\n"
+      chara_define_content << "f['#{context.mangled_variable_name(variable.name)}']=#{variable.initial_value};\n"
     end
     chara_define_content << "[endscript]\n"
 
     builder_config_content = {}
     world.characters.values.each do |character|
-      builder_config_content[character.name] = character.index
+      builder_config_content[character.name] = context.character_indexes[character.name]
     end
 
     [

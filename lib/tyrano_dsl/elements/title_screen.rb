@@ -1,4 +1,4 @@
-require_relative 'elements_module'
+require_relative 'elements'
 
 # The title screen
 class TyranoDsl::Elements::TitleScreen

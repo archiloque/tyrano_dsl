@@ -1,11 +1,8 @@
 require 'json'
-
-require_relative 'files_actions_module'
+require_relative 'base_file_action'
 
 # Path a JSON file
-class TyranoDsl::FileActions::JsonPatch
-
-  include TyranoDsl::FileActions::FileActionsModule
+class TyranoDsl::FileActions::JsonPatch < TyranoDsl::FileActions::BaseFileAction
 
   # @return [String]
   attr_reader :file_path

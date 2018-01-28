@@ -5,8 +5,10 @@ class TyranoDsl::ParsedWord
 
   # @return [Hash]
   attr_reader :parameters
+
   # @return [String]
   attr_reader :word
+
   # @return [Array<String>]
   attr_reader :word_location
 
