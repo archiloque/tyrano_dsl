@@ -1,12 +1,12 @@
 require_relative '../../file_actions/create_file'
-require_relative 'base_elements_writers'
+require_relative 'base_writer'
 
 # Write the title screen
-class TyranoDsl::ExportTyrano::ElementsWriters::TitleScreenWriter < TyranoDsl::ExportTyrano::ElementsWriters::BaseElementsWriters
+class TyranoDsl::ExportTyrano::Writers::TitleScreen < TyranoDsl::ExportTyrano::Writers::BaseWriter
 
   # @param [TyranoDsl::ExportTyrano::Context] context
   # @param [TyranoDsl::Elements::World] world
-  # @return [Array]
+  # @return [Array<TyranoDsl::FileActions::BaseFileAction>]
   def write(context, world)
     log {'Writing title screen'}
     background = get_background(world)
@@ -32,6 +32,7 @@ class TyranoDsl::ExportTyrano::ElementsWriters::TitleScreenWriter < TyranoDsl::E
   # @param [TyranoDsl::ExportTyrano::Context] context
   # @param [TyranoDsl::Elements::Background] background
   # @param [TyranoDsl::Elements::Scene] first_scene
+  # @return [String]
   def title_screen_content(context, background, first_scene)
     <<HEREDOC
 [_tb_system_call storage=system/_title_screen.ks]

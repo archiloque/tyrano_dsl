@@ -14,7 +14,7 @@ class TyranoDsl::ExportDsl::Words::DeclareBackground < TyranoDsl::ExportDsl::Wor
       )
   ]
 
-  def run(context, _word_location, parameters)
+  def run(context, parameters)
     background_name = parameters[:background_name]
     image_path = parameters[:image_path]
     target_image_path = context.image_file_name('backgrounds', "#{background_name}#{File.extname(image_path)}")

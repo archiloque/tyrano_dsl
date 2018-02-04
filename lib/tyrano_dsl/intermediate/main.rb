@@ -1,3 +1,4 @@
+require_relative '../elements/world'
 require_relative '../vocabulary'
 require_relative 'context'
 require_relative 'intermediate'

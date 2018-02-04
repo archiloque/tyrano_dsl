@@ -2,41 +2,25 @@ require_relative 'end_to_end_base_test'
 
 class EndToEndTest::ImportDslExportTyranoTest < EndToEndTest::BaseTest
 
-  def read_file(path)
-    IO.read(File.join(__dir__, 'dsl_to_tyrano', path))
-  end
-
   def test_end_to_end
-    file_actions = run_on_file('end_to_end_scene.rb', 'dsl', 'tyrano')
+    file_actions = run_on_file('dsl', 'tyrano', 'end_to_end_scene.rb')
     assert_equal(18, file_actions.length)
 
     clear_directories = extract_by_class(file_actions, TyranoDsl::FileActions::ClearDirectory)
     assert_equal(2, clear_directories.length)
     directories_to_clean = clear_directories.collect {|d| d.path}
-    assert directories_to_clean.include? 'data/bgimage'
-    assert directories_to_clean.include? 'data/fgimage/chara'
+    assert_includes directories_to_clean, 'data/bgimage'
+    assert_includes directories_to_clean, 'data/fgimage/chara'
 
-    file_copies = extract_by_class(file_actions, TyranoDsl::FileActions::FileCopy)
+    file_copies = create_file_copies_hash(file_actions)
     assert_equal(5, file_copies.length)
-    files_copies = {}
-    file_copies.each do |file_copy_action|
-      files_copies[file_copy_action.to_path] = file_copy_action.from_path
-    end
-    assert_equal(full_path('../assets/characters/shinji/default_stance.jpg'), files_copies['data/fgimage/chara/1/0.jpg'])
-    assert_equal(full_path('../assets/characters/shinji/angry.png'), files_copies['data/fgimage/chara/1/1.png'])
-    assert_equal(full_path('../assets/backgrounds/school.jpg'), files_copies['data/bgimage/1.jpg'])
-    assert_equal(full_path('subdirectory/alice.jpg'), files_copies['data/bgimage/2.jpg'])
-    assert_equal(full_path('../assets/backgrounds/school.jpg'), files_copies['data/bgimage/3.jpg'])
+    assert_equal(full_path('../assets/characters/shinji/default_stance.jpg'), file_copies['data/fgimage/chara/1/0.jpg'])
+    assert_equal(full_path('../assets/characters/shinji/angry.png'), file_copies['data/fgimage/chara/1/1.png'])
+    assert_equal(full_path('../assets/backgrounds/school.jpg'), file_copies['data/bgimage/1.jpg'])
+    assert_equal(full_path('subdirectory/alice.jpg'), file_copies['data/bgimage/2.jpg'])
+    assert_equal(full_path('../assets/backgrounds/school.jpg'), file_copies['data/bgimage/3.jpg'])
 
-    create_files = extract_by_class(file_actions, TyranoDsl::FileActions::CreateFile)
-    assert_equal(create_files.length, 9)
-
-    create_files.each do |create_file_action|
-      assert_equal(
-          read_file(create_file_action.path.gsub('/', '#')),
-          create_file_action.content
-      )
-    end
+    check_files_contents('dsl_to_tyrano', file_actions, 9)
 
     json_patches = extract_by_class(file_actions, TyranoDsl::FileActions::JsonPatch)
     assert_equal(2, json_patches.length)

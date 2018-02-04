@@ -1,13 +1,15 @@
 require_relative '../../file_actions/create_file'
 require_relative '../../file_actions/json_patch'
-require_relative 'base_elements_writers'
+require_relative '../../tyrano_constants'
 
-# Write things where all characters are implied
-class TyranoDsl::ExportTyrano::ElementsWriters::CharactersWriter < TyranoDsl::ExportTyrano::ElementsWriters::BaseElementsWriters
+require_relative 'base_writer'
+
+# Write things where all characters are declared
+class TyranoDsl::ExportTyrano::Writers::Characters < TyranoDsl::ExportTyrano::Writers::BaseWriter
 
   # @param [TyranoDsl::ExportTyrano::Context] context
   # @param [TyranoDsl::Elements::World] world
-  # @return [Array]
+  # @return [Array<TyranoDsl::FileActions::BaseFileAction>]
   def write(context, world)
     log {'Writing characters'}
     chara_define_content = ''
@@ -16,8 +18,15 @@ class TyranoDsl::ExportTyrano::ElementsWriters::CharactersWriter < TyranoDsl::Ex
     end
     chara_define_content << "\n"
     chara_define_content << "[iscript]\n"
-    world.variables.values.collect do |variable|
-      chara_define_content << "f['#{context.mangled_variable_name(variable.name)}']=#{variable.initial_value};\n"
+    world.variables.values.each do |variable|
+      if variable.initial_value.nil?
+        initial_value = "''"
+      elsif variable.initial_value.is_a? String
+        initial_value = variable.initial_value.inspect
+      else
+        initial_value = variable.initial_value
+      end
+      chara_define_content << "f['#{context.mangled_variable_name(variable.name)}']=#{initial_value};\n"
     end
     chara_define_content << "[endscript]\n"
 
@@ -28,12 +37,12 @@ class TyranoDsl::ExportTyrano::ElementsWriters::CharactersWriter < TyranoDsl::Ex
 
     [
         TyranoDsl::FileActions::CreateFile.new(
-            File.join('data', 'scenario', 'system', 'chara_define.ks'),
+            File.join(TyranoDsl::TyranoConstants::CHARA_DEFINE_FILE),
             chara_define_content
         ),
         TyranoDsl::FileActions::JsonPatch.new(
-            'builder_config.json',
-            ['map_chara'],
+            File.join(TyranoDsl::TyranoConstants::BUILDER_CONFIG_FILE),
+            [TyranoDsl::TyranoConstants::BUILDER_CONFIG_CHARACTERS_PATH],
             builder_config_content
         )
     ]

@@ -1,3 +1,5 @@
+require_relative 'words'
+
 module TyranoDsl::ExportDsl::Words
 
   # Represents a parameter in a call

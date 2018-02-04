@@ -1,13 +1,13 @@
 require_relative '../../file_actions/create_file'
-require_relative 'base_elements_writers'
+require_relative 'base_writer'
 
 # Write a scene
-class TyranoDsl::ExportTyrano::ElementsWriters::SceneWriter < TyranoDsl::ExportTyrano::ElementsWriters::BaseElementsWriters
+class TyranoDsl::ExportTyrano::Writers::Scene < TyranoDsl::ExportTyrano::Writers::BaseWriter
 
   # @param [String] mangled_scene_name
   # @param [Array<String>] scene_content
   # @param [Array<String>] assets
-  # @return [Array]
+  # @return [Array<TyranoDsl::FileActions::BaseFileAction>]
   def write(mangled_scene_name, scene_content, assets)
     log {"Writing scene [#{mangled_scene_name}]"}
     content_text_content = "[_tb_system_call storage=system/_#{mangled_scene_name}.ks]\n[cm]\n#{scene_content.join("\n")}\n"

@@ -49,13 +49,11 @@ class TyranoDsl::ExportDsl::Words::BaseWord
 
   # @param [String] command
   # @param [Array<TyranoDsl::ExportDsl::Words::CallParameter>] call_parameters
-  # @param [Array<String>] word_location
   # @param [TyranoDsl::ExportDsl::Context] context
   # @param [Hash] parameters
   # @return [void]
-  def add_call_current_scene(command, call_parameters, context, word_location, parameters)
+  def add_call_current_scene(command, call_parameters, context, parameters)
     context.append_content_current_scene(
-        word_location,
         generate_call(
             command,
             call_parameters,

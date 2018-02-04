@@ -1,12 +1,12 @@
 require 'logger'
 require 'set'
 
-require_relative 'elements_writers/scene_writer'
+require_relative 'writers/scene'
+require_relative '../tyrano_constants'
 
 # Context for writing
 class TyranoDsl::ExportTyrano::Context
 
-  CHARACTER_IMAGE_DIRECTORY = File.join('data', 'fgimage', 'chara')
   BACKGROUND_IMAGE_DIRECTORY = File.join('data', 'bgimage')
 
   # @return [Array<String>]
@@ -46,7 +46,7 @@ class TyranoDsl::ExportTyrano::Context
 
     @backgrounds_short_file_names = {}
     @backgrounds_long_file_names = {}
-    @scene_writer = TyranoDsl::ExportTyrano::ElementsWriters::SceneWriter.new
+    @scene_writer = TyranoDsl::ExportTyrano::Writers::Scene.new
   end
 
   def after_setup
@@ -59,7 +59,8 @@ class TyranoDsl::ExportTyrano::Context
                                     "#{stance_index.to_s}#{File.extname(stance.file_name)}")
         @stances_short_file_names[image_id] = short_file_name
         long_file_name = File.join(
-            CHARACTER_IMAGE_DIRECTORY, short_file_name)
+            *(TyranoDsl::TyranoConstants::CHARACTER_IMAGE_FULL_DIRECTORY + [short_file_name])
+        )
         @stances_long_file_names[image_id] = long_file_name
 
       end

@@ -9,7 +9,7 @@ class TyranoDsl::ExportTyrano::Words::ShowCharacter < TyranoDsl::ExportTyrano::W
     character_stance_name = parameters[:stance]
     left = parameters[:left]
     top = parameters[:top]
-    # chara_show display the default stance, so we display the real stance after is it's not the default
+    # chara_show display the default stance, so we display the real stance after if it's not the default
     context.add_asset_loading(
         context.stance_long_file_name(character_name, character_stance_name)
     )

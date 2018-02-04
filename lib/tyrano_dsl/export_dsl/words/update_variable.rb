@@ -2,11 +2,11 @@ require_relative 'plain_writing_word'
 
 class TyranoDsl::ExportDsl::Words::UpdateVariable < TyranoDsl::ExportDsl::Words::PlainWritingWord
 
-  def word()
+  def word
     TyranoDsl::Vocabulary::UPDATE_VARIABLE
   end
 
-  def call_parameters()
+  def call_parameters
     [
         TyranoDsl::ExportDsl::Words::CallParameter.new(
             :variable,

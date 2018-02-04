@@ -7,7 +7,7 @@ class TyranoDsl::ExportDsl::Words::StartScene
   # @param [Hash{Symbol=>Object}] parameters
   # @option parameters [String] :scene_name
   # @return [void]
-  def run(context, _word_location, parameters)
+  def run(context, parameters)
     context.init_new_scene(parameters[:scene_name])
   end
 

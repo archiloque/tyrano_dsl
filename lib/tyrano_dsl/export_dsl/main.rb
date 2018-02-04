@@ -22,7 +22,6 @@ class TyranoDsl::ExportDsl::Main
       action_word = @words[parsed_word.word]
       action_word.run(
           context,
-          parsed_word.word_location,
           parsed_word.parameters
       )
     end

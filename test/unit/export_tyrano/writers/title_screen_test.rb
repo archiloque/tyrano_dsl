@@ -1,15 +1,13 @@
 require_relative '../../../../lib/tyrano_dsl/elements/world'
-require_relative '../../../../lib/tyrano_dsl/export_tyrano/elements_writers/title_screen_writer'
-require_relative '../et_helper'
+require_relative '../../../../lib/tyrano_dsl/export_tyrano/writers/title_screen'
+require_relative 'writers_base_test'
 
-class ETElementsWriterTitleScreenWriterTest < Minitest::Test
-
-  include ETHelper
+class ExportTyranoWriters::TitleScreenWriterTest < ExportTyranoWriters::WritersBaseTest
 
   def test_no_background
     world = create_world
     context = create_context(world)
-    title_screen_writer = TyranoDsl::ExportTyrano::ElementsWriters::TitleScreenWriter.new
+    title_screen_writer = TyranoDsl::ExportTyrano::Writers::TitleScreen.new
     assert_tyrano_exception('No background defined for the title screen') do
       title_screen_writer.write(context, world)
     end
@@ -18,7 +16,7 @@ class ETElementsWriterTitleScreenWriterTest < Minitest::Test
   def test_no_scene
     world = create_world
     context = create_context(world)
-    title_screen_writer = TyranoDsl::ExportTyrano::ElementsWriters::TitleScreenWriter.new
+    title_screen_writer = TyranoDsl::ExportTyrano::Writers::TitleScreen.new
     world.title_screen.background = 'background.png'
     assert_tyrano_exception('No scene defined') do
       title_screen_writer.write(context, world)
@@ -28,7 +26,7 @@ class ETElementsWriterTitleScreenWriterTest < Minitest::Test
   def test_ok
     world = create_world
     context = create_context(world)
-    title_screen_writer = TyranoDsl::ExportTyrano::ElementsWriters::TitleScreenWriter.new
+    title_screen_writer = TyranoDsl::ExportTyrano::Writers::TitleScreen.new
     world.title_screen.background = 'background 1'
     world.title_screen.first_scene_name = 'scene 1'
     declare_scene(world, 'scene 1')

@@ -2,11 +2,11 @@ require 'logger'
 
 require_relative '../tyrano_dsl'
 require_relative '../vocabulary'
-require_relative 'elements_writers/background_writer'
-require_relative 'elements_writers/character_writer'
-require_relative 'elements_writers/characters_writer'
-require_relative 'elements_writers/title_screen_writer'
-require_relative 'elements_writers/variables_writer'
+require_relative 'writers/background'
+require_relative 'writers/character'
+require_relative 'writers/characters'
+require_relative 'writers/title_screen'
+require_relative 'writers/variables'
 require_relative 'context'
 
 # Export content in Tyrano format
@@ -54,7 +54,7 @@ class TyranoDsl::ExportTyrano::Main
   # @return [void]
   # @raise [TyranoDsl::TyranoException]
   def write_title_screen(context, world)
-    title_screen_writer = TyranoDsl::ExportTyrano::ElementsWriters::TitleScreenWriter.new
+    title_screen_writer = TyranoDsl::ExportTyrano::Writers::TitleScreen.new
     concat_file_actions(context, title_screen_writer.write(context, world))
   end
 
@@ -63,12 +63,12 @@ class TyranoDsl::ExportTyrano::Main
   # @return [void]
   # @raise [TyranoDsl::TyranoException]
   def write_characters(context, world)
-    character_writer = TyranoDsl::ExportTyrano::ElementsWriters::CharacterWriter.new
+    character_writer = TyranoDsl::ExportTyrano::Writers::Character.new
     concat_file_actions(context, character_writer.init_actions)
     world.characters.each_value do |character|
       concat_file_actions(context, character_writer.write(context, character))
     end
-    characters_writer = TyranoDsl::ExportTyrano::ElementsWriters::CharactersWriter.new
+    characters_writer = TyranoDsl::ExportTyrano::Writers::Characters.new
     concat_file_actions(context, characters_writer.write(context, world))
   end
 
@@ -77,7 +77,7 @@ class TyranoDsl::ExportTyrano::Main
   # @return [void]
   # @raise [TyranoDsl::TyranoException]
   def write_backgrounds(context, world)
-    background_writer = TyranoDsl::ExportTyrano::ElementsWriters::BackgroundWriter.new
+    background_writer = TyranoDsl::ExportTyrano::Writers::Background.new
     concat_file_actions(context, background_writer.init_actions)
     world.backgrounds.each_value do |background|
       concat_file_actions(context, background_writer.write(context, background))
@@ -89,7 +89,7 @@ class TyranoDsl::ExportTyrano::Main
   # @return [void]
   # @raise [TyranoDsl::TyranoException]
   def write_variables(context, world)
-    variables_writer = TyranoDsl::ExportTyrano::ElementsWriters::VariablesWriter.new
+    variables_writer = TyranoDsl::ExportTyrano::Writers::Variables.new
     concat_file_actions(context, variables_writer.write(context, world))
   end
 

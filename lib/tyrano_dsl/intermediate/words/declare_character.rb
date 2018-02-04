@@ -1,3 +1,4 @@
+require_relative '../../elements/character'
 require_relative 'empty_word'
 
 class TyranoDsl::Intermediate::Words::DeclareCharacter < TyranoDsl::Intermediate::Words::EmptyWord

@@ -3,7 +3,7 @@ require_relative 'end_to_end_base_test'
 class EndToEndTest::ImportDslExportTextTest < EndToEndTest::BaseTest
 
   def test_end_to_end
-    content = run_on_file('end_to_end_scene.rb', 'dsl', 'text')
+    content = run_on_file('dsl', 'text', 'end_to_end_scene.rb')
     assert_equal(
         [
             "Hello!\n",

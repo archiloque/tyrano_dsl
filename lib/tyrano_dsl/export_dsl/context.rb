@@ -34,11 +34,10 @@ class TyranoDsl::ExportDsl::Context
 
   # Append some content to the current scene
   #
-  # @param [Array<String>] word_location
   # @param [Array<String>] content
   # @return [void]
   # @raise [TyranoDsl::TyranoException]
-  def append_content_current_scene(word_location, content)
+  def append_content_current_scene(content)
     @current_scene_content << content
   end
 

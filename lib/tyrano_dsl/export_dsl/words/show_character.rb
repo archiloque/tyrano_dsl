@@ -2,11 +2,11 @@ require_relative 'plain_writing_word'
 
 class TyranoDsl::ExportDsl::Words::ShowCharacter < TyranoDsl::ExportDsl::Words::PlainWritingWord
 
-  def word()
+  def word
     TyranoDsl::Vocabulary::SHOW_CHARACTER
   end
 
-  def call_parameters()
+  def call_parameters
     [
         TyranoDsl::ExportDsl::Words::CallParameter.new(
             :character_name,

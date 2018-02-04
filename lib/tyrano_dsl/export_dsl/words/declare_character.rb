@@ -14,7 +14,7 @@ class TyranoDsl::ExportDsl::Words::DeclareCharacter < TyranoDsl::ExportDsl::Word
       )
   ]
 
-  def run(context, _word_location, parameters)
+  def run(context, parameters)
     character_name = parameters[:character_name]
     character_name_dir = TyranoDsl::FileActions.sanitize_filename(character_name)
 

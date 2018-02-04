@@ -11,7 +11,11 @@ class TyranoDsl::Main
       dsl: {
           path: 'import_dsl/main',
           class: 'TyranoDsl::ImportDsl::Main'
-      }
+      },
+      tyrano: {
+          path: 'import_tyrano/main',
+          class: 'TyranoDsl::ImportTyrano::Main'
+      },
   }
 
   EXPORTS = {
@@ -26,7 +30,7 @@ class TyranoDsl::Main
       tyrano: {
           path: 'export_tyrano/main',
           class: 'TyranoDsl::ExportTyrano::Main'
-      }
+      },
   }
 
   # @param [String] import_format

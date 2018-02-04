@@ -26,7 +26,6 @@ module ImportDslWords
       File.absolute_path(file_path, __dir__)
     end
 
-    # @param [TyranoDsl::Parser]@parser
     # @param [String] word
     # @param [Hash] parameters
     # @return [void]

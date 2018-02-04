@@ -29,8 +29,8 @@ module UnitTestHelper
 
   # @param [TyranoDsl::Elements::World] world
   # @param [String] variable_name
-  # @param [Float] initial_value
-  def declare_variable(world, variable_name, initial_value)
+  # @param [Float\String|nil] initial_value
+  def declare_variable(world, variable_name, initial_value = nil)
     world.variables[variable_name] = TyranoDsl::Elements::Variable.new(
         variable_name,
         initial_value

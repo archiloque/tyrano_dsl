@@ -263,7 +263,7 @@ jump 'Scene two', 'Label three'
 
 `declare_variable(variable_name, initial_value)` 
 - `variable_name` is a `String` representing the variable name
-- `initial_value` is a `Float` representing the variable initial value
+- `initial_value` (optional) is a `Float` or a `String` representing the variable initial value
 
 ```ruby
 declare_variable 'happiness', 25

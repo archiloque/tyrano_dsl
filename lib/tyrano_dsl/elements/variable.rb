@@ -6,11 +6,11 @@ class TyranoDsl::Elements::Variable
   # @return [String]
   attr_reader :name
 
-  # @return [Integer]
+  # @return [Float|String|nil]
   attr_reader :initial_value
 
   # @param [String] name
-  # @param [String] initial_value
+  # @param [Float|String|nil] initial_value
   def initialize(name, initial_value)
     @name = name
     @initial_value = initial_value

@@ -3,6 +3,11 @@ require_relative 'words'
 
 class TyranoDsl::ExportTyrano::Words::DisplayText < TyranoDsl::ExportTyrano::Words::BaseWord
 
+  # @param [TyranoDsl::ExportTyrano::Context] context
+  # @param [TyranoDsl::Elements::World] _world
+  # @param [Hash{Symbol=>Object}] parameters
+  # @option parameters [String|nil] :character_name
+  # @option parameters [String] :text
   def run(context, _world, parameters)
     character_name = parameters[:character_name]
     text = parameters[:text]

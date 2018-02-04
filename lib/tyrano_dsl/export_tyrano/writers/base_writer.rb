@@ -1,6 +1,6 @@
-require_relative 'elements_writers'
+require_relative 'writers'
 
-class TyranoDsl::ExportTyrano::ElementsWriters::BaseElementsWriters
+class TyranoDsl::ExportTyrano::Writers::BaseWriter
 
   protected
 

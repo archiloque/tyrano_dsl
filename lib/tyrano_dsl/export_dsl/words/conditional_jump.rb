@@ -2,11 +2,11 @@ require_relative 'plain_writing_word'
 
 class TyranoDsl::ExportDsl::Words::ConditionalJump < TyranoDsl::ExportDsl::Words::PlainWritingWord
 
-  def word()
+  def word
     TyranoDsl::Vocabulary::CONDITIONAL_JUMP
   end
 
-  def call_parameters()
+  def call_parameters
     [
         TyranoDsl::ExportDsl::Words::CallParameter.new(
             :variable,

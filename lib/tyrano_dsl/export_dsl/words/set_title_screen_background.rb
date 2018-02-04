@@ -10,7 +10,7 @@ class TyranoDsl::ExportDsl::Words::SetTitleScreenBackground < TyranoDsl::ExportD
       )
   ]
 
-  def run(context, _word_location, parameters)
+  def run(context, parameters)
     context.add_declaration(
         generate_call(
             TyranoDsl::Vocabulary::SET_TITLE_SCREEN_BACKGROUND,

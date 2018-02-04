@@ -21,6 +21,18 @@ class IntermediateWords::DeclareVariableTest < IntermediateWords::WordsBaseTest
     end
   end
 
+  def test_bad_name
+    assert_tyrano_exception('Variable name should not contain [\'] [yo\'lo]') do
+      @declare_variable.world_construction_phase(
+          @context,
+          @world,
+          caller,
+          variable_name: 'yo\'lo',
+          initial_value: 5
+      )
+    end
+  end
+
   def test_ok
     @declare_variable.world_construction_phase(
         @context,
