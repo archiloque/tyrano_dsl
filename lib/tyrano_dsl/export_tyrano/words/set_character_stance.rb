@@ -17,7 +17,7 @@ class TyranoDsl::ExportTyrano::Words::SetCharacterStance < TyranoDsl::ExportTyra
         context.stance_long_file_name(character_name, character_stance)
     )
     context.append_content(
-        "[chara_mod name=\"#{character_name}\" cross=\"true\" storage=\"chara/#{context.stance_short_file_name(character_name, character_stance)}\"]"
+        "[chara_mod name=\"#{character_name}\" time=\"#{parameters[:duration]}\" cross=\"true\" storage=\"chara/#{context.stance_short_file_name(character_name, character_stance)}\"]"
     )
   end
 

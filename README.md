@@ -166,9 +166,11 @@ hide_character 'Shinji'
 `set_character_stance(name, stance)`
 - `name` is a `String` representing the character's name
 - `stance` is a `String` defining the stance name
+- `duration` (optional) is an `Integer` defining the duration of the transition, default is `600`
 
 ```ruby
 set_character_stance 'Shinji', 'angry'
+set_character_stance 'Shinji', 'angry', 300
 ```
 
 <a id="show_character"></a>

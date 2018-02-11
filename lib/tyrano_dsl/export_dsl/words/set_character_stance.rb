@@ -15,6 +15,12 @@ class TyranoDsl::ExportDsl::Words::SetCharacterStance < TyranoDsl::ExportDsl::Wo
         TyranoDsl::ExportDsl::Words::CallParameter.new(
             :stance,
             Symbol
+        ),
+        TyranoDsl::ExportDsl::Words::CallParameter.new(
+            :duration,
+            Integer,
+            false,
+            600
         )
     ]
   end

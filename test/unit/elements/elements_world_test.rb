@@ -19,7 +19,7 @@ class ElementsWorldTest < Minitest::Test
     world = TyranoDsl::Elements::World.new
     declare_jump_target(world, 'scene name', 'missing label')
     world.scenes['scene name'] = TyranoDsl::Elements::Scene.new('scene name')
-    assert_tyrano_exception('Unknown label [missing label] declared in label') do
+    assert_tyrano_exception('Unknown label [missing label] for scene [scene name] declared in label') do
       world.validate
     end
   end

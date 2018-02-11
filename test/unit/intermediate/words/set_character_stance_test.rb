@@ -21,9 +21,23 @@ class IntermediateWords::SetCharacterStanceTest < IntermediateWords::WordsBaseTe
     end
   end
 
+  def test_missing_duration
+    declare_character(@world, 'Shinji', :default => '../../assets/characters/shinji/default_stance.jpg')
+    assert_tyrano_exception('Missing parameter [duration]') do
+      @set_character_stance.validation_phase(@context, @world, caller, character_name: 'Shinji', stance: :default)
+    end
+  end
+
+  def test_invalid_duration
+    declare_character(@world, 'Shinji', :default => '../../assets/characters/shinji/default_stance.jpg')
+    assert_tyrano_exception('Parameter [duration] should be an integer') do
+      @set_character_stance.validation_phase(@context, @world, caller, character_name: 'Shinji', stance: :default, duration: 'aa')
+    end
+  end
+
   def test_ok
     declare_character(@world, 'Shinji', :default => '../../assets/characters/shinji/default_stance.jpg')
-    @set_character_stance.validation_phase(@context, @world, caller, character_name: 'Shinji', stance: :default)
+    @set_character_stance.validation_phase(@context, @world, caller, character_name: 'Shinji', stance: :default, duration: 500)
   end
 
 end

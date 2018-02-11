@@ -13,7 +13,7 @@ Hello!
 Hello!
 [_tb_end_text]
 
-[chara_mod name="Shinji" cross="true" storage="chara/1/1.png"]
+[chara_mod name="Shinji" time="600" cross="true" storage="chara/1/1.png"]
 [tb_hide_message_window]
 [glink color="black" storage="scene2" target="" size="20" x="200" y="200" text="Yes !"]
 [glink color="black" storage="scene3" target="label_1" size="20" x="200" y="300" text="No &quot;&quot;?"]

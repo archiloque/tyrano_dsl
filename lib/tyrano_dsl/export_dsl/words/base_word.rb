@@ -11,7 +11,10 @@ class TyranoDsl::ExportDsl::Words::BaseWord
     result = "#{command}"
     last_present_parameters_number = call_parameters.rindex do |call_parameter|
       parameter_name = call_parameter.name
-      (!call_parameter.mandatory) && ((!parameters.key?(parameter_name)) || parameters[parameter_name].nil?)
+      (!call_parameter.mandatory) && (
+        ((!parameters.key?(parameter_name)) || parameters[parameter_name].nil?) ||
+        (parameters.key?(parameter_name) && (parameters[parameter_name] == call_parameter.default_value))
+      )
     end || call_parameters.length
     0.upto(last_present_parameters_number - 1) do |parameter_index|
       unless parameter_index == 0
@@ -93,6 +96,8 @@ class TyranoDsl::ExportDsl::Words::BaseWord
     case type.name
       when String.name
         return value.inspect
+      when Integer.name
+        return value.to_s
       when Float.name
         return value.to_s
       when Symbol.name

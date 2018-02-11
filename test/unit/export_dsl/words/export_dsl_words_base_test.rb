@@ -14,7 +14,6 @@ module ExportDslWords
       @context = create_context(@world)
     end
 
-
     def create_world
       TyranoDsl::Elements::World.new
     end
@@ -25,6 +24,11 @@ module ExportDslWords
 
     def assert_main_file(content)
       main_file = @context.file_actions.find {|fa| fa.is_a?(TyranoDsl::FileActions::CreateFile) && (fa.path == 'main.rb')}
+      assert_equal(content, main_file.content)
+    end
+
+    def assert_file(name, content)
+      main_file = @context.file_actions.find {|fa| fa.is_a?(TyranoDsl::FileActions::CreateFile) && (fa.path == name)}
       assert_equal(content, main_file.content)
     end
   end

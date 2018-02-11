@@ -37,6 +37,20 @@ class TyranoDsl::Intermediate::Words::EmptyWord
     end
   end
 
+
+  # @param [Hash{Symbol=>Object}] parameters
+  # @param [String] parameter_name
+  # @return [void]
+  # @raise [TyranoDsl::TyranoException]
+  def check_integer(word_location, parameters, parameter_name)
+    unless parameters.key?(parameter_name)
+      TyranoDsl::TyranoException.raise_exception "Missing parameter [#{parameter_name}]", word_location
+    end
+    unless parameters[parameter_name].is_a? Integer
+      TyranoDsl::TyranoException.raise_exception "Parameter [#{parameter_name}] should be an integer", word_location
+    end
+  end
+
   # @param [TyranoDsl::Elements::World] world
   # @param [Array<String>] word_location
   # @param [String] variable_name

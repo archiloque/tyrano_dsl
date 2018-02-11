@@ -8,6 +8,7 @@ class TyranoDsl::Intermediate::Words::SetCharacterStance < TyranoDsl::Intermedia
   # @param [Hash{Symbol=>Object}] parameters
   # @option parameters [String] :character_name
   # @option parameters [String] :stance
+  # @option parameters [Integer] :duration
   # @return [void]
   def validation_phase(context, world, word_location, parameters)
     check_character_exist(
@@ -15,6 +16,7 @@ class TyranoDsl::Intermediate::Words::SetCharacterStance < TyranoDsl::Intermedia
         word_location,
         parameters[:character_name],
         parameters[:stance])
+    check_integer(word_location, parameters, :duration)
   end
 
 end

@@ -24,6 +24,7 @@ class TyranoDsl::ImportTyrano::Words::SetCharacterStance < TyranoDsl::ImportTyra
       context.add_parsed_word(
           TyranoDsl::Vocabulary::SET_CHARACTER_STANCE,
           character_name: match[:name],
+          duration: match[:time].to_i,
           stance: stance_name
       )
       context.go_next_line
