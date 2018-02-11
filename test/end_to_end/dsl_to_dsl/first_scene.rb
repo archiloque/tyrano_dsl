@@ -1,3 +1,4 @@
+clear_messages
 set_background "School"
 declare_label "Label 1"
 show_character "Shinji", "default", 434, 128

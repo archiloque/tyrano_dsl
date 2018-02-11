@@ -1,3 +1,4 @@
+require_relative '../../elements/scene'
 require_relative 'empty_word'
 
 class TyranoDsl::Intermediate::Words::StartScene < TyranoDsl::Intermediate::Words::EmptyWord

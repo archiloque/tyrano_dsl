@@ -17,4 +17,8 @@ module TyranoDsl::TyranoConstants
 
   BUILDER_CONFIG_CHARACTERS_PATH = 'map_chara'
 
+  SCENE_DIRECTORY = ['data', 'scenario']
+
+  SCENE_SYSTEM_DIRECTORY = SCENE_DIRECTORY + ['system']
+
 end

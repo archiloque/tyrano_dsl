@@ -1,4 +1,2 @@
-module TyranoDsl
-  module ExportTyrano
-  end
+module TyranoDsl::ExportTyrano
 end

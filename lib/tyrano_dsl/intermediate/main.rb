@@ -7,6 +7,7 @@ class TyranoDsl::Intermediate::Main
 
   WORDS_ONLY_IN_SCENE = [
       TyranoDsl::Vocabulary::ASK_QUESTION,
+      TyranoDsl::Vocabulary::CLEAR_MESSAGES,
       TyranoDsl::Vocabulary::CONDITIONAL_JUMP,
       TyranoDsl::Vocabulary::DECLARE_LABEL,
       TyranoDsl::Vocabulary::DISPLAY_TEXT,

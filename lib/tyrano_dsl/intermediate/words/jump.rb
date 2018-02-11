@@ -6,6 +6,8 @@ class TyranoDsl::Intermediate::Words::Jump < TyranoDsl::Intermediate::Words::Emp
   # @param [TyranoDsl::Elements::World] world
   # @param [Array<String>] word_location
   # @param [Hash{Symbol=>Object}] parameters
+  # @option parameters [String] :scene_name
+  # @option parameters [String|nil] :label_name
   # @return [void]
   def world_construction_phase(context, world, word_location, parameters)
     world.jump_targets << TyranoDsl::Elements::JumpTarget.new(

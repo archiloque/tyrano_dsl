@@ -1,4 +1,2 @@
-module TyranoDsl
-  module ExportText
-  end
+module TyranoDsl::ExportText
 end

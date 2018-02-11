@@ -28,7 +28,7 @@ class TyranoDsl::ExportDsl::Words::DeclareCharacter < TyranoDsl::ExportDsl::Word
       )
     end
     context.add_declaration(
-        generate_call(TyranoDsl::Vocabulary::DECLARE_BACKGROUND,
+        generate_call(TyranoDsl::Vocabulary::DECLARE_CHARACTER,
                       CALL_PARAMETERS,
                       {
                           character_name: character_name,

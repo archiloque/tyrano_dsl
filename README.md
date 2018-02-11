@@ -80,8 +80,9 @@ If there is an error it should be displayed and the message should help you to f
 ## Export formats
 
 * `dsl` the Ruby DSL, `export-path` must be the path to the directory to export to
+* `graph` print the game as a graph in the console in the [Graphviz](http://www.graphviz.org) format so you can visualize it
 * `tyrano` export the game to replace the current content of the Tyrano project, `export-path` must be the path to the Tyrano project
-* `text` print the text content of the game in the console, `export-path` is not used
+* `text` print the text content of the game in the console so you can easily proofread it, in this case `export-path` is not used
 
 ## Current vocabulary
 
@@ -103,6 +104,7 @@ If there is an error it should be displayed and the message should help you to f
   * [`declare_variable` Declare a variable](#declare_variable)
   * [`update_variable` Update a variable](#update_variable)
 * [Misc](#misc)
+  * [`clear_messages` Clear all messages](#clear_messages)
   * [`hide_message_window` Hide the message window](#hide_message_window)
   * [`include_file` Include a file](#include_file)
   * [`show_message_window` Show the message window](#show_message_window)
@@ -290,6 +292,15 @@ update_variable 'happiness', '+', 'calmness'
 
 <a id="misc"></a>
 ### Misc
+
+<a id="clear_messages"></a>
+#### `clear_messages` Clear all messages
+
+`clear_messages`
+
+```ruby
+clear_messages
+```
 
 <a id="hide_message_window"></a>
 #### `hide_message_window` Hide the message window

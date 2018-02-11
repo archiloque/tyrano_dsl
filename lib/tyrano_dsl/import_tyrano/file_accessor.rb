@@ -15,4 +15,11 @@ class TyranoDsl::ImportTyrano::FileAccessor
     IO.read(File.join(*([@directory_path] + path)))
   end
 
+  # Read a file
+  # @param [Array<String>] path
+  # @return [Array<String>]
+  def read_lines(path)
+    IO.readlines(File.join(*([@directory_path] + path)))
+  end
+
 end

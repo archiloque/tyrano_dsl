@@ -14,4 +14,8 @@ class TyranoDsl::ImportTyrano::Readers::BaseReader
     logger.info(self.class) {yield}
   end
 
+  def warn
+    logger.warn(self.class) {yield}
+  end
+
 end

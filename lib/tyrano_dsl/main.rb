@@ -23,6 +23,10 @@ class TyranoDsl::Main
           path: 'export_dsl/main',
           class: 'TyranoDsl::ExportDsl::Main'
       },
+      graph: {
+          path: 'export_graph/main',
+          class: 'TyranoDsl::ExportGraph::Main'
+      },
       text: {
           path: 'export_text/main',
           class: 'TyranoDsl::ExportText::Main'

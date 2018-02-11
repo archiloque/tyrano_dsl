@@ -11,13 +11,14 @@ class TyranoDsl::ImportTyrano::Main
   # @raise [TyranoDsl::TyranoException]
   def run(directory_path)
     file_accessor = TyranoDsl::ImportTyrano::FileAccessor.new(directory_path)
-    context = TyranoDsl::ImportTyrano::Context.new(directory_path)
 
-    result = []
+    characters = TyranoDsl::ImportTyrano::Readers::Characters.new.read(file_accessor)
+    context = TyranoDsl::ImportTyrano::Context.new(directory_path, characters, file_accessor)
+    result_variables = TyranoDsl::ImportTyrano::Readers::Variables.new.read(file_accessor)
 
-    result.concat(TyranoDsl::ImportTyrano::Readers::Characters.new.read(file_accessor, context))
-    result.concat(TyranoDsl::ImportTyrano::Readers::Variables.new.read(file_accessor))
-    result
+    result_scenes = context.process_scenes
+    result_characters = context.process_characters
+    result_variables + result_characters + result_scenes
   end
 
 end

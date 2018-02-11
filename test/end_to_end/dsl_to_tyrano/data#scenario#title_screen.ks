@@ -14,13 +14,13 @@
 
 [showmenubutton]
 
-[cm  ]
+[cm]
 [tb_keyconfig  flag="1"  ]
 [jump  storage="scene1.ks"  target=""  ]
 [s  ]
 *load
 
-[cm  ]
+[cm]
 [showload]
 
 [jump  target="*title"  storage=""  ]

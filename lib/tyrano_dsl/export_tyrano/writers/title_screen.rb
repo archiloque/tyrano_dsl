@@ -51,13 +51,13 @@ class TyranoDsl::ExportTyrano::Writers::TitleScreen < TyranoDsl::ExportTyrano::W
 
 [showmenubutton]
 
-[cm  ]
+[cm]
 [tb_keyconfig  flag="1"  ]
 [jump  storage="#{context.mangled_scene_name(first_scene.name)}.ks"  target=""  ]
 [s  ]
 *load
 
-[cm  ]
+[cm]
 [showload]
 
 [jump  target="*title"  storage=""  ]

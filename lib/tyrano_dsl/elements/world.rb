@@ -42,7 +42,7 @@ class TyranoDsl::Elements::World
       end
       jump_target_label = jump_target.label
       if jump_target_label && (!scene.labels.include?(jump_target_label))
-        TyranoDsl::TyranoException.raise_exception "Unknown label [#{jump_target_label}] declared in label", jump_target.word_location
+        TyranoDsl::TyranoException.raise_exception "Unknown label [#{jump_target_label}] for scene [#{jump_target.scene}] declared in label", jump_target.word_location
       end
     end
   end

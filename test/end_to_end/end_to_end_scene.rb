@@ -7,6 +7,7 @@ declare_variable 'sadness', 25
 set_title_screen_background 'School'
 
 start_scene 'First scene'
+clear_messages
 set_background 'School'
 declare_label 'Label 1'
 show_character 'Shinji', 'default', 434, 128
@@ -34,9 +35,11 @@ hide_character 'Shinji'
 jump 'Second scene'
 
 start_scene 'Second scene'
+clear_messages
 set_background 'School'
 
 start_scene 'First scene$'
+clear_messages
 set_background 'School'
 declare_label 'a label'
 conditional_jump 'sadness', '<', 10, 'First scene$'

@@ -5,6 +5,8 @@ module TyranoDsl::Vocabulary
 
   # Declare a background
   ASK_QUESTION = :ask_question
+  # Clear messages
+  CLEAR_MESSAGES = :clear_messages
   # Conditional jump
   CONDITIONAL_JUMP = :conditional_jump
   # Declare a background
@@ -43,6 +45,7 @@ module TyranoDsl::Vocabulary
   # All the available words
   ALL_WORDS = [
       ASK_QUESTION,
+      CLEAR_MESSAGES,
       CONDITIONAL_JUMP,
       DECLARE_BACKGROUND,
       DECLARE_CHARACTER,
@@ -68,17 +71,21 @@ module TyranoDsl::Vocabulary
     TyranoDsl::Vocabulary::ALL_WORDS.each do |word|
       full_path = "#{class_file_path}/#{word}"
       require_relative(full_path)
-      full_class_name = "TyranoDsl::" + full_path.
-          split('_').
-          collect(&:capitalize).
-          join.
-          split('/').
-          collect do |c|
-        c[0] = c[0].upcase
-        c
-      end.join('::')
-      word_class = Kernel.const_get(full_class_name)
+      class_name = self.full_class_name(full_path)
+      word_class = Kernel.const_get(class_name)
       yield(word, word_class)
     end
+  end
+
+  def self.full_class_name(full_path)
+     "TyranoDsl::" + full_path.
+        split('_').
+        collect(&:capitalize).
+        join.
+        split('/').
+        collect do |c|
+      c[0] = c[0].upcase
+      c
+    end.join('::')
   end
 end
